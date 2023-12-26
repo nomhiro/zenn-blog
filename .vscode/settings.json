@@ -1,0 +1,9 @@
+{
+    "pasteImage.basePath": "${projectRoot}",
+    "pasteImage.insertPattern": "${imageSyntaxPrefix}/${imageFilePath}${imageSyntaxSuffix}",
+    "pasteImage.path": "${projectRoot}/images/${currentFileNameWithoutExt}",
+    "cSpell.words": [
+        "Streamlit",
+        "Zenn"
+    ]
+}
