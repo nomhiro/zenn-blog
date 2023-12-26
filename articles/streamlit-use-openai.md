@@ -32,7 +32,7 @@ StreamlitはPythonで簡単にWebアプリを作成できるフレームワー�
 実際にStreamlitを利用してアプリを作成してみます。
 
 サンプルコードはこちらのリポジトリにあります。
-[サンプルコード](https://github.com/hiroki-nomura/streamlit-chat-aoai)
+[サンプルコード](https://github.com/nomhiro/streamlit-chatsample-aoai)
 
 ### chat.pyファイルに以下のコードを記載します
 
