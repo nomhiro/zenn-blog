@@ -24,7 +24,7 @@ published: true
     :::message alert
     PrivateEndpointを利用する場合は、現状はPremiumプランが必要ですのでご注意ください。
     :::
-    ![AppService基本](/images/deploy-streamlit-to-appservice/(/images/deploy-streamlit-to-appservice/2023-12-27-10-04-34.png).png)
+    ![AppService設定_基本](/images/deploy-streamlit-to-appservice/2023-12-27-22-56-23.png)
 3. その他のタブの設定は必要に応じて設定してください。
 4. 「確認＋作成」をクリックします。
 
