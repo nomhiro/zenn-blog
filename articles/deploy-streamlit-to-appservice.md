@@ -6,13 +6,14 @@ topics: ["Azure", "OpenAI", "AppService", "Streamlit", "Python"]
 published: true
 ---
 
-# タイトル
+# StreamlitアプリをAzureのAppServiceで動かす
 
 ## 紹介すること／紹介しないこと
 - こちらの記事では、[OpenAIを簡単に検証するためにStreamlitを使う](https://zenn.dev/nomhiro/articles/streamlit-use-openai)方法を紹介しました。紹介したStreamlitアプリをAzureのAppServiceにデプロイしWebアプリとして公開する方法を紹介します。
 
-## 対象プロダクトの紹介
+## AzureAppSericeとは
 - AzureAppSericeとは、Azure上でWebアプリケーションをホストするためのサービスです。
+- AzureAppSericeは、AzureのPaaSサービスの一つで、サーバーの管理やOSの管理などをAzureが行ってくれるため、Webアプリケーションの開発に集中することができます。
 
 ## AppServiceの作成とデプロイ手順
 
