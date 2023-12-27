@@ -3,7 +3,7 @@ title: "EventGridがMicrosoftサービス（SPO,Teams等）からのイベント
 emoji: "🐻‍❄️"
 type: "tech" # tech: 技術記事 / idea: アイデア
 topics: ["Azure", "EventGrid","SharePoint","Teams"]
-published: false
+published: true
 ---
 
 # EventGridがSPO,TeamsなどのMicrosoftサービスからのイベントに対応（PublicPreview）
