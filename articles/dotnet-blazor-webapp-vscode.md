@@ -11,11 +11,12 @@ published: true
 ## 背景
 - dotnet（C#）でのWebアプリケーション開発を行うために、Blazorフレームワークを利用してみたい初学者人たちの記事です。
 - streamlitなど、Pythonで簡単にWebアプリケーションを作成できるフレームワークがあります。しかし、**MicrosoftのSemanticKernelなどはC#を主にして開発されているため、C#でのWebアプリケーション開発をしておくと恩恵を受ける場面が多いと思います。**
+- 以下公式ページにチュートリアルはありますが、VisualStudio前提で記載されていますので、VSCodeでの開発を行うための手順を記載します。
+    [公式ページリンク](https://dotnet.microsoft.com/ja-jp/learn/aspnet/blazor-tutorial/install)
 
 ## Blazorフレームワーク
 - Blazorフレームワークは、C#でWebアプリケーションを開発するためのフレームワークです。
-- 以下公式ページにチュートリアルはありますが、VisualStudio前提で記載されていますので、VSCodeでの開発を行うための手順を記載します。
-    [公式ページリンク](https://dotnet.microsoft.com/ja-jp/learn/aspnet/blazor-tutorial/install)
+- こちらの記事（[Blazor解説記事](https://zenn.dev/microsoft/articles/blazor-dotnet8-all)）で非常にわかりやすく解説されているのでまずこちらに目を通してみてください。
 
 ## 前提
 - VSCode利用
