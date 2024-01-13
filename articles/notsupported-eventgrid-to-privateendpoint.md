@@ -42,13 +42,16 @@ published: false
 ## 回避策を考えてみる
 
 - PrivateEndpointを構成しているFunctionにイベントを通知したい場合、EventGridを使えません。そしてBlobTriggerは、ログの欠落が発生した場合に通知が行われない可能性があるため、本番向けシステムには使いづらいです。
-- これを回避できるソリューションはこれらです。
-  1. Blobにドキュメントを登録する際に、Queueにメッセージを登録し、QueueトリガーでFunctionを動かす。※以下のように[Microsoftドキュメント](https://learn.microsoft.com/ja-jp/rest/api/storageservices/About-Storage-Analytics-Logging)にも書かれている回避策です。![回避策 queue](/images/notsupported-eventgrid-to-privateendpoint/2024-01-13-12-35-09.png)
+- これを回避できるソリューションを二つ考えてみました。
+
+### 1. Blobにドキュメントを登録する際に、Queueにメッセージを登録し、QueueトリガーでFunctionを動かす。
+- 以下のように[Microsoftドキュメント](https://learn.microsoft.com/ja-jp/rest/api/storageservices/About-Storage-Analytics-Logging)にも書かれている回避策です。![回避策 queue](/images/notsupported-eventgrid-to-privateendpoint/2024-01-13-12-35-09.png)
     ![queue-to-functions](/images/notsupported-eventgrid-to-privateendpoint/2024-01-13-12-45-27.png)
-       - BlobStorageにドキュメントを登録する仕組みがすでにある場合に向いています。その仕組みにQueue登録処理を追加することで実現できます。
-  2. EventGridを使い、EventGridからStorageQueueに登録する。そして、StorageQueueトリガーでFunctionを動かす。
-    この場合、EventGridからStorageQueueの通信はサービスエンドポイント経由のためパブリックアクセスですが、StorageQueue側の設定で、通知するEventGridを限定することができます。
+- BlobStorageにドキュメントを登録する仕組みがすでにある場合に向いています。その仕組みにQueue登録処理を追加することで実現できます。
+
+### 2. EventGridを使いEventGridからStorageQueueに登録する。そして、StorageQueueトリガーでFunctionを動かす。
+- この場合、EventGridからStorageQueueの通信はサービスエンドポイント経由のためパブリックアクセスですが、StorageQueue側の設定で、通知するEventGridを限定することができます。
     ![eventGrid-queue-to-functions](/images/notsupported-eventgrid-to-privateendpoint/2024-01-13-12-54-06.png)
-       - BlobStorageにドキュメントを登録する仕組みがない場合はこちらのやり方が向いています。
+ - BlobStorageにドキュメントを登録する仕組みがない場合はこちらのやり方が向いています。
 
 今後、これらの仕組みの設定および実装方法は、別途記事にまとめます。
