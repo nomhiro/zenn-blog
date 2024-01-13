@@ -1,0 +1,61 @@
+<mxfile host="65bd71144e">
+    <diagram id="pyFOITWGm1L5QSNy7el4" name="Page-1">
+        <mxGraphModel dx="848" dy="566" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" background="#ffffff" math="0" shadow="0">
+            <root>
+                <mxCell id="0"/>
+                <mxCell id="1" parent="0"/>
+                <mxCell id="2" value="BlobStorage" style="verticalLabelPosition=bottom;html=1;verticalAlign=top;align=center;strokeColor=none;fillColor=#00BEF2;shape=mxgraph.azure.storage_blob;fontColor=#1A1A1A;" parent="1" vertex="1">
+                    <mxGeometry x="260" y="167.88" width="50" height="45" as="geometry"/>
+                </mxCell>
+                <mxCell id="7" value="" style="rounded=1;whiteSpace=wrap;html=1;labelBackgroundColor=none;fontColor=#1A1A1A;fillColor=none;strokeColor=#666666;align=left;" parent="1" vertex="1">
+                    <mxGeometry x="354" y="120" width="200" height="148.75" as="geometry"/>
+                </mxCell>
+                <mxCell id="21" value="" style="edgeStyle=none;html=1;strokeColor=#4D4D4D;fontColor=#1A1A1A;" parent="1" source="5" target="20" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="5" value="Functions" style="aspect=fixed;html=1;points=[];align=center;image;fontSize=12;image=img/lib/azure2/compute/Function_Apps.svg;labelBackgroundColor=none;fontColor=#1A1A1A;" parent="1" vertex="1">
+                    <mxGeometry x="592" y="165" width="59.5" height="52.5" as="geometry"/>
+                </mxCell>
+                <mxCell id="8" value="&lt;span style=&quot;color: rgb(26, 26, 26); font-family: Helvetica; font-size: 12px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 400; letter-spacing: normal; orphans: 2; text-align: left; text-indent: 0px; text-transform: none; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; text-decoration-thickness: initial; text-decoration-style: initial; text-decoration-color: initial; float: none; display: inline !important;&quot;&gt;仮想ネットワーク&lt;/span&gt;" style="text;whiteSpace=wrap;html=1;fontColor=#1A1A1A;fillColor=none;labelBackgroundColor=none;" parent="1" vertex="1">
+                    <mxGeometry x="374" y="128.75" width="110" height="22.5" as="geometry"/>
+                </mxCell>
+                <mxCell id="13" style="edgeStyle=none;html=1;entryX=0.091;entryY=0.495;entryDx=0;entryDy=0;entryPerimeter=0;strokeColor=#4D4D4D;fontColor=#1A1A1A;" parent="1" source="10" target="5" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="26" value="ドキュメント取得" style="edgeStyle=none;html=1;entryX=1;entryY=0.5;entryDx=0;entryDy=0;entryPerimeter=0;strokeColor=#4D4D4D;fontColor=#18141D;verticalAlign=bottom;labelBackgroundColor=none;" edge="1" parent="1" source="10" target="2">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="10" value="Functionsの&lt;br&gt;PrivateEndpoint" style="aspect=fixed;html=1;points=[];align=center;image;fontSize=12;image=img/lib/azure2/networking/Private_Endpoint.svg;labelBackgroundColor=none;strokeColor=#666666;fontColor=#1A1A1A;fillColor=none;" parent="1" vertex="1">
+                    <mxGeometry x="427.54999999999995" y="165.38" width="56.45" height="51.75" as="geometry"/>
+                </mxCell>
+                <mxCell id="20" value="CosmosDB" style="aspect=fixed;html=1;points=[];align=center;image;fontSize=12;image=img/lib/azure2/databases/Azure_Cosmos_DB.svg;shadow=0;labelBackgroundColor=none;sketch=0;strokeColor=#666666;fontColor=#1A1A1A;fillColor=#FF0000;" parent="1" vertex="1">
+                    <mxGeometry x="720" y="164" width="52.25" height="52.25" as="geometry"/>
+                </mxCell>
+                <mxCell id="23" value="ドキュメント格納" style="edgeStyle=none;html=1;strokeColor=#4D4D4D;labelBackgroundColor=none;fontColor=#1A1A1A;verticalAlign=bottom;" edge="1" parent="1" source="22" target="2">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="25" value="登録したドキュメントIDを&lt;br&gt;キューに登録" style="edgeStyle=none;html=1;entryX=-0.041;entryY=0.489;entryDx=0;entryDy=0;entryPerimeter=0;strokeColor=#4D4D4D;fontColor=#18141D;labelBackgroundColor=none;" edge="1" parent="1" source="22" target="24">
+                    <mxGeometry relative="1" as="geometry">
+                        <Array as="points">
+                            <mxPoint x="200" y="303.13"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="22" value="ドキュメントを格納するアプリケーション" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#1ba1e2;fontColor=#ffffff;strokeColor=#006EAF;verticalAlign=middle;" vertex="1" parent="1">
+                    <mxGeometry x="30" y="164" width="125" height="51.25" as="geometry"/>
+                </mxCell>
+                <mxCell id="27" value="QueueTrigger" style="edgeStyle=none;html=1;strokeColor=#4D4D4D;fontColor=#18141D;entryX=0.008;entryY=0.688;entryDx=0;entryDy=0;entryPerimeter=0;labelBackgroundColor=none;" edge="1" parent="1" source="24" target="10">
+                    <mxGeometry x="-0.1993" y="-1" relative="1" as="geometry">
+                        <Array as="points">
+                            <mxPoint x="350" y="304"/>
+                        </Array>
+                        <mxPoint x="1" as="offset"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="24" value="StorageQueue" style="aspect=fixed;html=1;points=[];align=center;image;fontSize=12;image=img/lib/azure2/general/Storage_Queue.svg;labelBackgroundColor=none;fontColor=#18141D;" vertex="1" parent="1">
+                    <mxGeometry x="254.23000000000002" y="279.13" width="61.54" height="50" as="geometry"/>
+                </mxCell>
+            </root>
+        </mxGraphModel>
+    </diagram>
+</mxfile>
