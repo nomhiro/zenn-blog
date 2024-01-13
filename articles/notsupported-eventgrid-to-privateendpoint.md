@@ -6,13 +6,6 @@ topics: ["Azure", "EventGrid", "Functions", "Blob"]
 published: false
 ---
 
-# 目次
-- [目次](#目次)
-- [はじめに](#はじめに)
-  - [EventGridからVNet内のFunctionsに通知できない](#eventgridからvnet内のfunctionsに通知できない)
-  - [BlobTriggerを使ったFunctionへの通知](#blobtriggerを使ったfunctionへの通知)
-  - [回避策を考えてみる](#回避策を考えてみる)
-
 # はじめに
 
 - Azureで、Blobに登録されたドキュメントを、Functionsで整形したうえでCosmosDBやAISearchに取り込む仕組みを考えます。
