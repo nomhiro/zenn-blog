@@ -30,6 +30,12 @@ Plannerには、現在以下の4つの種類が使えるようです。
 
 それぞれ、どのような特徴があるのかを調べてみます。
 実際に試した際のプログラムは[こちらのGitHub](https://github.com/nomhiro/sk-plan-type-samplecode)にあります。
+実行する際には、.envファイルを作成し以下のように設定してください。
+```env
+AZURE_OPENAI_API_KEY="{AzureOpenAIのAPIキー}"
+AZURE_OPENAI_ENDPOINT="{AzureOpenAIのエンドポイント}"
+AZURE_OPENAI_DEPLOYMENT_NAME="{AzureOpenAIのデプロイ名}"
+```
 
 
 ### 1.BasicPlanner
