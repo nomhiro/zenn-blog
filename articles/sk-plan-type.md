@@ -37,8 +37,9 @@ AZURE_OPENAI_ENDPOINT="{AzureOpenAIのエンドポイント}"
 AZURE_OPENAI_DEPLOYMENT_NAME="{AzureOpenAIのデプロイ名}"
 ```
 
+# 実際に動作検証してみましょう。
 
-### 1.BasicPlanner
+## 1.BasicPlanner
 BasicPlannerは、プラグインのリストとゴールを受け取り、**プラグインを順番に実行**するプランを作成します。確かにBasicだなと。
 
 実際に試してみます。
@@ -91,7 +92,7 @@ print(results)
 Construction d'agent IA et noyau sémantique
 ```
 
-### 2.ActionPlanner
+## 2.ActionPlanner
 ActionPlannerは、プラグインのリストとゴールを受け取り、**そのゴールを達成するために適切なプラグインを1つ出力**する。
 BasicPlannerでは複数のプラグインが組み合わせられて実行計画が立てられましたが、こちらは1つだけ選ばれることが特徴です。OpenAIのFunctionCallingに似てますね。
 
@@ -144,7 +145,7 @@ plugin_name: SummarizePlugin / MakeTitle
 AIモデルとコード統合の自動化
 ```
 
-#### ActionPlannerで複数の目標を与えるとどうなるのか
+### ActionPlannerで複数の目標を与えるとどうなるのか
 ActionPlannerでは一つの関数のみを選択するためのPlannerですが、BasicPlannerのときのように、複数の目標を与えるとどうなるのか、挙動確認してみます。
 
 与える目標は、BasicPlannerの時と同じで「**文章にタイトルをつけて、そのタイトルをフランス語にしてもらうこと**」です。
@@ -221,7 +222,7 @@ SemanticKernelライブラリの内部処理を詳細に追えてはいません
 plugin, fun = generated_plan["plan"]["function"].split(".")
 ```
 
-### 3.SequentialPlanner
+## 3.SequentialPlanner
 SequentialPlannerは、一連のステップを実行し、ステップ間で出力と入力を受け渡すことができるプランナーです。
 BasicPlannerと似てますが、XMLベースなので作成したプランを保存して再利用することができることが利点だと思います。[公式ページ](https://learn.microsoft.com/ja-jp/semantic-kernel/agents/planners/?tabs=python#using-predefined-plans)にもそのような記載がありますね。
 また、作成されたプランを変更することもできるようです。
@@ -285,7 +286,7 @@ input:  $title
 Construction d'agent IA et noyau sémantique
 ```
 
-### 4.StepwisePlanner
+## 4.StepwisePlanner
 最後にStepwisePlannerです。StepwisePlannerは、AIが「思考」と「観察」を行い、ユーザーの目標を達成するための行動を実行します。必要な機能がすべて完了し、最終的な出力が生成されるまで続けられます。
 
 実際に試してみます。
