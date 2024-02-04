@@ -2,8 +2,8 @@
 title: "PythonにおけるSemanticKernelのPlannerの種類を整理する"
 emoji: "📝"
 type: "tech" # tech: 技術記事 / idea: アイデア
-topics: ["SemanticKernel", "Planner"]
-published: false
+topics: ["SemanticKernel", "Planner", "Python", "OpenAI"]
+published: true
 ---
 
 # はじめに
