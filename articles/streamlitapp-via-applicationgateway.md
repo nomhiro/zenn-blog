@@ -61,6 +61,9 @@ python -m streamlit run chat.py --server.port 8000 --server.address 0.0.0.0 --se
 - `--browser.serverPort`:ApplicationGatewayのポートです。
 - `--browser.serverAddress`:ApplicationGatewayのリスナーに設定するFQDNです。
 
+AppServiceの「構成」-「全般設定」-「スタートアップコマンド」に設定します。
+![AppServiceスタートアップコマンド](/images/streamlitapp-via-applicationgateway/2024-02-17-10-53-57.png)
+
 # ApplicationGatewayの作成
 
 ApplicationGatewayには、ApplicationGateway専用の仮想ネットワークサブネットが必要です。
