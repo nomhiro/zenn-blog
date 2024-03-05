@@ -80,4 +80,4 @@ with open('created_function_settings.json', 'w') as f:
 実行するディレクトリにlocal.settings.jsonを配置し、上記のPythonコードを実行すると、created_function_settings.jsonが生成されます。
 このjsonファイルをAzureFunctionsやWebAppsのアプリケーション設定の高度な編集画面で追加することで、抜け漏れやミスなく環境変数を設定できます。
 
-DevOpsの観点で、デプロイパイプラインに組み込むことで、環境変数の設定を自動化することも可能です。
+DevOpsの観点で、デプロイパイプラインに組み込むことで、環境変数の設定を自動化することもできます。
