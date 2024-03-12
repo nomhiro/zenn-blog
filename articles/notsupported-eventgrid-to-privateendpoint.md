@@ -49,9 +49,11 @@ published: false
     ![queue-to-functions](/images/notsupported-eventgrid-to-privateendpoint/2024-01-13-12-45-27.png)
 - BlobStorageにドキュメントを登録する仕組みがすでにある場合に向いています。その仕組みにQueue登録処理を追加することで実現できます。
 
-## 2. EventGridを使いEventGridからStorageQueueに登録する。そして、StorageQueueトリガーでFunctionを動かす。
+## 2. Functionを定期実行しBlobChangeFeedを取得し、Blobファイルの更新を処理する。
+- BlobChangeFeedはFunctionのトリガーに体操していないため、FunctionからポーリングしてBlobChangeFeedを自前のロジックで取得します。
+- BlobChangeFeedで保存される.avroファイルを読み取り、イベントごとにCreated, Changed, Deletedのステータスがあるため、各イベントごとの処理を書くことができます。
+
+## 3. EventGridを使いEventGridからStorageQueueに登録する。そして、StorageQueueトリガーでFunctionを動かす。
 - この場合、EventGridからStorageQueueの通信はサービスエンドポイント経由のためパブリックアクセスですが、StorageQueue側の設定で、通知するEventGridを限定することができます。
     ![eventGrid-queue-to-functions](/images/notsupported-eventgrid-to-privateendpoint/2024-01-13-12-54-06.png)
  - BlobStorageにドキュメントを登録する仕組みがない場合はこちらのやり方が向いています。
-
-今後、これらの仕組みの設定および実装方法は、別途記事にまとめます。
