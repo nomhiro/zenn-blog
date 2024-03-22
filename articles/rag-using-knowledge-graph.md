@@ -134,10 +134,10 @@ graph = neo4j_graph.Neo4jGraph(
 
 次に、ナレッジグラフを表現するためのデータ構造を定義します。
 以下の4つのクラスを用意します。
-- Property：キーと値のペアを表現するためのクラス
-- Node：グラフのノードを表現するためのクラス
-- Relationship：グラフのリレーションシップを表現するためのクラス
-- KnowledgeGraph：ナレッジグラフ全体を表現するためのクラス。ノードのリストとリレーションシップのリストを持ちます。
+- **Property**：キーと値のペアを表現するためのクラス
+- **Node**：グラフのノードを表現するためのクラス
+- **Relationship**：グラフのリレーションシップを表現するためのクラス
+- **KnowledgeGraph**：ナレッジグラフ全体を表現するためのクラス。ノードのリストとリレーションシップのリストを持ちます。
 
 ```python
 class Property(BaseModel):
@@ -162,10 +162,10 @@ class KnowledgeGraph(BaseModel):
 
 次に、ナレッジグラフのノードとリレーションを設定するためのメソッドを定義します。
 作成するメソッドは以下の4つです。
-- format_property_key：プロパティのキーをキャメルケースに変換します。
-- props_to_dict：グラフデータベースから取得したプロパティのリストをPythonの辞書に変換します。
-- map_to_base_node：ナレッジグラフのノードをBaseNodeにマッピングします。
-- map_to_base_relationship：ナレッジグラフのリレーションをBaseRelationshipにマッピングします。
+- **format_property_key**：プロパティのキーをキャメルケースに変換します。
+- **props_to_dict**：グラフデータベースから取得したプロパティのリストをPythonの辞書に変換します。
+- **map_to_base_node**：ナレッジグラフのノードをBaseNodeにマッピングします。
+- **map_to_base_relationshi**p：ナレッジグラフのリレーションをBaseRelationshipにマッピングします。
 
 ```python
 def format_property_key(key: str) -> str:
@@ -356,7 +356,7 @@ Intermediate steps: [{'query': "MATCH (f:Framework {name: 'Llamaindex'})-[:HASCO
 Final answer: Llamaindexには、Dataconnector、Dataindex、Engineというコンポーネントが含まれています。
 ```
 
-以下は、期待通りにならない質問パターンです。
+以下は、**期待通りにならない質問パターン**です。
 - LlamaindexをLlamaIndexにする。
 「LlamaIndexには何のコンポーネントが含まれていますか？」
 以下の結果になりました。期待通りの結果ではありません。
