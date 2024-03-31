@@ -3,7 +3,7 @@ title: "GPT4VでAzure構成図からBicepコードを生成してみる"
 emoji: "💪"
 type: "tech" # tech: 技術記事 / idea: アイデア
 topics: ["GPT4V", "Bicep", "Azure"]
-published: false
+published: true
 ---
 
 

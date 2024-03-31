@@ -3,7 +3,7 @@ title: "AzureOpenAIとLlamaIndexを使い、ナレッジグラフに格納した
 emoji: "🎉"
 type: "tech" # tech: 技術記事 / idea: アイデア
 topics: ["AzureOpenAI", "LlamaIndex", "RAG", "ナレッジグラフ", "Neo4j"]
-published: false
+published: true
 ---
 
 # 構成

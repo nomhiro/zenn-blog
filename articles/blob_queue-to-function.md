@@ -3,7 +3,7 @@ title: "Queueを介してBlob更新をFunctionにプライベート接続でイ�
 emoji: "🐻‍❄️"
 type: "tech" # tech: 技術記事 / idea: アイデア
 topics: ["Azure", "EventGrid", "Queue", "Functions", "Blob"]
-published: false
+published: true
 ---
 
 # はじめに
