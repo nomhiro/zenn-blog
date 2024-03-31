@@ -164,3 +164,7 @@ https://docs.llamaindex.ai/en/stable/module_guides/querying/response_synthesizer
 # まとめ
 まずはLlamaIndexのRAGフレームワークに使われる各モジュールの概要を整理しました。
 今後、実際に動作検証していき、とくにKnowledgeGraphIndexについては、詳しく仕組みを調べていきたいと思います。
+
+# 参考
+実際に、Webサイトの情報をKnowledgeGraphにして、Neo4jに保管し、RAGをすることを試しました。
+https://zenn.dev/nomhiro/articles/rag-using-knowledge-graph
