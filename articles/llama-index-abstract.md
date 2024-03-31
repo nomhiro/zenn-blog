@@ -3,7 +3,7 @@ title: "RAGフレームワーク LlamaIndex の概要を整理してみる"
 emoji: "🦙"
 type: "tech" # tech: 技術記事 / idea: アイデア
 topics: ["LLM", "OpenAI", "RAG", "LlamaIndex", "GPT"]
-published: false
+published: true
 ---
 
 # はじめに
@@ -158,7 +158,6 @@ https://docs.llamaindex.ai/en/stable/module_guides/querying/response_synthesizer
   - 各テキストチャンクに対して同じクエリを個別に実行したい場合に使う
 - compact_accumulate
   - accumulateとほぼ同じだが、事前にテキストを圧縮(連結)するためLLM呼び出しを少なくできる。LLMの入力トークンに収まる分だけ、テキストチャンクを連結する。
-
 
 
 # まとめ
