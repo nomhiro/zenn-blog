@@ -23,7 +23,7 @@ https://learn.microsoft.com/ja-jp/azure/app-service/deploy-staging-slots?tabs=po
 ![](/images/deployslot_appservice_appgw/2024-04-15-22-12-20.png)
 
 
-# デプロイスロットを設定していない状態でアプリをデプロイして稼働確認
+# アプリの動確 ※スロット利用なし
 稼働確認のためのアプリでは、環境変数「ENVIRONMENT_NAME」の値を取得し、画面に表示します。
 
 **環境変数「ENVIRONMENT_NAME」は、各スロット固有の設定とみなします。**
@@ -58,7 +58,7 @@ python -m streamlit run app.py --server.port 8000 --server.address 0.0.0.0
 :::
 
 
-#### デプロイして、アプリ画面を確認します。
+#### デプロイして、アプリ画面を確認
 環境変数「ENVIRONMENT_NAME」の値に「Production」と設定したので、画面にもその値が表示されています。
 ![](/images/deployslot_appservice_appgw/2024-04-15-22-42-23.png)
 
@@ -74,7 +74,7 @@ python -m streamlit run app.py --server.port 8000 --server.address 0.0.0.0
 デプロイスロットが作成されました。
 ![](/images/deployslot_appservice_appgw/2024-04-15-22-47-31.png)
 
-### アプリ構成のための設定
+## アプリ構成のための設定
 作成されたデプロイスロットをクリックし、stagingスロットに対してアプリ構成のための設定をします。
 ::: details スタートアップコマンド
 ```bash
@@ -89,7 +89,7 @@ python -m streamlit run app.py --server.port 8000 --server.address 0.0.0.0
 ![](/images/deployslot_appservice_appgw/2024-04-15-22-52-21.png)
 :::
 
-# Staginsスロットへのデプロイ～スワップを試す　※期待通りの結果にはなりません
+# StaginsSlotへのデプロイ～スワップ　※期待通りに動作しません
 コードは、6行目のsubheaderを追加しただけです。
 ```python
 import os
@@ -143,7 +143,7 @@ URLは、運用スロットのURLに「-staging」を追加したものです。
 :::
 
 
-# 環境変数の設定をデプロイスロットの設定にしてスワップ
+# 期待通りのスワップ
 ここからが、やりたいことを実現するために必要な追加設定です。
 
 運用スロットの環境変数に対し、「デプロイスロットの設定」にチェックを入れます。
