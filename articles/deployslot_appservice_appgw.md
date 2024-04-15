@@ -66,7 +66,7 @@ python -m streamlit run app.py --server.port 8000 --server.address 0.0.0.0
 # デプロイスロットの作成と設定
 ここからが本題です！
 
-## デプロイスロットの作成
+#### デプロイスロットの作成
 
 まずはデプロイスロットを作成します。名前は「staging」とします。
 ![](/images/deployslot_appservice_appgw/2024-04-15-22-46-30.png)
@@ -74,7 +74,7 @@ python -m streamlit run app.py --server.port 8000 --server.address 0.0.0.0
 デプロイスロットが作成されました。
 ![](/images/deployslot_appservice_appgw/2024-04-15-22-47-31.png)
 
-## アプリ構成のための設定
+#### アプリ構成のための設定
 作成されたデプロイスロットをクリックし、stagingスロットに対してアプリ構成のための設定をします。
 ::: details スタートアップコマンド
 ```bash
