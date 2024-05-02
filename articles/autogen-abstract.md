@@ -8,6 +8,8 @@ published: false
 
 # AutoGenとは？
 人やLLMなどをエージェントと見立て、エージェント間でのコミュニケーションを実現するマルチエージェントフレームワークです。
+https://microsoft.github.io/autogen/
+
 各エージェントはConversableAgentクラスでの設定により、以下のエージェントを作れます。
 - **人からの入力**
   - UserProxyAgentが用意されている。
