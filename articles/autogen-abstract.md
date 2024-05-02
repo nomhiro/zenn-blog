@@ -3,7 +3,7 @@ title: "LLMマルチエージェントAutoGenに入門 ~基本設計書の作成
 emoji: "🐻‍❄️"
 type: "tech" # tech: 技術記事 / idea: アイデア
 topics: ["LLM", "OpenAI", "RAG", "AutoGen", "MultiAgent"]
-published: false
+published: true
 ---
 
 # AutoGenとは？
@@ -103,9 +103,6 @@ assistant (to user_proxy):
 ```
 
 ## エージェント間の会話
-会話させる際に気になるのが、どのように会話が終わるのか。ですが、AutoGenでは終了条件を設定できるようになっています。
-まずは、終了条件がない場合の会話を見てみましょう。
-
 2エージェントの会話は以下のように行われます。
 ![](/images/autogen-abstract/2024-05-02-20-40-44.png)
 引用元：https://microsoft.github.io/autogen/docs/tutorial/conversation-patterns
@@ -114,6 +111,12 @@ assistant (to user_proxy):
 2. Initializerは1.の情報をもとに、**Initial Message**を生成し、エージェントに送る。
 3. チャットが終わると、チャット履歴は**Summarizer**によって要約し、チャットのトークン使用量を計算する。※Summaryの仕方は指定可能。デフォルトではチャットの最後のメッセージが使われる。
 4. Summarizerで要約された内容が過去のチャット内容として次のチャットに**Message**として渡される。
+
+
+
+**会話させる際に気になるのが、どのように会話が終わるのか。ですが、AutoGenでは終了条件を設定できるようになっています。**
+まずは、終了条件がない場合の会話を見てみましょう。
+
 
 ### 終了条件なしで会話させるとどうなるか？
 エージェント同士の会話の終了条件を書いていない場合、無駄な会話が続く可能性があります。
