@@ -2,7 +2,7 @@
 title: "LLMマルチエージェントAutoGenに入門 ~基本設計書の作成とレビューをさせてみる~"
 emoji: "🐻‍❄️"
 type: "tech" # tech: 技術記事 / idea: アイデア
-topics: ["LLM", "OpenAI", "RAG", "AutoGen", "MultiAgent"]
+topics: ["LLM", "OpenAI", "AutoGen", "MultiAgent", "Azure"]
 published: true
 ---
 
