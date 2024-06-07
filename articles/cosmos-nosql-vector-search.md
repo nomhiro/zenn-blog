@@ -1,5 +1,5 @@
 ---
-title: "Azure CosmosDB for NoSQLでベクトル検索を使おう！"
+title: "Azure CosmosDB for NoSQLでベクトル検索しよう！！"
 emoji: "🌏"
 type: "tech" # tech: 技術記事 / idea: アイデア
 topics: ["Azure", "CosmosDB", "NoSQL", "ベクトル検索", "Vector"]
