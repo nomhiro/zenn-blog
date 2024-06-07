@@ -139,7 +139,8 @@ https://www.esri.cao.go.jp/jp/sna/menu.html
 以下のようなPDFファイルをテキスト化したデータです。テキスト化した文字列をベクトル化してCosmosDBに格納します。
 ![](/images/cosmos-nosql-vector-search/2024-06-08-02-59-35.png)
 
-データ登録では、実際にはLangChainやOpenAI, Azure Document Intelligenceなどのサービスを利用して、PDFファイルをテキスト化する必要があります。Pythonのコード例を以下に示します。
+データ登録では、実際にはLangChainやOpenAI, Azure Document Intelligenceなどのサービスを利用して、PDFファイルをテキスト化する必要があります。
+ここでは、テキスト化されたあとのPythonのコード例を以下に示します。
 
 まず、OpenAIのEmbeddingモデルでベクトル化します。
 
