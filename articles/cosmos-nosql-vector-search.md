@@ -339,6 +339,6 @@ Microsoft Build 2024で発表された、CosmosDB for NoSQLのベクトル検索
 RAGの仕組みを構築するにおいて、Azureではさまざまなサービスを組み合わせて用途に応じて使い分けることができるようになってきました。
 
 ## その他、今後に期待すること
-Azure Functions Extensions for OpenAIもBuildで発表されていました。
-まだこちらのExtensionには、CosmosDB for MongoDBのベクトル値格納＆検索しか対応していません。
+Microsoft Build 2024では、Azure OpenAI extension for Azure Functionsも発表されていました。
+まだこちらのextensionには、CosmosDB for MongoDBしか対応していません。
 今後、CosmosDB for NoSQLのベクトル検索にも対応してくれることで、Azure FunctionsとCosmosDB for NoSQLを組み合わせたアプリ開発がさらに便利になると思っています。期待したい...！
