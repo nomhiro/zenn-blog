@@ -340,5 +340,6 @@ RAGの仕組みを構築するにおいて、Azureではさまざまなサービ
 
 ## その他、今後に期待すること
 Microsoft Build 2024では、Azure OpenAI extension for Azure Functionsも発表されていました。
-まだこちらのextensionには、CosmosDB for MongoDBしか対応していません。
+こちらのextensionには、AISearchはありますが、CosmosDB for NoSQLのベクトル検索はまだ対応していないようです。
+https://learn.microsoft.com/en-us/azure/azure-functions/functions-bindings-openai?tabs=isolated-process&pivots=programming-language-python
 今後、CosmosDB for NoSQLのベクトル検索にも対応してくれることで、Azure FunctionsとCosmosDB for NoSQLを組み合わせたアプリ開発がさらに便利になると思っています。期待したい...！
