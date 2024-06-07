@@ -9,6 +9,7 @@ published: false
 # はじめに
 
 Microsoft Build 2024 で、Azure CosmosDB for NoSQLにベクトル検索が追加されました。
+https://devblogs.microsoft.com/cosmosdb/build2024-cosmos-roundup/
 それまではCosmosDBでは for MongoDBでしかベクトル検索ができませんでした。
 
 これにより、もともとCosmosDBに格納していたデータを活かせる幅が広がると思います。
