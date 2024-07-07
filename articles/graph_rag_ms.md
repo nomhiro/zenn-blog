@@ -166,9 +166,7 @@ cd infra
 bash deploy.sh -p deploy.parameters.json
 ```
 
-デプロイ結果がコンソールに出力され、以下リソース群が作成されます。
-- Container Registry
-- 
+デプロイ結果がコンソールに出力され、リソース群が作成されます。
 
 :::message
 自分の環境では、deploy.shの実行時に以下エラーになりました。deploy.sh スクリプトが Windows 形式の改行コード (CRLF) を使用しているために発生しています。
