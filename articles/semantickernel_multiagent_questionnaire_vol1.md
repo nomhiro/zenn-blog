@@ -34,6 +34,7 @@ https://dotnet.microsoft.com/en-us/download/dotnet/8.0
 
 ## 環境変数の設定
 以下の4つを設定します。
+Azure OpenAIのモデルはGPT4oを使いました。
 - AZURE_OPENAI_API_KEY
   - Azure OpenAIのAPIキー
 - AZURE_OPENAI_MODEL_DEPLOYMENT
@@ -43,15 +44,6 @@ https://dotnet.microsoft.com/en-us/download/dotnet/8.0
 - BING_API_KEY - a key to a Bing Search v7 resource 
   - Bing SearchのAPIキー
 
-Azure OpenAIのモデルはGPT4oを使います。
-```json
-{
-  "AZURE_OPENAI_MODEL_DEPLOYMENT": "gpt-4o",
-  "AZURE_OPENAI_ENDPOINT": "https://{AzureOpenAIのリソース名}.openai.azure.com",
-  "AZURE_OPENAI_API_KEY": "Azure OpenAIのAPIキー",
-  "BING_API_KEY": "Bing SearchのAPIキー"
-}
-```
 
 :::details Bing SearchのAPIキーの取得方法
 https://learn.microsoft.com/ja-jp/bing/search-apis/bing-web-search/create-bing-search-service-resource
