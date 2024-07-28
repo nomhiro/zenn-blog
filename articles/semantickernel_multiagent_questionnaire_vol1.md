@@ -27,11 +27,10 @@ https://github.com/mcasalaina/QuestionnaireMultiagent
   - 回答を承認するか判断するエージェント
 
 ## 前提
-.NET Core 8.0をインストールしておきます。
+- .NET Core 8.0をインストールしておきます。
 https://dotnet.microsoft.com/en-us/download/dotnet/8.0
 
-VSCodeで実行するための、「ms-dotnettools.csharp」Extensionをインストールしておきます。
-![](/images/QuestionnaireMultiagent_vol1/2024-07-28-22-37-55.png)
+- VSCodeで実行するための、「ms-dotnettools.csharp」Extensionをインストールしておきます。
 
 ## 環境変数の設定
 以下の4つを設定します。
@@ -57,9 +56,9 @@ Azure OpenAIのモデルはGPT4oを使います。
 :::details Bing SearchのAPIキーの取得方法
 https://learn.microsoft.com/ja-jp/bing/search-apis/bing-web-search/create-bing-search-service-resource
 Azure PortalでBing Searchのリソースを作成します。
-![](/images/QuestionnaireMultiagent_vol1/2024-07-28-22-08-06.png)
+![](/images/semantickernel_multiagent_questionnaire_vol1/2024-07-28-22-08-06.png)
 
-![](/images/QuestionnaireMultiagent_vol1/2024-07-28-22-14-58.png)
+![](/images/semantickernel_multiagent_questionnaire_vol1/2024-07-28-22-14-58.png)
 :::
 
 ## デバッグ実行
@@ -67,7 +66,7 @@ Azure PortalでBing Searchのリソースを作成します。
 
 ### F5で実行してみましょう。
 
-![](/images/QuestionnaireMultiagent_vol1/2024-07-28-22-51-44.png)
+![](/images/semantickernel_multiagent_questionnaire_vol1/2024-07-28-22-51-44.png)
 上記のように画面が表示されます。各入力欄は以下のような目的で使われます。
 - Context：**何についての会話か**
 - Question：**エージェントに質問する内容**
@@ -79,7 +78,7 @@ Does your service offer video generative AI?
 ```
 
 Agentからの回答はこちらです。
-![](/images/QuestionnaireMultiagent_vol1/2024-07-28-23-18-57.png)
+![](/images/semantickernel_multiagent_questionnaire_vol1/2024-07-28-23-18-57.png)
 :::details 回答のテキスト
 ```text
 Question: Does your service offer video generative AI?
@@ -113,7 +112,7 @@ ManagerAgent: approve
 Azure でLlamaを使える？
 ```
 
-![](/images/QuestionnaireMultiagent_vol1/2024-07-28-23-43-07.png)
+![](/images/semantickernel_multiagent_questionnaire_vol1/2024-07-28-23-43-07.png)
 
 良さそうですね。リンクの修正が実施されました。
 
