@@ -8,6 +8,14 @@ published: true
 
 # はじめに
 
+今までのRAGは、ドキュメントをチャンク化して検索インデックスに格納し、クエリに対して検索、推論を行う といった手法でした。
+この場合、ドキュメントのチャンク単位で検索され推論に使うため、ドキュメン卜横断で複雑な関係性に対し推論することには向いていないように思います。
+GraphDBは、ドキュメントをノード（頂点）とリレーション（頂点間の関係性）に変換し、ドキュメント内の要素間の関係性を持つDBです。
+
+以前に、LlamaIndexをベースにNeo4jへのナレッジグラフ生成を試してみましたが、日本語だと精度が落ちて実用には耐えられなさそうでした。
+
+今回は、MicrosoftResearchからGraphDBのソリューションがGitHubで公開されたので、そちらを試してみます。
+
 - GraphRagのGitHubリポジトリ
 https://github.com/microsoft/graphrag
 
@@ -158,9 +166,7 @@ cd infra
 bash deploy.sh -p deploy.parameters.json
 ```
 
-デプロイ結果がコンソールに出力され、以下リソース群が作成されます。
-- Container Registry
-- 
+デプロイ結果がコンソールに出力され、リソース群が作成されます。
 
 :::message
 自分の環境では、deploy.shの実行時に以下エラーになりました。deploy.sh スクリプトが Windows 形式の改行コード (CRLF) を使用しているために発生しています。
