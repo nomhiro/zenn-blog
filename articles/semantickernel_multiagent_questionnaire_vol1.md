@@ -7,7 +7,9 @@ published: false
 ---
 
 # はじめに
-2024年 7月25日(木) に東京で開催された Azure OpenAI Service Dev Day にて、MicrosoftのMarcoがマルチエージェントについて説明され、SemanticKernelを使ってマルチエージェントを実装したGitHubリポジトリが公開されました。
+2024年 7月25日(木) に東京で開催された Azure OpenAI Service Dev Day にて、MicrosoftのMarcoさんがマルチエージェントについて説明され、SemanticKernelを使ってマルチエージェントを実装したGitHubリポジトリが公開されました。
+Vice Presidentの方がご自身で実装され、ご自身でデモをされる姿が非常に印象的でした。
+https://aoai-devday.com/session/Multi-model,%20multimodal,%20and%20multi-agent%20innovations%20in%20Azure%20AI
 https://github.com/mcasalaina/QuestionnaireMultiagent
 
 このリポジトリのマルチエージェントをPoCしてみます。
