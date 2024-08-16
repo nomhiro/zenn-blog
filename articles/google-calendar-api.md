@@ -3,7 +3,7 @@ title: "GoogleCalendarのイベントをGoogleAPIを使って取得する"
 emoji: "🗓️"
 type: "tech" # tech: 技術記事 / idea: アイデア
 topics: ["GoogleCalendar", "GoogleAPI", "Python"]
-published: false
+published: true
 ---
 
 ![](/images/google-calendar-api/2024-08-16-10-07-06.png)
@@ -162,6 +162,9 @@ Completeとなり、VSCodeで実行したPythonコードにリダイレクトさ
 GoogleCalendarに登録しているイベント10件が取得できました。
 ![alt text](/images/google-calendar-api/image-20.png)
 
+
+## サンプルコードのGitリポジトリはこちら
+https://github.com/nomhiro/sample_google_api_calendar
 
 # 参考
 - https://developers.google.com/calendar/api/quickstart/python?hl=ja
