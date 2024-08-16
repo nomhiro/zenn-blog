@@ -2,7 +2,7 @@
 title: "GoogleCalendarのイベントをGoogleAPIを使って取得する"
 emoji: "🗓️"
 type: "tech" # tech: 技術記事 / idea: アイデア
-topics: []
+topics: ["GoogleCalendar", "GoogleAPI", "Python"]
 published: false
 ---
 

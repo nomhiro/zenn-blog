@@ -2,6 +2,13 @@
 
 * [📘 How to use](https://zenn.dev/zenn/articles/zenn-cli-guide)
 
+# アイコン生成プロンプト
+```txt
+技術ブログの冒頭に、ブログを見る方がとっつきやすい画像を載せたいです。アイコン画像を生成してください。
+
+対象の技術ブログは、「GoogleCalendarのイベントをGoogleAPIを使って取得する」です。
+```
+
 ## コマンドリスト
 
 * 新しい記事を作成する
