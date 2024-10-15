@@ -22,7 +22,7 @@ https://zenn.dev/nomhiro/articles/sukiyanen_june_rag_func_ext_openai_gpt4o
 と思い、OpenAIのtoolsを使って、チャットベースにGoogleイベントを作成する方法を試してみました。
 
 お試しした結果、動画のようにチャットベースでGoogleCalendarにイベントを作成することが出来ました。
-https://youtu.be/iMPOnsaul38
+https://youtu.be/LnoWLtp-UzA
 
 
 # 利用するサービス
@@ -408,7 +408,7 @@ npm run dev
 
 チャットアプリケーションですので、動画のようにチャットベースでGoogleCalendarにイベントを作成することが出来ました。
 「明日の」と指示すると、システムメッセージで指定した日時をベースに、OpenAIが日時を推論し、FunctionCallingで引数に日付を指定してくれました。
-https://youtu.be/iMPOnsaul38
+https://youtu.be/LnoWLtp-UzA
 
 
 # まとめ
