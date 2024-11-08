@@ -16,7 +16,7 @@ published: false
 私が解釈したOpenAPIの利用イメージはこちらです。（間違ってたりしたら教えてください）
 - APIを公開する人は、APIとともにAPIの仕様（ymlファイル）を公開します
 - APIを利用する人は、公開されているAPIの使用（ymlファイル）をもとに、Kiotaなどのコード生成ツールを使うことで、APIを呼び出すためのソースコードを生成できます
-![OpenAPIのイメージ](/images/intro-openapi-kiota/2024-11-06-19-43-28.png)
+![OpenAPIのイメージ](/images/intro-openapi-kiota/2024-11-08-21-21-58.png)
 
 # Kiotaの概要
 
