@@ -3,7 +3,7 @@ title: "OpenAPI Generator 「Kiota」を使ってみよう"
 emoji: "🪡"
 type: "tech" # tech: 技術記事 / idea: アイデア
 topics: ["openapi", "kiota", "generator", "semantickernel", "microsoft"]
-published: false
+published: true
 ---
 
 ![](/images/intro-openapi-kiota/2024-11-08-21-16-46.png)
@@ -16,9 +16,11 @@ published: false
 私が解釈したOpenAPIの利用イメージはこちらです。（間違ってたりしたら教えてください）
 - APIを公開する人は、APIとともにAPIの仕様（ymlファイル）を公開します
 - APIを利用する人は、公開されているAPIの使用（ymlファイル）をもとに、Kiotaなどのコード生成ツールを使うことで、APIを呼び出すためのソースコードを生成できます
-![OpenAPIのイメージ](/images/intro-openapi-kiota/2024-11-08-21-21-58.png)
+![OpenAPIのイメージ](/images/intro-openapi-kiota/2024-11-17-18-22-56.png)
 
 # Kiotaの概要
+
+Kiotaとは、OpneAPIの定義を元に、APIクライアントコードを生成するためのコード生成ツールです。
 
 Kiotaのコード生成プロセスの概念はこちらです。
 1. OpenAPIのYamlもしくはJsonを定義
