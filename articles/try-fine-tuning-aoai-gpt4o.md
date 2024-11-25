@@ -1,8 +1,8 @@
 ---
-title: "AzureOpenAIのGPT4oでFine-Tuning！！！ 仮想小説の登場人物を学習させてみる"
+title: "Azure OpenAI の GPT4o で Fine Tuning ！！！ 〜仮想小説の登場人物を学習させてみる〜"
 emoji: "👨‍🏫"
 type: "tech" # tech: 技術記事 / idea: アイデア
-topics: ["Azure", "OpenAI", "FineTuning", "GPT", "LLM"]
+topics: ["Azure", "OpenAI", "FineTuning", "GPT", "GPT4o"]
 published: false
 ---
 
