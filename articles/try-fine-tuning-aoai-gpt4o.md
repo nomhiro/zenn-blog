@@ -3,7 +3,7 @@ title: "Azure OpenAI の GPT4o で Fine Tuning ！！！ 〜仮想小説の登�
 emoji: "👨‍🏫"
 type: "tech" # tech: 技術記事 / idea: アイデア
 topics: ["Azure", "OpenAI", "FineTuning", "GPT", "GPT4o"]
-published: false
+published: true
 ---
 
 # はじめに
