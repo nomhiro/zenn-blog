@@ -61,10 +61,10 @@ https://zenn.dev/nomhiro/articles/google-calendar-api
 
 # 実装していきましょう。
 
-チャットアプリ自体の実装はこの記事では解説しません。
+チャットアプリ自体の実装は長くなってしまうため、この記事では解説対象外といたします。
 Nextjsを使ったチャットアプリの実装は、こちらのUdemyで学習できます。
-RAGアーキテクチャを使い、Azure OpenAIのServiceを使って、チャットアプリを作成する方法を解説しています。UIの詳細な解説も含めたコースです。
-https://www.udemy.com/course/ragnextjsazure-openai-servicechatgptweb/
+RAGアーキテクチャを使い、Azure OpenAIのServiceを使って、チャットアプリを作成する方法を解説しています。UIの詳細な解説も含めたコースですのでぜひ参照してみてください。
+https://www.udemy.com/course/ragnextjsazure-openai-servicechatgptweb/?referralCode=A4F57DBF78CE691B5523
 
 
 必要な実装はこれらです。
