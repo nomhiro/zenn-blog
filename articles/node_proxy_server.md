@@ -99,7 +99,7 @@ $ node proxy.js
 - AOAI_KEYはAzureOpenAIのAPIキーです。
 ```bash
 AOAI_ENDPOINT=http://localhost:3000
-AOAI_KEY=9b4e131d7074437eb977a79c9f31d1ad
+AOAI_KEY=AzureOpenAIのAPIキー
 ```
 
 こちらがPythonのコードです。
@@ -138,3 +138,8 @@ print(response.choices[0].message.content)
 ![](/images/node_proxy_server/2024-12-03-22-49-28.png)
 
 プロキシサーバを経由してAzureOpenAIにアクセスできてますね🎉！！
+
+
+# 参考
+実装したコードはこちらのGitHubリポジトリにあります。
+https://github.com/nomhiro/nodejs_proxy_openai
