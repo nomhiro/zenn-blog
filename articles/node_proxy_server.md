@@ -6,6 +6,10 @@ topics: ["node", "proxy", "Azure", "OpenAI"]
 published: false
 ---
 
+::: message
+[Azure PoC部 Advent Calendar 2024 - Adventar](https://adventar.org/calendars/10622) 5日目の記事です。
+:::
+
 # モチベーション
 
 ある事情から、クライアント環境からAzureOpenAIにアクセスする際に、AzureOpenAIのFQDNを使ってアクセスできず、特定のドメイン名でアクセスする必要がありました。
@@ -22,7 +26,6 @@ ApplicationGatewayなどで対応することもできたかもしれません�
 2. 受け取ったリクエストをパースして転送先を設定。
 3. 転送先のホストにリクエストを転送。
 4. 転送先からのレスポンスを受け取り、元のクライアントに返す。
-5. エラーハンドリング。
 
 プロキシサーバのNodejsのコードはこちらです。
 
