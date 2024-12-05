@@ -7,7 +7,7 @@ published: false
 ---
 
 ::: message
-[Azure PoC部 Advent Calendar 2024 - Adventar](https://adventar.org/calendars/10622) 5日目の記事です。
+[Azure PoC部 Advent Calendar 2024 - Adventar](https://adventar.org/calendars/10622) 6日目の記事です。
 :::
 
 # モチベーション
