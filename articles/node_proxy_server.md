@@ -3,7 +3,7 @@ title: "Node.jsでプロキシーサーバを実装する"
 emoji: "🪛"
 type: "tech" # tech: 技術記事 / idea: アイデア
 topics: ["node", "proxy", "Azure", "OpenAI"]
-published: false
+published: true
 ---
 
 ::: message
