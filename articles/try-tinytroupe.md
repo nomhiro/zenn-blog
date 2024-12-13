@@ -1,5 +1,5 @@
 ---
-title: "【TinyTroupe🤠🤓🥸🧐】マルチエージェントペルソナシミュレーションツール！？"
+title: "【TinyTroupe🤠🤓🥸🧐】マルチエージェント ペルソナシミュレーションツール！？"
 emoji: "👪"
 type: "tech" # tech: 技術記事 / idea: アイデア
 topics: ["LLM", "TinyTroupe", "Azure", "OpenAI", "MultiAgent"]
