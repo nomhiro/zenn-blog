@@ -1,9 +1,9 @@
 ---
-title: "マルチエージェントペルソナシミュレーション TinyTroupe とは？？？ "
+title: "【TinyTroupe🤠🤓🥸🧐】マルチエージェントペルソナシミュレーションツール！？"
 emoji: "👪"
 type: "tech" # tech: 技術記事 / idea: アイデア
 topics: ["LLM", "TinyTroupe", "Azure", "OpenAI", "MultiAgent"]
-published: false
+published: true
 ---
 
 ::: message
