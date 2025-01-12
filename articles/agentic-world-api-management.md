@@ -38,6 +38,10 @@ https://zenn.dev/chips0711/articles/47ae142e51511b
 Durable Functionsは、**複数のタスクを組み合わせたワークフローを実装**できます。また、**タスクエラー時の再実行性**もDurable Functions自体に組み込まれています。
 https://learn.microsoft.com/ja-jp/azure/azure-functions/durable/durable-functions-overview?tabs=in-process%2Cnodejs-v3%2Cv1-model&pivots=csharp#application-patterns
 
+ZenArchitectsブログや、DurableFunctionsを作っているChris-sanのブログが参考になります。
+https://zenarchitects.co.jp/posts/aic3-architecture
+https://blog.cgillum.tech/building-serverless-ai-agents-using-durable-functions-on-azure-e1272882082c
+
 Durable Functionsだけを推しているように見えますが、Durable Functionsのタスクはコードによる実装なので、様々なライブラリを利用できます。つまり、**LangChainやAutoGenなどをワークフローの一部に組み込んでもよい**わけです。
 
 今までのことを概念図にするとこのようなイメージです。
