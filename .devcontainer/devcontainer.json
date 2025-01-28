@@ -1,0 +1,23 @@
+// See https://containers.dev/implementors/json_reference/ for configuration reference
+{
+    "name": "Zenn",
+    "build": {
+     "dockerfile": "Dockerfile"
+    },
+    "postCreateCommand": "npm install",
+    "remoteUser": "node",
+    "customizations": {
+     "vscode": {
+      "extensions": [
+       "ms-azuretools.vscode-docker",
+       "donjayamanne.git-extension-pack",
+       "yzhang.markdown-all-in-one",
+       "taichi.vscode-textlint",
+       "DavidAnson.vscode-markdownlint"
+      ]
+     }
+    },
+    "features": {
+     "ghcr.io/wxw-matt/devcontainer-features/command_runner:0": {}
+    }
+   }
