@@ -167,7 +167,7 @@ FileSurfer、WebSurfer、Coder、Executorの複数のエージェントが使わ
 C:\Users\xxxxxxx\Documents\story_creation_support
 このフォルダ内のWebアプリケーションを把握して、世の中に似たような仕組みがあるのかを教えてください。
 ```
-![](/images/dreamteam-autogen/2025-02-06-23-22-51.png)
+![](/images/dreamteam-autogen/2025-02-07-00-23-48.png)
 
 まず、Orchestratorがメッセージに対して計画を立てました。以下の内容は日本語で要約した内容です。
 ```md
