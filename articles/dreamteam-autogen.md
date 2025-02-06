@@ -1,9 +1,9 @@
 ---
-title: "Dream Team: 自動生成AIエージェントのマルチエージェントフレームワーク"
-emoji: "📝"
+title: "マルチエージェントアプリケーション「Dream Team」を調べて使ってみる"
+emoji: "🧑‍🤝‍🧑"
 type: "tech" # tech: 技術記事 / idea: アイデア
 topics: ["Azure", "LLM", "Microsoft", "agent", "DreamTeam"]
-published: false
+published: true
 ---
 
 # はじめに
