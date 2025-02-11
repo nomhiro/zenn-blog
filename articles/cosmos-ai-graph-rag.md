@@ -1,5 +1,5 @@
 ---
-title: "【OmniRAG】Azure Cosmos DB のナレッジグラフによる GraphRAG 🚀"
+title: "【OmniRAG】ベクトル検索とナレッジグラフによるRAG ~ Azure Cosmos AI Graph ~"
 emoji: "📝"
 type: "tech" # tech: 技術記事 / idea: アイデア
 topics: ["Azure", "CosmosDB", "Graph", "RAG"]
