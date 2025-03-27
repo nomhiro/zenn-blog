@@ -1,5 +1,5 @@
 ---
-title: "【MCP実践】Azure AI Agent Service を MCPサーバ で公開し、Vercel AI SDKのMCP Client で実行しよう"
+title: "Azure AI Agent Service を MCPサーバ で公開し、Vercel AI SDKのMCP Client で実行しよう🚀"
 emoji: "✨"
 type: "tech" # tech: 技術記事 / idea: アイデア
 topics: ["Azure", "MCP", "ModelContextProtocol", "Vercel", "Agent"]
