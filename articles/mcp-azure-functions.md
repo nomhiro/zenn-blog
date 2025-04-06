@@ -1,7 +1,7 @@
 ---
-title: ""
+title: "まだ"
 emoji: "🌊"
 type: "tech" # tech: 技術記事 / idea: アイデア
-topics: []
+topics: ["まだ"]
 published: false
 ---
