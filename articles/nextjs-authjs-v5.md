@@ -31,7 +31,8 @@ Auth.jsは、Webアプリケーションの認証機能を簡単に実装でき�
 
 
 # 実装
-まずはGoogleアカウント認証を実装し、そのあと認可を実装していきます。
+
+## 事前準備
 
 前提：
 - Next.jsのプロジェクトが作成されていること
@@ -82,7 +83,9 @@ Google Cloud Consoleにアクセスし、プロジェクトを作成します。
 クライアントIDとクライアントシークレットが表示されるので控えてしておきます。
 
 
-#### 環境変数の追加
+### OAuthクライアントの情報を環境変数に追加
+Google Cloud Consoleで作成したOAuthクライアントの情報を、.env.localに追加します。
+```bash
 Google Cloud で、クライアントIDとクライアントシークレットが表示されます。
 ![](/images/nextjs-authjs-v5/2025-05-03-10-04-20.png)
 
@@ -93,13 +96,12 @@ AUTH_GOOGLE_SECRET="クライアントシークレット"
 ```
 
 
-## 実装
+## Auth.jsの認証実装
 それでは、実際にAuth.jsを使ってGoogleアカウント認証と認可を実装していきます。
 
 ---
-### Auth.jsの認証実装
 
-#### auth.ts の実装
+### auth.ts の実装
 
 アプリケーションのルートディレクトリに、auth.tsを実装します。
 auth.tsは、Auth.jsの設定をまとめるファイルで、主に以下の内容を定義できます。
@@ -146,7 +148,7 @@ jwt（JSON Web Token）は、ユーザの認証情報や権限を含むデータ
 3. ✅ return token; でJWTを更新し、次回以降のリクエストで使用可能にする
 :::
 
-#### ./app/api/auth/[...nextauth]/route.ts の実装
+### ./app/api/auth/[...nextauth]/route.ts の実装
 これは、認証APIのエンドポイントを定義するためのものです。 ./auth.tsで認証の設定を行い、それをAPIルートで使用できるようにするためにhandlersをエクスポートしています。
 Next.jsのAppRouterを使っているので、app/配下に作成します。page Routerの場合は、page/api/auth/[...nextauth]/route.tsに作成します。
 ```typescript
@@ -155,14 +157,14 @@ import { handlers } from "@/auth";
 export const { GET, POST } = handlers;
 ```
 
-#### ./middleware.ts の実装
+### ./middleware.ts の実装
 呼び出されるたびにセッションの有効期限を更新するための実装です。
 ```typescript
 export { auth as middleware } from "./auth"
 ```
 
 ---
-### アプリ接続時にサインインを求める実装
+## アプリ接続時にサインインを求める実装
 サインインしていない状態でアプリにアクセスした場合に、自動で以下のようにサインインを求める画面が表示されるようにします。
 ![](/images/nextjs-authjs-v5/2025-05-10-15-45-45.png)
 
@@ -234,7 +236,7 @@ function AuthGuard({ children }: { children: React.ReactNode }) {
 サインインできるとアプリにリダイレクトされます。
 
 
-### 認可の実装
+## 認可の実装
 今のままでは、Googleアカウントを持っている人であれば誰でもアプリにアクセスできてしまいます。
 認可を実装して、特定のGoogleアカウントを持っている人だけがアプリにアクセスできるようにします。
 
@@ -244,7 +246,7 @@ function AuthGuard({ children }: { children: React.ReactNode }) {
 
 ![](/images/nextjs-authjs-v5/2025-05-10-16-24-33.png)
 
-#### CosmosDB からメールアドレスを取得する実装
+### CosmosDB からメールアドレスを取得する実装
 
 Azure Cosmos DBからメールアドレスを取得するための実装です。
 ```typescript
@@ -273,7 +275,7 @@ export const getAllAccounts = async (): Promise<AccountItem[]> => {
 };
 ```
 
-#### 認可ガードの実装
+### 認可ガードの実装
 認可ガードを実装して、特定のGoogleアカウントを持っている人だけがアプリにアクセスできるようにします。
 ./auth.tsに、以下のように認可ガードを実装します。
 ```typescript
