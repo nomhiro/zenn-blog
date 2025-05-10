@@ -1,5 +1,5 @@
 ---
-title: "Next.js + Auth.js　で Googleアカウント認証と認可を実装する"
+title: "Next.js + Auth.js　で Googleアカウント認証と認可を実装しよう"
 emoji: "🧑‍🤝‍🧑"
 type: "tech" # tech: 技術記事 / idea: アイデア
 topics: ["nextjs", "authjs", "azure", "cosmosdb", "google"]
