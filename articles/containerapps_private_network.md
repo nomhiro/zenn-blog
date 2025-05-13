@@ -3,7 +3,7 @@ title: "Azure Container Apps を 仮想ネットワーク統合とプライベ�
 emoji: "🐷"
 type: "tech" # tech: 技術記事 / idea: アイデア
 topics: ["Azure", "ContainerApps", "PrivateNetwork", "Container", "VNetIntegration"]
-published: false
+published: true
 ---
 
 # はじめに
@@ -42,6 +42,7 @@ Kubernetes は、Google によって開発されたオープンソースのコ�
 | --- | --- |
 | 左側のサブネット | Azure Container Apps 環境の仮想ネットワーク統合先 |
 | 右側のサブネット | プライベートエンドポイントを配置するサブネット |
+
 ![](/images/containerapps_private_network/2025-05-14-00-12-00.png)
 
 
