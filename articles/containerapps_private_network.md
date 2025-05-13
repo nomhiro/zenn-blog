@@ -225,6 +225,11 @@ Container Appsの作成画面の戻ります。
 設定を確認して、作成します。
 ![](/images/containerapps_private_network/2025-05-13-23-14-51.png)
 
+ワークロードプロファイルタイプにおける仮想ネットワーク統合とプライベートエンドポイントの設定は以上です。
+
+作成されたContainer Apps 環境で以下のように設定されています。
+![](/images/containerapps_private_network/2025-05-14-00-36-41.png)
+
 # まとめ
 
 コンサンプションタイプとワークロードプロファイルタイプの二つのパターンで、Azure Container Apps を仮想ネットワーク統合とプライベートエンドポイントで閉域化する方法を紹介しました。
