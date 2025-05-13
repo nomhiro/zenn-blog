@@ -1,6 +1,6 @@
 ---
 title: "Azure Container Apps を 仮想ネットワーク統合とプライベートエンドポイントで閉域化する"
-emoji: "🐷"
+emoji: "🔒"
 type: "tech" # tech: 技術記事 / idea: アイデア
 topics: ["Azure", "ContainerApps", "PrivateNetwork", "Container", "VNetIntegration"]
 published: true
