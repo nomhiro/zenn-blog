@@ -313,6 +313,7 @@ http://localhost:8000/
 
 NLWebが保持しているRSSフィードの情報を確認できます。
 Azure更新情報のRSSから取得したAzureサービスアップデート情報がリスト形式で格納されていることがわかります。
+![](/images/poc-nlweb-local-20250524/2025-05-24-23-47-54.png)
 
 :::details デバッグ情報(Json)
 ```json
