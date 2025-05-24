@@ -3,7 +3,7 @@ title: "NLWebで広がる新たな対話型ウェブサイトの世界"
 emoji: "😊"
 type: "tech" # tech: 技術記事 / idea: アイデア
 topics: ["nlweb", "microsoft", "ai", "llm"]
-published: false
+published: true
 ---
 
 
