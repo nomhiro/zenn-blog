@@ -1,5 +1,5 @@
 ---
-title: "【論文解説】ホンダの動的な知識更新を行うマルチエージェントAIシステム"
+title: "【論文解説】ホンダの動的な知識更新を行うマルチエージェントAIシステム ~ワイガヤ~"
 emoji: "🗂"
 type: "tech" # tech: 技術記事 / idea: アイデア
 topics: ["ai", "llm", "multiagent", "obeya", "Honda"]
@@ -13,6 +13,7 @@ https://global.honda/jp/topics/2025/c_2025-04-17.html
 https://openreview.net/forum?id=5XNYu4rBe4
 
 複数の専門LLMエージェントが協力して推論を行う「動的知識統合型のマルチエージェントシステム」が提案されています。
+Hondaの企業文化であり、自由で活発な議論を行う「ワイガヤ」を模擬しています。
 同じ自動車業界であるトヨタ自動車の「O-beya」に近いですね。
 https://news.microsoft.com/ja-jp/features/241120-toyota-is-deploying-ai-agents-to-harness-the-collective-wisdom-of-engineers-and-innovate-faster/
 
