@@ -1,5 +1,5 @@
 ---
-title: "Neo4jのMCPを使って、グラフデータベースに自然言語で問い合わせよう！！！"
+title: "Neo4jのMCPでグラフデータベースに自然言語で問い合わせよう！！！（ナレッジグラフ×MCPによるRAG）"
 emoji: "🧠"
 type: "tech" # tech: 技術記事 / idea: アイデア
 topics: ["Neo4j", "MCP", "Graph Database", "AI"]
