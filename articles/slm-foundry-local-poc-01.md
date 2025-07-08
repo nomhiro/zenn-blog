@@ -1,5 +1,5 @@
 ---
-title: "生成AIの新たな潮流：SLM（Small Language Model）が拓く未来とLLMとの使い分け"
+title: "Azure Foundry LocalでSLMを実行！！　ローカルPC内で SLM × MCP "
 emoji: "🦔"
 type: "tech" # tech: 技術記事 / idea: アイデア
 topics: ["AI", "SLM", "LLM", "Foundry"]
@@ -54,9 +54,7 @@ LLMとSLMは、それぞれ異なる強みを持つため、タスクや要件�
 
 ---
 
-# Azure AI Foundry Local を使った SLM 実行PoC
-
-## Azure AI Foundry Localとは
+# Azure AI Foundry Localとは
 
 https://learn.microsoft.com/en-us/azure/ai-foundry/foundry-local/concepts/foundry-local-architecture
 
@@ -68,7 +66,7 @@ Azure AI Foundry Localは、デバイス（ローカル環境）上でAI推論�
 - OpenAI互換APIを通じてアプリケーションとの統合が可能
 - ONNX Runtimeとハードウェアアクセラレーションによる性能最適化
 
-### Foundry Localのアーキテクチャ
+## Foundry Localのアーキテクチャ
 ![](/images/slm-foundry-local-poc-01/2025-07-08-22-43-17.png)
 
 * **Foundry Local Service**: ローカルでAIモデルを実行するためのRESTサーバ含むサービス。ほかのサービスからローカルのAIモデルを実行できます。
@@ -78,7 +76,7 @@ Azure AI Foundry Localは、デバイス（ローカル環境）上でAI推論�
   * **Lifecycle Management**: モデルのバージョン管理や更新を行います。モデルのダウンロード、ロード、実行、アンロード、削除を行います。
 * **Model Compilcation(Olive)**: モデルをFoundry Localで使用する前に、ONNX形式にコンパイルして最適化するフレームワークです。これにより、モデルのサイズを小さくし、推論速度を向上させます。
 
-### 開発者ツール
+## 開発者ツール
 - **💻 Foundry CLI**: Foundry Localのコマンドラインインターフェースで、モデルの管理や実行を行います。
   :::details Foundry CLIの例
   ```bash
@@ -147,7 +145,7 @@ Azure AI Foundry Localは、デバイス（ローカル環境）上でAI推論�
   ```
   :::
 
-### 対応プラットフォームとシステム要件
+## 対応プラットフォームとシステム要件
 最新の情報はこちら
 https://learn.microsoft.com/en-us/azure/ai-foundry/foundry-local/get-started#prerequisites
 
@@ -174,13 +172,18 @@ https://learn.microsoft.com/en-us/azure/ai-foundry/foundry-local/get-started#pre
 
 
 
-### 注意点
+## 注意点
 
 * **プレビュー版の制限**
   * Foundry Localは現在パブリックプレビュー版として提供されており、機能や仕様が変更される可能性があります。本番環境での利用には注意が必要です。
 
 * **モデルのタイムアウト**
   * モデルは一定時間（デフォルト10分）使用されないと自動的にアンロードされます。実運用では、この設定の調整が必要な場合があります。
+
+
+---
+
+# 🚀Azure AI Foundry Local を使った SLM 実行PoC
 
 ## Foundry Local をインストールしましょう！
 
