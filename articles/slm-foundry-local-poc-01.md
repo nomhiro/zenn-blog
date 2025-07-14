@@ -2,7 +2,7 @@
 title: "【phi-4】Foundry LocalでSLMを実行！！～ローカルPC内完結するためにSLM活用してみよう～"
 emoji: "🦔"
 type: "tech" # tech: 技術記事 / idea: アイデア
-topics: ["AI", "SLM", "LLM", "Foundry"]
+topics: ["AI", "SLM", "LLM", "Foundry", "phi"]
 published: false
 ---
 
