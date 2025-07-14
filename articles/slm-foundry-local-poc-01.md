@@ -1,5 +1,5 @@
 ---
-title: "Azure Foundry LocalでSLMを実行！！　ローカルPC内で SLM × MCP "
+title: "【phi-4】Foundry LocalでSLMを実行！！～ローカルPC内完結するためにSLM活用してみよう～"
 emoji: "🦔"
 type: "tech" # tech: 技術記事 / idea: アイデア
 topics: ["AI", "SLM", "LLM", "Foundry"]
@@ -8,11 +8,11 @@ published: false
 
 # はじめに
 SLMは「Small Language Model」の名の通り、小規模な言語モデルであり、LLM（Large Language Model）と比較して、軽量で高速、低コストで動作することが特徴です。
-本ブログでは、SLMの活用ケースと、Azure AI Foundry LocalをPoCします。🚀
+本ブログでは、Foundry LocalをPoCします。🚀
 
-※ちなみに、ローカルでSLMを実行するためのツールは、Azure AI Foundry Local 以外にも、VSCodeの拡張機能「AI Toolkit」もあります。
+※ちなみに、ローカルでSLMを実行するためのツールは、Foundry Local 以外にも、VSCodeの拡張機能「AI Toolkit」もあります。
 
-※SLMをさらに特化型にして実用するために、AzureAIFoundryでFine-Tuningすることもできますが、今回はその内容は含みません。
+※SLMをさらに特化型にして実用するために、Foundry LocalでFine-Tuningすることもできますが、今回はその内容は含みません。
 
 ---
 
