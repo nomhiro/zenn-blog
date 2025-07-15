@@ -3,7 +3,7 @@ title: "【phi-4】Foundry LocalでSLMを実行！！～ローカルPC内完結�
 emoji: "🦔"
 type: "tech" # tech: 技術記事 / idea: アイデア
 topics: ["AI", "SLM", "LLM", "Foundry", "phi"]
-published: false
+published: true
 ---
 
 # はじめに
@@ -188,6 +188,10 @@ https://learn.microsoft.com/en-us/azure/ai-foundry/foundry-local/get-started#pre
 ---
 
 # 🚀Azure AI Foundry Local を使った SLM 実行PoC
+
+ローカルマシンのCPUは、AMD Ryzen™ AI 9 365 10 コア/20 スレッド プロセッサ ※AMD Ryzen™ AI(最大 50 NPU TOPS) です。
+NPU付きのAMDですが、FoundryLocalではまだAMDのNPUは未対応です。
+ですのでCPUでSLMを動かします。
 
 ## Foundry Local をインストールしましょう！
 
