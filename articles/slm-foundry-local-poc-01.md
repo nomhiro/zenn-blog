@@ -189,9 +189,13 @@ https://learn.microsoft.com/en-us/azure/ai-foundry/foundry-local/get-started#pre
 
 # 🚀Azure AI Foundry Local を使った SLM 実行PoC
 
-ローカルマシンのCPUは、AMD Ryzen™ AI 9 365 10 コア/20 スレッド プロセッサ ※AMD Ryzen™ AI(最大 50 NPU TOPS) です。
+ローカルマシンのCPUは、
+**AMD Ryzen™ AI 9 365 10 コア/20 スレッド プロセッサ ※AMD Ryzen™ AI(最大 50 NPU TOPS) **
+です。
 NPU付きのAMDですが、FoundryLocalではまだAMDのNPUは未対応です。
 ですのでCPUでSLMを動かします。
+
+※AMDのNPUでSLMを動かす方法は、別途試して公開予定です。
 
 ## Foundry Local をインストールしましょう！
 
