@@ -6,7 +6,7 @@ topics: ["AutoGen", "Streamlit", "LLM", "AI", "Agent"]
 published: true
 ---
 
-![](/images/autogen-streamlit-chat-view/2025-07-21-22-45-42.png)
+![](/images/autogen-streamlit-chat-view/2025-07-21-22-51-00.png)
 
 # はじめに
 AIエージェントとマルチエージェントシステムをPoCしています。
