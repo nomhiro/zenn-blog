@@ -135,7 +135,7 @@ async def save_message_realtime(self, message_data):
 # AutoGenの実装
 
 GitHubに公開している状態のエージェントは、5つのエージェントがあります。
-このブログと公開しているGitHubでは、各エージェントはRAGをしないエージェントです。
+このブログと公開しているGitHubでは、各エージェントはRAGをしないエージェントです。（Azure OpenAI GPT-4.1に対して、システムプロンプトで役割定義して呼び出しているだけのエージェント）
 各エージェントのtoolプロパティで、RAGツールやMCPなどと組み合わせることも可能ですので、独自知識を与えたい場合はRAGやMCPなどを組み合わせましょう。
 
 1. **CreativePlanner（創造的企画者）**: アイデアの種を生み出す
