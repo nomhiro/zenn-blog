@@ -135,6 +135,8 @@ async def save_message_realtime(self, message_data):
 # AutoGenの実装
 
 GitHubに公開している状態のエージェントは、5つのエージェントがあります。
+このブログと公開しているGitHubでは、各エージェントはRAGをしないエージェントです。
+各エージェントのtoolプロパティで、RAGツールやMCPなどと組み合わせることも可能ですので、独自知識を与えたい場合はRAGやMCPなどを組み合わせましょう。
 
 1. **CreativePlanner（創造的企画者）**: アイデアの種を生み出す
 2. **MarketAnalyst（市場分析者）**: 市場性と競合を分析
