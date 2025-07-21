@@ -1,13 +1,15 @@
 ---
-title: "AutoGenの会話をリアルタイムにStreamlitで表示してみた"
+title: "AutoGenの会話をWebアプリ（Streamlit）上に表示しよう！！"
 emoji: "🙋"
 type: "tech" # tech: 技術記事 / idea: アイデア
-topics: ["AutoGen", Streamlit", "LLM", "AI", "Agent"]
-published: false
+topics: ["AutoGen", "Streamlit", "LLM", "AI", "Agent"]
+published: true
 ---
 
+![](/images/autogen-streamlit-chat-view/2025-07-21-22-45-42.png)
+
 # はじめに
-個人的に、以下のようなAIエージェントとマルチエージェントシステムをPoCしています。
+AIエージェントとマルチエージェントシステムをPoCしています。
 考え方（観点）と知識を持っている各エージェントが連携し、より高度なタスクの実行やアイデア出しやブラッシュアップをしてほしいです。
 
 そこで、AutoGenを使ったマルチエージェントシステムをPoCしていました。
