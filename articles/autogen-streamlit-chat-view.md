@@ -261,7 +261,7 @@ def _create_selector_prompt(self) -> str:
 
 議論をいつ終了させるかは重要な問題です。単純な回数制限では、良い議論が途中で切れてしまうことがあります。
 
-そこで、カスタムの終了条件を実装しました：
+そこで、カスタムの終了条件を実装しました。
 
 ```python
 class AgentCountTermination(TerminationCondition):
