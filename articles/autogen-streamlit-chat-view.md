@@ -224,7 +224,7 @@ AutoGenには複数の会話パターンがありますが、SelectorGroupChat�
 
 ### Selectorの実装
 
-議論の司会者となるSelectorの設定が重要です：
+議論の司会者となるSelectorの設定が重要です。
 
 ```python
 def _create_selector_prompt(self) -> str:
@@ -417,7 +417,7 @@ def _create_team(self) -> SelectorGroupChat:
 
 ### 会話実行とリアルタイム処理
 
-実際の会話実行では、各メッセージをリアルタイムで処理します：
+実際の会話実行では、各メッセージをリアルタイムで処理します。
 
 ```python
 async def run_team_chat(self, team, task):
