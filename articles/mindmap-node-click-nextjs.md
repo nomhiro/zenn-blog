@@ -8,13 +8,13 @@ published: false
 
 # はじめに
 
-こちらの記事では streamlit (python) でmindmapを表示してました。
+こちらの記事では StreamlitでMermaidのマインドマップを表示しました。
 https://zenn.dev/nomhiro/articles/streamlit-mermaid-maindmap
 
 今回は、マインドマップのノードをクリックしたらノード情報を詳細表示するようにしたいと思います。
 結論、このようになります。
 ノードをクリックすると、右側Sidebarにそのノードの詳細情報が表示されます。
-![](/images/mindmap-node-click-nextjs/2025-07-30-14-54-12.png)
+![](/images/mindmap-node-click-nextjs/chrome-capture-2025-07-30.gif)
 
 # （課題）Streamlitでのクリックイベント問題
 
@@ -32,7 +32,7 @@ Streamlitは`components.html()`でHTMLコンテンツを表示する際、**ifra
 - ❌ Python側でJavaScriptイベントを受け取る仕組みがない
 
 
-# Streamlitはやめました
+# Streamlitはやめました（Next.jsでの実装に変更）
 
 以下の技術スタックで実現します。
 ```
@@ -173,7 +173,7 @@ export default function MermaidRenderer({ mermaidCode }: { mermaidCode: string }
     if (!containerRef.current) return;
 
     // Mermaidが生成する可能性のあるノード要素を全て取得
-    // 以下のパターンでマッチング:
+    // 以下のパターンでマッチング
     // - .mindmap-node: マインドマップ固有のクラス
     // - .node: 一般的なノードクラス  
     // - [id*="node"]: IDに"node"を含む要素
@@ -284,33 +284,13 @@ export const useMindmapStore = create<MindmapStore>((set, get) => ({
 - **Mermaid.js native approach**を使ったマインドマップの描画
 - **SVG DOM操作**によるクリックイベント取得
 
-この手法は、ナレッジグラフやフローチャートなど、他のMermaid図表にも対応できると思います。
+ナレッジグラフやフローチャートなど、他のMermaid図表にも対応できると思います。
+
+![](/images/mindmap-node-click-nextjs/chrome-capture-2025-07-30.gif)
 
 ---
 
-# 参考：試行錯誤の記録
-
-### React Flow実装の試み
-
-**経緯**: 当初はReact Flowを使用してカスタムノードでマインドマップを実装しようとしました。
-
-**問題**:
-- Mermaidパーサーのインデント検出が正しく動作せず、全ノードがlevel 0に
-- 親子関係が構築されず、エッジが0個に
-- 放射状レイアウトアルゴリズムが複雑
-
-**学んだこと**: 
-```typescript
-// 問題のあったインデント検出
-// trimを使うと行頭のスペースが消えてしまい、インデントレベルが判定できなくなる
-const lines = mermaidText.split('\n').map(line => line.trim()) // trimで情報喪失
-
-// 修正版
-// 元の行を保持しつつ、空行とmindmap宣言行を除外
-const lines = mermaidText.split('\n').filter(line => line && !line.trim().startsWith('mindmap'))
-// trimせずに元の行でインデントレベルを計測
-const indent = this.getIndentLevel(line); // 元の行を使用
-```
+# （参考）試行錯誤の記録
 
 ### CSS Animation最適化の試行錯誤
 
@@ -330,7 +310,7 @@ const indent = this.getIndentLevel(line); // 元の行を使用
 3. **opacity使用** → 大幅改善
 4. **animation完全無効化** → 解決
 
-**最終解**:
+**最終解**
 ```css
 .node:hover { 
   opacity: 0.8;  // opacityは軽量で、ちらつきを起こしにくい
