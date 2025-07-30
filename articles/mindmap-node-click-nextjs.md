@@ -220,7 +220,7 @@ export default function MermaidRenderer({ mermaidCode }: { mermaidCode: string }
   };
 ```
 
-## （状態管理）ustand Store
+## 状態管理（ustand Store）
 
 ```typescript
 import { create } from 'zustand';
