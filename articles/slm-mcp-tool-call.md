@@ -234,39 +234,53 @@ None of PyTorch, TensorFlow >= 2.0, or Flax have been found. Models won't be ava
 
 SLMからMCPツールを呼び出すためのオーケストレーターを実装します。
 
+
 ```python
 class PhiToolOrchestrator:
-    def __init__(self, mcp_manager, openai_client, model_id):
+    def __init__(self, mcp_manager: MCPClientManager, openai_client, model_id: str,
+                 max_tokens: int = 4096, temperature: float = 0.7, 
+                 parallel_execution: bool = False):
         self.mcp_manager = mcp_manager
         self.openai_client = openai_client
         self.model_id = model_id
+        self.monitor = ToolExecutionMonitor()
+        
+        # LLM設定
+        self.max_tokens = max_tokens
+        self.temperature = temperature
+        self.parallel_execution = parallel_execution
+        
+        # 責任を分離したヘルパークラス
         self.conversation_manager = ConversationManager()
         self.tool_parser = PhiToolParser()
     
-    async def execute_conversation_turn(self, user_input: str) -> str:
-        # ユーザー入力を会話履歴に追加
-        self.conversation_manager.add_message("user", user_input)
+    async def execute_conversation_turn(self, user_message: str, 
+                                      require_confirmation: bool = True) -> str:
+        """1回の会話ターンを実行"""
         
-        # 利用可能なツールを取得
+        # 1. 利用可能なツールを取得（MCPManagerから既にOpenAI形式で取得）
         available_tools = self.mcp_manager.get_available_tools()
         
-        # システムプロンプトにツール情報を追加
-        tool_prompt = self._create_tool_prompt(available_tools)
+        # 2. システムメッセージを更新（ツール情報を含む）
+        system_message = self.create_system_message_with_tools(available_tools)
         
-        # LLMからレスポンスを取得
-        response = await self._stream_llm_response()
+        # システムメッセージを更新
+        self.conversation_manager.update_system_message(system_message)
         
-        # ツール呼び出しを解析
-        tool_calls = self.tool_parser.parse_tool_calls(response, self.mcp_manager.tools)
+        # 3. ユーザーメッセージを履歴に追加
+        self.conversation_manager.add_user_message(user_message)
         
-        # ツールを実行
+        # 4. LLMに送信（ストリーミング応答）
+        assistant_content = await self._stream_llm_response()
+        
+        # 5. ツール呼び出しを解析
+        tool_calls = self.tool_parser.parse_tool_calls(assistant_content, self.mcp_manager.tools)
+        
+        # 6. ツールを実行
         if tool_calls:
-            tool_results = await self._execute_tools(tool_calls)
-            # 結果を基に最終レスポンスを生成
-            final_response = await self._generate_final_response(tool_results)
-            return final_response
-        
-        return response
+            await self._execute_tools_parallel_or_sequential(tool_calls, require_confirmation)
+            
+        return assistant_content
 ```
 
 ### ツール呼び出しパーサーの実装詳細
@@ -276,55 +290,66 @@ SLMの出力からツール呼び出しの内容を抽出しています。
 ```python
 class PhiToolParser:
     def __init__(self):
-        self.tool_pattern = re.compile(
-            r'\[{"name":\s*"([^"]+)",\s*"parameters":\s*({[^}]+})\}]',
-            re.DOTALL
-        )
+        pass
     
-    def parse_tool_calls(self, response: str, available_tools: Dict[str, MCPTool]) -> List[ToolCall]:
+    def parse_tool_calls(self, content: str, available_tools: Dict[str, Any]) -> List[Dict[str, Any]]:
         """SLMの応答からツール呼び出しを抽出"""
         tool_calls = []
         
-        # 複数の呼び出しパターンに対応
-        matches = self.tool_pattern.finditer(response)
+        # JSON形式のツール呼び出しを抽出
+        json_blocks = self._extract_json_blocks(content)
         
-        for match in matches:
-            tool_name = match.group(1)
-            params_str = match.group(2)
-            
-            # JSONパースのエラーハンドリング
+        for block in json_blocks:
             try:
-                parameters = json.loads(params_str)
-            except json.JSONDecodeError:
-                # 修復可能なJSONエラーの場合は修正を試みる
-                parameters = self._repair_json(params_str)
-            
-            # ツールの妥当性検証
-            if tool_name in available_tools:
-                # パラメータスキーマの検証
-                validated_params = self._validate_parameters(
-                    parameters, 
-                    available_tools[tool_name].input_schema
-                )
+                # JSONとして直接パース
+                parsed_data = json.loads(block)
                 
-                tool_calls.append(ToolCall(
-                    name=tool_name,
-                    parameters=validated_params
-                ))
-        
+                # 配列形式の場合
+                if isinstance(parsed_data, list):
+                    for item in parsed_data:
+                        if self._is_valid_tool_call(item, available_tools):
+                            tool_calls.append(item)
+                # 単一オブジェクト形式の場合
+                elif isinstance(parsed_data, dict):
+                    if self._is_valid_tool_call(parsed_data, available_tools):
+                        tool_calls.append(parsed_data)
+                        
+            except json.JSONDecodeError:
+                # JSONパースに失敗した場合は無視
+                continue
+                
         return tool_calls
     
-    def _validate_parameters(self, params: dict, schema: dict) -> dict:
-        """パラメータをスキーマに対して検証・正規化"""
-        # JSON Schemaを使用した検証
-        from jsonschema import validate, ValidationError
+    def _extract_json_blocks(self, content: str) -> List[str]:
+        """テキストからJSONブロックを抽出"""
+        import re
         
-        try:
-            validate(instance=params, schema=schema)
-            return params
-        except ValidationError as e:
-            # 必須パラメータの自動補完など
-            return self._apply_default_values(params, schema)
+        # 配列形式とオブジェクト形式の両方に対応
+        patterns = [
+            r'\[{.*?}\]',  # 配列形式
+            r'{[^{}]*"name"[^{}]*"parameters"[^{}]*}'  # オブジェクト形式
+        ]
+        
+        json_blocks = []
+        for pattern in patterns:
+            matches = re.finditer(pattern, content, re.DOTALL)
+            for match in matches:
+                json_blocks.append(match.group())
+                
+        return json_blocks
+    
+    def _is_valid_tool_call(self, call: Dict[str, Any], available_tools: Dict[str, Any]) -> bool:
+        """ツール呼び出しの妥当性を検証"""
+        if not isinstance(call, dict):
+            return False
+            
+        tool_name = call.get("name")
+        if not tool_name or tool_name not in available_tools:
+            return False
+            
+        # パラメータが辞書形式であることを確認
+        parameters = call.get("parameters", {})
+        return isinstance(parameters, dict)
 ```
 
 ## ストリーミング対応
@@ -332,23 +357,30 @@ class PhiToolParser:
 SLMからの応答のストリーミングレスポンスを実装します。
 
 ```python
-async def _stream_llm_response(self) -> str:
-    assistant_content = ""
-    print("\n🤖 アシスタント: ", end="", flush=True)
-    
-    response = self.openai_client.chat.completions.create(
-        model=self.model_id,
-        messages=self.conversation_manager.conversation_history,
-        stream=True
-    )
-    
-    for chunk in response:
-        if chunk.choices and chunk.choices[0].delta.content:
-            content_chunk = chunk.choices[0].delta.content
-            assistant_content += content_chunk
-            print(content_chunk, end="", flush=True)
-    
-    print()
-    return assistant_content
+async def _stream_llm_response(self, max_tokens: Optional[int] = None, temperature: Optional[float] = None) -> str:
+    """LLMからストリーミングレスポンスを取得する共通メソッド"""
+    try:
+        assistant_content = ""
+        print("\n🤖 アシスタント: ", end="", flush=True)
+        
+        response = self.openai_client.chat.completions.create(
+            model=self.model_id,
+            messages=self.conversation_manager.conversation_history,
+            max_tokens=max_tokens or self.max_tokens,
+            temperature=temperature or self.temperature,
+            stream=True
+        )
+        
+        for chunk in response:
+            if chunk.choices and len(chunk.choices) > 0 and chunk.choices[0].delta.content is not None:
+                content_chunk = chunk.choices[0].delta.content
+                assistant_content += content_chunk
+                print(content_chunk, end="", flush=True)
+        
+        print()
+        return assistant_content
+    except Exception as e:
+        print()  # エラー時も改行
+        raise e
 ```
 
