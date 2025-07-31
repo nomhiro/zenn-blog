@@ -12,7 +12,7 @@ published: false
 https://github.com/nomhiro/slm-mcp
 
 # SLM（Small Language Model）とは
-SLMは、GPT-4やClaudeなどの大規模モデルと比べてパラメータ数が少ない言語モデルです。例えばMicrosoft Phi-4（14B）などがあります。
+SLMは、GPT-4.1などの大規模モデルと比べてパラメータ数が少ない言語モデルです。例えばMicrosoft Phi-4（14B）などがあります。
 
 - ローカルで実行できる（レスポンスは遅いが、CPUでも動作）
 - ネットワーク遅延はなくなる
