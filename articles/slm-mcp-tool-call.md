@@ -1,13 +1,15 @@
 ---
-title: "SLM からMCPを使ってツールを呼び出す"
+title: "【SLM×MCP】SLM（phi-4-mini）からMCPを使ってツールを呼び出したい"
 emoji: "🧰"
 type: "tech" # tech: 技術記事 / idea: アイデア
-topics: ["mcp", "slm", "aifoundry"]
+topics: ["mcp", "slm", "aifoundry", "phi"]
 published: false
 ---
 
 # はじめに
 本記事では、ローカルで動作する小規模言語モデル（SLM）とModel Context Protocol（MCP）を連携するコードを解説します。
+
+https://github.com/nomhiro/slm-mcp
 
 # SLM（Small Language Model）とは
 SLMは、GPT-4やClaudeなどの大規模モデルと比べてパラメータ数が少ない言語モデルです。例えばMicrosoft Phi-4（14B）などがあります。
@@ -20,7 +22,7 @@ SLMは、GPT-4やClaudeなどの大規模モデルと比べてパラメータ数
 詳細はこちらにて！
 https://zenn.dev/nomhiro/articles/slm-foundry-local-poc-01#slm%EF%BC%88small-language-model%EF%BC%89%E3%81%A8%E3%81%AF%EF%BC%9F
 
-## MCP（Model Context Protocol）とは
+# MCP（Model Context Protocol）とは
 MCPはAnthropic社が開発したプロトコルで、AIモデルが外部ツールやリソースを安全に使えるようにする標準仕様です。
 
 詳細はこちらにて！
@@ -29,7 +31,6 @@ https://zenn.dev/nomhiro/articles/neo4j-mcp-person-knowledge#%EF%BC%88%E3%81%8A%
 # 試した内容
 
 こちらのGitHubにSLM×MCP連携のツールを公開しています。
-https://github.com/nomhiro/slm-mcp
 
 こんな感じで動作します。
 指示に従いMCPのツールを介してローカルファイルの内容を読み、指示に応答します。ローカル環境のSLMを使っているのでオフラインでも動作します。
