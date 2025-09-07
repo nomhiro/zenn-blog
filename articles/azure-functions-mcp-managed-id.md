@@ -1,5 +1,5 @@
 ---
-title: "Azure Functions MCP Binding を実践する　～Storage Account アクセスは ManagedIDで～"
+title: "Azure Functions で MCPサーバを公開して業務効率化してみよう！　～Storage Account アクセスは ManagedIDで～"
 emoji: "👻"
 type: "tech" # tech: 技術記事 / idea: アイデア
 topics: ["Azure", "Functions", "mcp", "CosmosDB", "GitHubCopilot"]
