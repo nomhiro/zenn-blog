@@ -1,5 +1,5 @@
 ---
-title: "Azure Functions で MCPサーバを公開して業務効率化してみよう！　～Storage Account アクセスは ManagedIDで～"
+title: "AzureFunctionsのMCPサーバで生成AIドリブンな一歩を踏み出そう！ ～StorageAccountアクセスはManagedIDで～"
 emoji: "👻"
 type: "tech" # tech: 技術記事 / idea: アイデア
 topics: ["Azure", "Functions", "mcp", "CosmosDB", "GitHubCopilot"]
