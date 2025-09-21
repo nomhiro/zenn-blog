@@ -1,0 +1,124 @@
+<mxfile host="65bd71144e">
+    <diagram id="FvvhEdk801fPUIq1WIg0" name="Page-1">
+        <mxGraphModel dx="1038" dy="1219" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="0" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+            <root>
+                <mxCell id="0"/>
+                <mxCell id="1" parent="0"/>
+                <mxCell id="70" value="レンタカー予約音声対話アプリケーション" style="rounded=1;whiteSpace=wrap;html=1;verticalAlign=top;strokeColor=none;fillColor=#EDEDED;" vertex="1" parent="1">
+                    <mxGeometry x="4" y="-213" width="607" height="708" as="geometry"/>
+                </mxCell>
+                <mxCell id="2" value="Realtime API" style="rounded=1;whiteSpace=wrap;html=1;verticalAlign=top;strokeColor=none;fillColor=#e1d5e7;" parent="1" vertex="1">
+                    <mxGeometry x="320.61" y="-160" width="180" height="200" as="geometry"/>
+                </mxCell>
+                <mxCell id="3" value="gpt-realtime" style="rounded=1;whiteSpace=wrap;html=1;verticalAlign=top;strokeColor=#000000;" parent="1" vertex="1">
+                    <mxGeometry x="355.61" y="-80" width="110" height="50" as="geometry"/>
+                </mxCell>
+                <mxCell id="5" value="Tools" style="rounded=1;whiteSpace=wrap;html=1;verticalAlign=top;strokeColor=none;fillColor=#dae8fc;" parent="1" vertex="1">
+                    <mxGeometry x="323" y="80" width="212" height="384" as="geometry"/>
+                </mxCell>
+                <mxCell id="16" value="" style="group" parent="1" vertex="1" connectable="0">
+                    <mxGeometry x="355.61" y="289" width="150" height="50" as="geometry"/>
+                </mxCell>
+                <mxCell id="17" value="&lt;div&gt;予約ツール&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;verticalAlign=middle;strokeColor=#000000;" parent="16" vertex="1">
+                    <mxGeometry width="150" height="50" as="geometry"/>
+                </mxCell>
+                <mxCell id="18" value="" style="sketch=0;aspect=fixed;pointerEvents=1;shadow=0;dashed=0;html=1;strokeColor=none;labelPosition=center;verticalLabelPosition=bottom;verticalAlign=top;align=center;fillColor=#00188D;shape=mxgraph.mscae.enterprise.tool;" parent="16" vertex="1">
+                    <mxGeometry x="10" y="15" width="22.22" height="20" as="geometry"/>
+                </mxCell>
+                <mxCell id="20" value="" style="group" parent="1" vertex="1" connectable="0">
+                    <mxGeometry x="355.61" y="209" width="150" height="50" as="geometry"/>
+                </mxCell>
+                <mxCell id="21" value="&lt;div&gt;&lt;span style=&quot;background-color: transparent;&quot;&gt;　　店舗車両空き状況&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;background-color: transparent;&quot;&gt;取得ツール&lt;/span&gt;&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;verticalAlign=middle;strokeColor=#000000;" parent="20" vertex="1">
+                    <mxGeometry width="150" height="50" as="geometry"/>
+                </mxCell>
+                <mxCell id="22" value="" style="sketch=0;aspect=fixed;pointerEvents=1;shadow=0;dashed=0;html=1;strokeColor=none;labelPosition=center;verticalLabelPosition=bottom;verticalAlign=top;align=center;fillColor=#00188D;shape=mxgraph.mscae.enterprise.tool;" parent="20" vertex="1">
+                    <mxGeometry x="10" y="15" width="22.22" height="20" as="geometry"/>
+                </mxCell>
+                <mxCell id="23" value="" style="group" parent="1" vertex="1" connectable="0">
+                    <mxGeometry x="355.61" y="130" width="150" height="50" as="geometry"/>
+                </mxCell>
+                <mxCell id="24" value="店舗一覧&lt;div&gt;取得ツール&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;verticalAlign=middle;strokeColor=#000000;" parent="23" vertex="1">
+                    <mxGeometry width="150" height="50" as="geometry"/>
+                </mxCell>
+                <mxCell id="25" value="" style="sketch=0;aspect=fixed;pointerEvents=1;shadow=0;dashed=0;html=1;strokeColor=none;labelPosition=center;verticalLabelPosition=bottom;verticalAlign=top;align=center;fillColor=#00188D;shape=mxgraph.mscae.enterprise.tool;" parent="23" vertex="1">
+                    <mxGeometry x="10" y="15" width="22.22" height="20" as="geometry"/>
+                </mxCell>
+                <mxCell id="29" value="Tool Call" style="edgeStyle=elbowEdgeStyle;elbow=horizontal;endArrow=classic;html=1;curved=0;rounded=0;endSize=8;startSize=8;exitX=1;exitY=0.75;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;verticalAlign=middle;" parent="1" source="32" target="24" edge="1">
+                    <mxGeometry width="50" height="50" relative="1" as="geometry">
+                        <mxPoint x="448.21000000000004" y="165" as="sourcePoint"/>
+                        <mxPoint x="513" y="200" as="targetPoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="30" value="" style="edgeStyle=elbowEdgeStyle;elbow=horizontal;endArrow=classic;html=1;curved=0;rounded=0;endSize=8;startSize=8;exitX=1;exitY=0.75;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" parent="1" source="32" target="21" edge="1">
+                    <mxGeometry width="50" height="50" relative="1" as="geometry">
+                        <mxPoint x="448.21000000000004" y="165" as="sourcePoint"/>
+                        <mxPoint x="603" y="175" as="targetPoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="32" value="音声対話UI" style="rounded=1;whiteSpace=wrap;html=1;verticalAlign=middle;strokeColor=none;fillColor=#f8cecc;" parent="1" vertex="1">
+                    <mxGeometry x="40" y="80" width="200" height="70" as="geometry"/>
+                </mxCell>
+                <mxCell id="31" value="" style="edgeStyle=elbowEdgeStyle;elbow=horizontal;endArrow=classic;html=1;curved=0;rounded=0;endSize=8;startSize=8;exitX=1;exitY=0.75;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" parent="1" source="32" target="17" edge="1">
+                    <mxGeometry width="50" height="50" relative="1" as="geometry">
+                        <mxPoint x="448.21000000000004" y="165" as="sourcePoint"/>
+                        <mxPoint x="603" y="265" as="targetPoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="44" value="" style="edgeStyle=elbowEdgeStyle;elbow=horizontal;endArrow=classic;html=1;curved=0;rounded=0;endSize=8;startSize=8;exitX=1.007;exitY=0.381;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;exitPerimeter=0;" parent="1" source="32" target="3" edge="1">
+                    <mxGeometry width="50" height="50" relative="1" as="geometry">
+                        <mxPoint x="240" y="103" as="sourcePoint"/>
+                        <mxPoint x="420" y="175" as="targetPoint"/>
+                        <Array as="points">
+                            <mxPoint x="280" y="-10"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="46" value="" style="group" parent="1" vertex="1" connectable="0">
+                    <mxGeometry x="355.61" y="370" width="150" height="50" as="geometry"/>
+                </mxCell>
+                <mxCell id="47" value="&lt;div&gt;予約状況&lt;/div&gt;&lt;div&gt;確認ツール&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;verticalAlign=middle;strokeColor=#000000;" parent="46" vertex="1">
+                    <mxGeometry width="150" height="50" as="geometry"/>
+                </mxCell>
+                <mxCell id="48" value="" style="sketch=0;aspect=fixed;pointerEvents=1;shadow=0;dashed=0;html=1;strokeColor=none;labelPosition=center;verticalLabelPosition=bottom;verticalAlign=top;align=center;fillColor=#00188D;shape=mxgraph.mscae.enterprise.tool;" parent="46" vertex="1">
+                    <mxGeometry x="10" y="15" width="22.22" height="20" as="geometry"/>
+                </mxCell>
+                <mxCell id="50" value="" style="edgeStyle=elbowEdgeStyle;elbow=horizontal;endArrow=classic;html=1;curved=0;rounded=0;endSize=8;startSize=8;exitX=1;exitY=0.75;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" parent="1" source="32" target="47" edge="1">
+                    <mxGeometry width="50" height="50" relative="1" as="geometry">
+                        <mxPoint x="448.21000000000004" y="165" as="sourcePoint"/>
+                        <mxPoint x="614" y="362" as="targetPoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="51" value="既存システム&lt;div&gt;（レンタカー予約システム）&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;verticalAlign=top;strokeColor=#82b366;fillColor=#d5e8d4;" parent="1" vertex="1">
+                    <mxGeometry x="744" y="87" width="173" height="380" as="geometry"/>
+                </mxCell>
+                <mxCell id="52" value="CosmosDB" style="image;aspect=fixed;html=1;points=[];align=center;fontSize=12;image=img/lib/azure2/databases/Azure_Cosmos_DB.svg;labelBackgroundColor=none;" parent="1" vertex="1">
+                    <mxGeometry x="794" y="242" width="64" height="64" as="geometry"/>
+                </mxCell>
+                <mxCell id="65" value="" style="edgeStyle=elbowEdgeStyle;elbow=horizontal;endArrow=classic;html=1;curved=0;rounded=0;endSize=8;startSize=8;entryX=-0.02;entryY=0.473;entryDx=0;entryDy=0;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryPerimeter=0;" parent="1" source="24" target="52" edge="1">
+                    <mxGeometry width="50" height="50" relative="1" as="geometry">
+                        <mxPoint x="801" y="182" as="sourcePoint"/>
+                        <mxPoint x="614" y="415" as="targetPoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="66" value="" style="edgeStyle=elbowEdgeStyle;elbow=horizontal;endArrow=classic;html=1;curved=0;rounded=0;endSize=8;startSize=8;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=-0.02;entryY=0.473;entryDx=0;entryDy=0;entryPerimeter=0;" parent="1" source="21" target="52" edge="1">
+                    <mxGeometry width="50" height="50" relative="1" as="geometry">
+                        <mxPoint x="764" y="175" as="sourcePoint"/>
+                        <mxPoint x="809" y="350" as="targetPoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="67" value="" style="edgeStyle=elbowEdgeStyle;elbow=horizontal;endArrow=classic;html=1;curved=0;rounded=0;endSize=8;startSize=8;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=-0.01;entryY=0.478;entryDx=0;entryDy=0;entryPerimeter=0;" parent="1" source="17" target="52" edge="1">
+                    <mxGeometry width="50" height="50" relative="1" as="geometry">
+                        <mxPoint x="764" y="254" as="sourcePoint"/>
+                        <mxPoint x="921" y="276" as="targetPoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="68" value="" style="edgeStyle=elbowEdgeStyle;elbow=horizontal;endArrow=classic;html=1;curved=0;rounded=0;endSize=8;startSize=8;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=-0.024;entryY=0.474;entryDx=0;entryDy=0;entryPerimeter=0;" parent="1" source="47" target="52" edge="1">
+                    <mxGeometry width="50" height="50" relative="1" as="geometry">
+                        <mxPoint x="764" y="334" as="sourcePoint"/>
+                        <mxPoint x="689" y="255" as="targetPoint"/>
+                    </mxGeometry>
+                </mxCell>
+            </root>
+        </mxGraphModel>
+    </diagram>
+</mxfile>
