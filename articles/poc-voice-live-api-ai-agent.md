@@ -1,10 +1,12 @@
 ---
-title: "gpt-realtime モデルとツール呼び出しを使った音声対話エージェント"
+title: "Azure OpenAI 「gpt-realtime」 モデルとツール呼び出しを使った音声対話エージェント"
 emoji: "🤖"
 type: "tech" # tech: 技術記事 / idea: アイデア
 topics: ["AzureOpenAI", "FunctionCalling", "gptrealtime", "WebRTC", "TypeScript"]
 published: false
 ---
+
+![](/images/poc-voice-live-api-ai-agent/2025-09-21-15-09-21.png)
 
 # はじめに
 
@@ -12,7 +14,8 @@ Azure OpenAI の Realtime API を使うと、音声対話を低遅延で行う�
 本記事では、WebRTC を活用した Azure OpenAI Realtime API（以下 Realtime API）の実装方法と、音声対話中にリアルタイムでバックエンド機能を呼び出す方法を、TypeScript/React を用いたフロントエンド例を交えて解説します。コード例は説明用の簡略化サンプルです。
 
 結論、このような動きになりました。
-s
+
+https://youtu.be/rVdvXBuVFKk
 
 # 🎯 Azure OpenAI Realtime API とは
 
