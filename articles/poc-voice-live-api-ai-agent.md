@@ -17,6 +17,9 @@ Azure OpenAI の Realtime API を使うと、音声対話を低遅延で行う�
 
 https://youtu.be/rVdvXBuVFKk
 
+GitHubリポジトリはこちらです。
+https://github.com/nomhiro/poc-voice-live-api-ai-agent
+
 # 🎯 Azure OpenAI Realtime API とは
 
 **従来の音声AI**
