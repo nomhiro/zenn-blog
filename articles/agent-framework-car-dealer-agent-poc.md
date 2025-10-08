@@ -6,6 +6,8 @@ topics: ["AgentFramework", "AzureFunctions", "MCP", "AzureOpenAI", "MultiAgent"]
 published: false
 ---
 
+![](/images/agent-framework-car-dealer-agent-poc/2025-10-08-21-52-33.png)
+
 # はじめに
 2025年10月に、MicrosoftからAgent Frameworkがリリースされました。従来、Microsoft関連のAIオーケストレーター層としてSemanticKernelとAutoGenがありました。これらを統合したFrameworkです。
 https://learn.microsoft.com/ja-jp/agent-framework/overview/agent-framework-overview
