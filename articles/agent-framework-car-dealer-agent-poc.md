@@ -1,8 +1,8 @@
 ---
-title: "【Agent Framework（Python）】クルマ提案マルチエージェントのPoC ～Azure Functions MCPツールとの連携～"
+title: "【Agent Framework（Python）】クルマ提案マルチエージェントのPoC ～Functions MCPも～"
 emoji: "🦁"
 type: "tech" # tech: 技術記事 / idea: アイデア
-topics: ["AgentFramework", "Azure Functions", "MCP", "AzureOpenAI", "MultiAgent"]
+topics: ["AgentFramework", "AzureFunctions", "MCP", "AzureOpenAI", "MultiAgent"]
 published: false
 ---
 
