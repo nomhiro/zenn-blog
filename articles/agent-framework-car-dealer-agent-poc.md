@@ -1,5 +1,5 @@
 ---
-title: "【Agent Framework（Python）】クルマ提案マルチエージェントのPoC ～Functions MCPも～"
+title: "【Agent Framework（Python）】クルマ提案エージェント ～Functions MCPも～"
 emoji: "🦁"
 type: "tech" # tech: 技術記事 / idea: アイデア
 topics: ["AgentFramework", "AzureFunctions", "MCP", "AzureOpenAI", "MultiAgent"]
