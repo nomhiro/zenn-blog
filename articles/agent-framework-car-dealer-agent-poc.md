@@ -1,5 +1,5 @@
 ---
-title: "【Agent Framework】クルマ提案マルチエージェントのPoC ～Azure Functions MCPツールとの連携～"
+title: "【Agent Framework（Python）】クルマ提案マルチエージェントのPoC ～Azure Functions MCPツールとの連携～"
 emoji: "🦁"
 type: "tech" # tech: 技術記事 / idea: アイデア
 topics: ["AgentFramework", "Azure Functions", "MCP", "AzureOpenAI", "MultiAgent"]
@@ -90,6 +90,9 @@ PS> python .\orchestrator_chat_repl.py --query "ワンボックスほど大き�
 
 ```
 ちなみに、CLIで対話できるような実装は、AgentFrameworkに含まれてはいない認識です。対話CLIは独自実装です。
+
+今回の実装はこちらのリポジトリです。
+https://github.com/nomhiro/agent-framework-dealer-poc
 
 ## システム概要
 
