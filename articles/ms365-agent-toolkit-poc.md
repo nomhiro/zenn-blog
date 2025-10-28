@@ -179,7 +179,6 @@ Microsoft 365 Agents Toolkitで「Provision」操作を行うには、特定の�
 https://m365.cloud.microsoft/chat の Copilot アプリケーションに移動します。
 
 エージェントリストにある、作成した 宣言型エージェント「アイデアブラッシュアップ＆企画書作成エージェント」 を選択します。
-![](/images/ms365-agent-toolkit-poc/2025-10-28-22-23-32.png)
 
 このように表示されます。
 下に表示されているのは、conversation_starters で定義した会話のきっかけとなる例文ですね。
