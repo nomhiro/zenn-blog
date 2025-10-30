@@ -1,5 +1,5 @@
 ---
-title: "Microsoft 365 Agents Toolkit [1] ~入門~"
+title: "Microsoft 365 Agents Toolkit ~入門~"
 emoji: "💭"
 type: "tech" # tech: 技術記事 / idea: アイデア
 topics: ["agenttoolkit", "microsoft365", "copilot", "teams"]
