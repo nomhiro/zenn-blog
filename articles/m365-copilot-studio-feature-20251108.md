@@ -6,6 +6,8 @@ topics: ["CopilotStudio", "AIエージェント", "CopilotStudio", "エージェ
 published: false
 ---
 
+![](/images/m365-copilot-studio-feature-20251108/2025-11-09-04-09-26.png)
+
 # はじめに
 みなさん、Microsoft 365 Copilotを使ってますか？
 この領域の技術進歩が非常に速く、使っていると知らない間に新たな機能、設定が追加変更されていきます。
