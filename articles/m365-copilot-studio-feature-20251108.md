@@ -1,8 +1,8 @@
 ---
-title: "【2025年11月】 Copilot Studio: エージェント設計・評価・拡張徹底ガイド"
+title: "【2025年11月】Microsoft Copilot Studio: エージェント設計・評価・拡張徹底ガイド"
 emoji: "🐕"
 type: "tech" # tech: 技術記事 / idea: アイデア
-topics: ["M365Copilot", "AIエージェント", "CopilotStudio", "エージェント"]
+topics: ["CopilotStudio", "AIエージェント", "CopilotStudio", "エージェント"]
 published: false
 ---
 
