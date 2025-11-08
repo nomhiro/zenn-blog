@@ -10,6 +10,7 @@ published: false
 みなさん、Microsoft 365 Copilotを使ってますか？
 この領域の技術進歩が非常に速く、使っていると知らない間に新たな機能、設定が追加変更されていきます。
 この記事では、2025年11月時点でのCopilot Studioの機能を整理し、利用シーンや実設定例を交えて解説します。
+https://learn.microsoft.com/ja-jp/microsoft-copilot-studio/
 
 そもそもCopilot Studioとは、AIエージェントを作成するためのツールです。事前に用意されている、**Microsoft製品やサードパーティ製品とのプラグインなどと連携し、特定業務に特化したエージェントをノーコードで作成できる**ものです。
 
