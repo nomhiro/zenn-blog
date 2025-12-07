@@ -6,6 +6,12 @@ topics: ["foundrylocal", "llm", "phi", "mcp", "slm"]
 published: false
 ---
 
+本記事は**Azure PoC 部** **Advent Calendar 2025** の 8 日目の記事です。
+https://qiita.com/advent-calendar/2025/azpoc
+
+また、名古屋のAzureコミュニティ **なごあず** で登壇した内容です。
+https://75az.connpass.com/event/373754/
+
 ![](/images/hybrid-ai-local-azure-security/2025-12-07-20-23-26.png)
 
 # モチベーション
@@ -14,6 +20,8 @@ published: false
 みなさん、普段の業務やアプリケーションでLLMを使うときはクラウドベンダーが提供するLLMを使うことが多いと思います。
 そのLLMが、皆さんのPCで動かせるって、エンジニア（ガジェット好き？）としてはちょっとワクワクしませんか？？
 そんなモチベーションをもとに、クラウドではなく、社会実装されることをイメージしながら、ローカルでLLMを動かすユースケースを考えてみました。
+
+※ここまでNPUと言っていますが、CPUやGPUでも動作しますので、ご安心ください。
 
 - **プライバシー保護**: 個人情報や機密データを外部に出さない
 - **通信環境への対応**: ネットワークが不安定な場所での利用
