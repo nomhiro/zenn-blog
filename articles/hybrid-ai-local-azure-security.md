@@ -1,5 +1,5 @@
 ---
-title: "ローカルとクラウドLLMのハイブリッドAI活用！"
+title: "ローカルとクラウドLLMのハイブリッドAI活用 ~セキュリティとプライバシー保護の観点から~"
 emoji: "🔐"
 type: "tech"
 topics: ["foundrylocal", "llm", "phi", "mcp", "slm"]
