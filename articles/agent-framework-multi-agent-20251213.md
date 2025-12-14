@@ -6,6 +6,9 @@ topics: ["MicrosoftAgentFramework", "AzureFunctions", "OpenAI", "dts", "vertexAI
 published: true
 ---
 
+本記事はAzure PoC 部 Advent Calendar 2025 の 8 日目の記事です。
+https://qiita.com/advent-calendar/2025/azpoc
+
 # はじめに
 
 Durable Task Scheduler と Agent Framework を組み合わせた仕組みにDeepDiveしたく、本記事を書きました。
