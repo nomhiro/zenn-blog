@@ -974,12 +974,6 @@ Azure環境内で完結させ、外部への流出リスクを最小化します
 ```mermaid
 flowchart TD
 
-    %% スタイル定義
-    classDef proposer fill:#e1f5fe,stroke:#01579b
-    classDef CTO fill:#f3e5f5,stroke:#4a148c
-    classDef CFO fill:#fff3e0,stroke:#e65100
-    classDef business fill:#e8f5e9,stroke:#1b5e20
-
     %% 会話フロー
     node0["担当者<br/>本日は新規プロジェクトの提案について..."]
     node1["CTO<br/>技術的観点から言うと、ベテラン社員..."]
@@ -990,13 +984,6 @@ flowchart TD
     node2 --> node3
     node4["事業部長<br/>事業的観点から言うと、顧客対応の..."]
     node3 --> node4
-
-    %% スタイル適用
-    class node0 proposer
-    class node1 CTO
-    class node2 proposer
-    class node3 CFO
-    class node4 business
 ```
 
 生成されたスライド画像はこちらです。
