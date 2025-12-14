@@ -2,7 +2,7 @@
 title: "Durable Task Scheduler と Agent Framework による可視化可能なマルチエージェントシステム"
 emoji: "📚"
 type: "tech" # tech: 技術記事 / idea: アイデア
-topics: ["MicrosoftAgentFramework", "AzureFunctions", "OpenAI", "DurableTaskScheduler", "vertexAI"]
+topics: ["MicrosoftAgentFramework", "AzureFunctions", "OpenAI", "dts", "vertexAI"]
 published: true
 ---
 
