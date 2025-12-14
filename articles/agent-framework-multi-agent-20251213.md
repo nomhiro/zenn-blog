@@ -9,6 +9,8 @@ published: true
 本記事はAzure PoC 部 Advent Calendar 2025 の 8 日目の記事です。
 https://qiita.com/advent-calendar/2025/azpoc
 
+![](/images/agent-framework-multi-agent-20251213/2025-12-14-16-54-57.png)
+
 # はじめに
 
 Durable Task Scheduler と Agent Framework を組み合わせた仕組みにDeepDiveしたく、本記事を書きました。
@@ -195,6 +197,8 @@ flowchart TB
 **マネージャーエージェントが議論の流れを見て、次に誰が発言すべきかを動的に判断**します。
 会話終了時には**議論の内容を要約します**。
 さらに、**会話の流れをMermaidフローチャートで可視化**を行い、**会話全体の概要を表す1枚のスライド画像**を生成します。
+
+![](/images/agent-framework-multi-agent-20251213/2025-12-14-16-56-54.png)
 
 ## システム構成
 
