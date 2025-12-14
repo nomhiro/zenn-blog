@@ -230,9 +230,6 @@ flowchart TB
     GroupChat --> Summarize["SummarizeConversationActivity<br/>(会話要約生成)"]
     Summarize --> SaveFlow["SaveConversationFlowActivity<br/>(Mermaid図保存)"]
     Summarize --> GenerateSlide["GenerateSlideActivity<br/>(Vertex AI Gemini画像)"]
-
-    style SaveFlow fill:#e1f5fe
-    style GenerateSlide fill:#e1f5fe
 ```
 
 用意しているエージェントはこれらです。社内の役割に応じて増やしていけると良さそうですねー。
@@ -508,9 +505,6 @@ flowchart TB
     GroupChat --> Summarize["SummarizeConversationActivity<br/>(会話要約生成)"]
     Summarize --> SaveFlow["SaveConversationFlowActivity<br/>(Mermaid図保存)"]
     Summarize --> GenerateSlide["GenerateSlideActivity<br/>(Vertex AI Gemini画像)"]
-
-    style SaveFlow fill:#e1f5fe
-    style GenerateSlide fill:#e1f5fe
 ```
 
 ```python
