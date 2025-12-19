@@ -401,7 +401,7 @@ sequenceDiagram
 ## 主要な関数の解説
 
 実装はGitHubにありますので、詳しくはこちらを参照ください。
-https://github.com/nomhiro/hybrid-ai-foundry-local-and-microsoft-foundry
+https://github.com/nomhiro/hybrid-ai-local-and-cloud-queue-polling
 
 ### Queue経由のリクエスト送信（app.py）
 
@@ -538,8 +538,8 @@ def call_local_llm(symptoms: str) -> dict:
 GitHubからコードをクローンし、必要なライブラリをインストールします。
 
 ```bash
-git clone https://github.com/nomhiro/hybrid-ai-foundry-local-and-microsoft-foundry.git
-cd hybrid-ai-foundry-local-and-microsoft-foundry
+git clone https://github.com/nomhiro/hybrid-ai-local-and-cloud-queue-polling.git
+cd hybrid-ai-local-and-cloud-queue-polling
 ```
 
 ```bash
