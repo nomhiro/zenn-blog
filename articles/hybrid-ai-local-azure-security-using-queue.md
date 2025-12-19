@@ -1,5 +1,5 @@
 ---
-title: "【続編】ローカルとクラウドLLMのハイブリッドAI ~Azure Storage Queueによるセキュア通信~"
+title: "【続編】ローカルとクラウドLLMのハイブリッドAI ~Queue Polling~"
 emoji: "🔐"
 type: "tech"
 topics: ["foundrylocal", "phi", "queue", "security", "llm"]
