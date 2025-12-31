@@ -3,7 +3,7 @@ title: "2025年の振り返り"
 emoji: "🌟"
 type: "idea" # tech: 技術記事 / idea: アイデア
 topics: ["2025", "2026", "Azure", "AI", "振り返り"]
-published: false
+published: true
 ---
 
 ![](/images/summary-2025/2025-12-31-22-06-47.png)
