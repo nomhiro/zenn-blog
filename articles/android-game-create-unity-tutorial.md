@@ -53,6 +53,9 @@ Unityならではの物理演算やスマホの加速度センサーを使うよ
 - **CPU**: AMD Ryzen AI 9 365 w/ Radeon 880M (2.00 GHz)
 - **RAM**: 32.0 GB
 
+**Unityのバージョンは Unity 6** を使用します。
+Unity 5, 6 で設定方法が異なる場合がありますので、ご注意ください。
+
 ### 必要なアカウント
 
 1. **Unity アカウント**（無料）: https://id.unity.com/
