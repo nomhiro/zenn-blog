@@ -2,7 +2,7 @@
 title: "AndroidゲームをUnityで作るチュートリアル ~ AIサポートのおかげ~"
 emoji: "🐡"
 type: "tech" # tech: 技術記事 / idea: アイデア
-topics: ["Unity"]
+topics: ["Unity", "Android", "ゲーム開発", "生成AI", "AI"]
 published: false
 ---
 
