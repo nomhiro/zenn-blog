@@ -1,5 +1,5 @@
 ---
-title: "国土交通データプラットフォームMCPサーバーで建設業界でAI活用！🏗️"
+title: "国土交通データプラットフォームMCPサーバーを使って建設業界でAI活用！🏗️"
 emoji: "🏗️"
 type: "tech"
 topics: ["mcp", "llm", "GraphQL", "mlit", "Claude"]
