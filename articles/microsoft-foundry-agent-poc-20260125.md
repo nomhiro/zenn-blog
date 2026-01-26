@@ -330,6 +330,8 @@ https://learn.microsoft.com/ja-jp/azure/ai-foundry/agents/concepts/tool-catalog?
 
 ### カスタムツール
 
+| ツール | 説明 |
+|-------|------|
 | **MCP** | Model Context Protocolエンドポイント接続 |
 | **OpenAPI** | OpenAPI 3.0仕様で外部API接続 |
 | **Agent2Agent** | ほかのエージェントとA2Aプロトコルで連携 |
