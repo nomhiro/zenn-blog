@@ -1,5 +1,5 @@
 ---
-title: "【2026年1月完全ガイド】Microsoft Foundry で作るAIエージェント"
+title: "【完全ガイド】Microsoft Foundry で作るAIエージェント（2026年1月）"
 emoji: "🤖"
 type: "tech"
 topics: ["azure", "ai", "microsoft", "foundry", "openai"]
