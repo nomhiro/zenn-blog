@@ -8,7 +8,7 @@ published: true
 
 # はじめに
 
-**Microsoft Foundry** と聞いて、ピンときますか？？　そんなあなたは2026年のMicrosoft Igniteの内容を把握しているか、Azure の AIサービスの最新動向に詳しい方ですね！
+**Microsoft Foundry** と聞いて、ピンときますか？？　そんなあなたは2025年のMicrosoft Igniteの内容を把握しているか、Azure の AIサービスの最新動向に詳しい方ですね！
 
 このブログでは、だれもが **Microsoft Foundry** でエージェントを作成できるように、解説したいと思います。
 
