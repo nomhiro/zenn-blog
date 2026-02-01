@@ -8,7 +8,9 @@ published: true
 
 # はじめに
 
-前回の記事「[Microsoft Foundry AIエージェント完全ガイド](https://zenn.dev/nomhiro/articles/microsoft-foundry-agent-poc-20260125)」では、Microsoft Foundry の9つの主要機能を解説しました。その中で「エージェント = プロンプト × ツール」という概念を紹介しました。
+前回、**Microsoft Foundry AIエージェント完全ガイド** の記事を書きました。
+https://zenn.dev/nomhiro/articles/microsoft-foundry-agent-poc-20260125
+この記事では、Microsoft Foundry の9つの主要機能を解説しました。その中で「エージェント = プロンプト × ツール」という概念を紹介しました。
 今回は **Hosted Agent**に焦点を当てて解説します。
 
 **Hosted Agent を一言で言うと、**
