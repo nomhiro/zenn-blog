@@ -22,6 +22,8 @@ Microsoft Foundry（旧Azure AI Foundry）は、AIアプリケーションの開
 この記事は2025年1月時点の公式ドキュメントに基づいています。Microsoft Foundryは急速に進化しているため、最新情報は公式ドキュメントをご確認ください。
 :::
 
+Hosted Agent に関する記事も書きましたので、合わせてご覧ください。
+https://zenn.dev/nomhiro/articles/microsoft-foundry-hosted-agent
 
 #### 参考リンク
 
