@@ -1,5 +1,5 @@
 ---
-title: "Microsoft Foundry の Hosted Agent を動かしながら知ろう"
+title: "【Foundry続編】Microsoft Foundry の Hosted Agent を動かしながら知ろう"
 emoji: "🤖"
 type: "tech"
 topics: ["azure", "ai", "foundry", "agent", "hostedagent"]
