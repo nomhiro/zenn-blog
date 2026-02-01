@@ -3,7 +3,7 @@ title: "【Foundry続編】Microsoft Foundry の Hosted Agent を動かしなが
 emoji: "🤖"
 type: "tech"
 topics: ["azure", "ai", "foundry", "agent", "hostedagent"]
-published: false
+published: true
 ---
 
 # はじめに
