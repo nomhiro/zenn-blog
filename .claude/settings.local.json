@@ -1,6 +1,12 @@
 {
+  "permissions": {
+    "allow": [
+      "Bash(where:*)",
+      "WebFetch(domain:github.com)"
+    ]
+  },
+  "enableAllProjectMcpServers": true,
   "enabledMcpjsonServers": [
     "deepwiki"
-  ],
-  "enableAllProjectMcpServers": true
+  ]
 }

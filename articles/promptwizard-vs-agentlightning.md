@@ -63,6 +63,7 @@ PromptWizard (PW) は、Microsoft Research India が開発した**タスク認�
 PromptWizard は 2 段階のパイプラインで動作します。
 
 ```mermaid
+%%{init: {'theme': 'base', 'themeVariables': { 'primaryTextColor': '#333', 'lineColor': '#666' }}}%%
 flowchart TB
     subgraph Input["入力"]
         direction LR
@@ -86,10 +87,10 @@ flowchart TB
 
     Input --> Stage1 --> Stage2 --> Output
 
-    style Input fill:#f5f5f5,stroke:#9e9e9e,color:#616161
-    style Stage1 fill:#fff3e0,stroke:#f57c00,color:#f57c00
-    style Stage2 fill:#f3e5f5,stroke:#7b1fa2,color:#7b1fa2
-    style Output fill:#f5f5f5,stroke:#9e9e9e,color:#616161
+    style Input fill:#f5f5f5,stroke:#9e9e9e
+    style Stage1 fill:#fff3e0,stroke:#f57c00
+    style Stage2 fill:#f3e5f5,stroke:#7b1fa2
+    style Output fill:#f5f5f5,stroke:#9e9e9e
 ```
 
 **主要コンポーネント**
@@ -106,6 +107,7 @@ flowchart TB
 **Stage1：命令文の最適化**
 
 ```mermaid
+%%{init: {'theme': 'base', 'themeVariables': { 'primaryTextColor': '#333', 'lineColor': '#666' }}}%%
 flowchart TB
     subgraph Loop["反復サイクル"]
         direction TB
@@ -123,6 +125,7 @@ flowchart TB
 **Stage2：例の最適化**
 
 ```mermaid
+%%{init: {'theme': 'base', 'themeVariables': { 'primaryTextColor': '#333', 'lineColor': '#666' }}}%%
 flowchart TB
     subgraph ExampleLoop["例の最適化サイクル"]
         direction TB
@@ -332,6 +335,7 @@ trainer.fit()
 Agent Lightningでは、APO（Automatic Prompt Optimization）アルゴリズムを使ってプロンプトテンプレートを最適化できますが、これはPromptWizardのアプローチと似てます。ですので、PromptWizardで最適化したプロンプトをAgent LightningのAPOに組み込むことで、両方の利点を活かすことができそうです。
 
 ```mermaid
+%%{init: {'theme': 'base', 'themeVariables': { 'primaryTextColor': '#333', 'lineColor': '#666' }}}%%
 flowchart TB
     subgraph Phase1["Phase 1: PromptWizard"]
         direction TB
