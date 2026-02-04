@@ -86,10 +86,10 @@ flowchart TB
 
     Input --> Stage1 --> Stage2 --> Output
 
-    style Input fill:#f5f5f5,stroke:#9e9e9e
-    style Stage1 fill:#fff3e0,stroke:#f57c00
-    style Stage2 fill:#f3e5f5,stroke:#7b1fa2
-    style Output fill:#f5f5f5,stroke:#9e9e9e
+    style Input fill:#f5f5f5,stroke:#9e9e9e,color:#616161
+    style Stage1 fill:#fff3e0,stroke:#f57c00,color:#f57c00
+    style Stage2 fill:#f3e5f5,stroke:#7b1fa2,color:#7b1fa2
+    style Output fill:#f5f5f5,stroke:#9e9e9e,color:#616161
 ```
 
 **主要コンポーネント**
@@ -185,9 +185,9 @@ flowchart TB
 
     Algorithm <--> Store <--> Runner
 
-    style Algorithm fill:#e3f2fd,stroke:#1976d2
-    style Store fill:#fff3e0,stroke:#f57c00
-    style Runner fill:#e8f5e9,stroke:#388e3c
+    style Algorithm fill:#e3f2fd,stroke:#1976d2,color:#1976d2
+    style Store fill:#fff3e0,stroke:#f57c00,color:#f57c00
+    style Runner fill:#e8f5e9,stroke:#388e3c,color:#388e3c
 ```
 
 ## 対応学習アルゴリズム
