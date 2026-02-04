@@ -167,6 +167,7 @@ Agent Lightning は、Microsoft Research Asia（上海）が開発した**エー
 Agent Lightning には 3 つの主要コンポーネントがあります。
 
 ```mermaid
+%%{init: {'theme': 'base', 'themeVariables': { 'primaryTextColor': '#333', 'lineColor': '#666' }}}%%
 flowchart TB
     subgraph Algorithm["Algorithm（頭脳）"]
         direction LR
@@ -185,9 +186,9 @@ flowchart TB
 
     Algorithm <--> Store <--> Runner
 
-    style Algorithm fill:#e3f2fd,stroke:#1976d2,color:#1976d2
-    style Store fill:#fff3e0,stroke:#f57c00,color:#f57c00
-    style Runner fill:#e8f5e9,stroke:#388e3c,color:#388e3c
+    style Algorithm fill:#e3f2fd,stroke:#1976d2
+    style Store fill:#fff3e0,stroke:#f57c00
+    style Runner fill:#e8f5e9,stroke:#388e3c
 ```
 
 ## 対応学習アルゴリズム
