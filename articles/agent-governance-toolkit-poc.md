@@ -1,5 +1,5 @@
 ---
-title: "OWASP Agentic Top 10に対応する Agent Governance Toolkit のPoC"
+title: "OWASP Agentic Top 10に対応する Agent Governance Toolkit を試す"
 emoji: "🛡️"
 type: "tech" # tech: 技術記事 / idea: アイデア
 topics: ["AGT", "OWASP", "AgentFramework", "AzureOpenAI", "Agent"]
