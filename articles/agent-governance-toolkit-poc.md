@@ -267,6 +267,40 @@ MCPツールも `allowed_tools` / `denied_tools` でフィルタでき、**MCPSe
 MCPサーバーが動的にツールを追加する場合、`allowed_tools` のホワイトリスト運用が安全です。ブラックリスト（`denied_tools`）だけだと新しいツールがすり抜ける可能性があります。
 :::
 
+## 具体例：OpenClawへの適用
+
+身近な例として、自律型AIエージェントの**OpenClaw**を考えてみます。
+
+https://openclaw.ai/
+
+https://github.com/openclaw/openclaw
+
+OpenClawはGitHub Stars 21万超、ユーザー推定30〜40万人という急成長を見せているプラットフォームで、MCPサーバーをスキルとして接続し（ClawHub上に3,200+のスキル）、WhatsApp・Telegram・Slack・Teamsなど20以上のメッセージングプラットフォームから自律的にタスクを実行します。
+
+自律性が高い一方で、OpenClaw自体にはネイティブなガバナンス機構がないため、まさにAgent Governance Toolkitのようなガバナンスレイヤーが必要となります。
+
+Agent Governance Toolkitは公式にOpenClawをサポートしており、デプロイメントガイドに **「OpenClaw Sidecar」** が明記されています。
+
+https://github.com/microsoft/agent-governance-toolkit/blob/main/docs/deployment/openclaw-sidecar.md
+
+### 統合方式の違い
+
+LangChainやAutoGenなどのPythonフレームワークではプロセス内ミドルウェアとして組み込みますが、OpenClawはTypeScript製の独自ランタイムなので、**サイドカーパターン**（別プロセスとして並走）で統合します。
+
+| 観点 | Python系フレームワーク | OpenClaw |
+|------|---------------------|----------|
+| 統合方式 | プロセス内ミドルウェア | サイドカー（別プロセス） |
+| ツール呼び出しの傍受 | Python関数のラップ | Gateway lifecycle hooks / RPCプロキシ |
+
+OpenClawはすべてのツール呼び出しが中央の**Gateway**プロセスを通るアーキテクチャなので、Gatewayレベルで傍受するサイドカー方式と相性がいい構造です。
+
+すでにコミュニティでも、OpenClawにガバナンスを適用するプロジェクトが登場しています。
+
+- **OpenClaw PRISM**: ゼロフォーク（OpenClaw本体を改変しない）のランタイムセキュリティレイヤー。Gatewayのlifecycle hookに差し込む方式
+- **GatewayStack Governance**: ID検証、スコープ制限、レート制限、インジェクションスキャン、監査ログの5チェックを全ツール呼び出しに適用
+
+自律的なエージェントが普及するほど、「エージェントが何をするか」をランタイムで制御するガバナンス層の重要性は増していくと感じます。
+
 ---
 
 # PoCの概要
