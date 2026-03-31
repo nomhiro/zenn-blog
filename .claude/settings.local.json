@@ -1,6 +1,12 @@
 {
+  "enableAllProjectMcpServers": true,
   "enabledMcpjsonServers": [
     "deepwiki"
   ],
-  "enableAllProjectMcpServers": true
+  "permissions": {
+    "allow": [
+      "Bash(mkdir -p \"C:\\\\Users\\\\HirokiNomura\\\\workspaces\\\\nomhiro\\\\zenn-blog\\\\.claude\\\\skills\\\\zenn-article\")",
+      "Bash(mkdir -p \"C:\\\\Users\\\\HirokiNomura\\\\workspaces\\\\nomhiro\\\\zenn-blog\\\\.claude\\\\skills\\\\zenn-review\")"
+    ]
+  }
 }
