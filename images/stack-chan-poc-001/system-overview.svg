@@ -1,0 +1,61 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 320" font-family="'Segoe UI', 'Hiragino Sans', 'Noto Sans JP', sans-serif">
+  <defs>
+    <style>
+      .box { rx: 12; ry: 12; stroke-width: 2; }
+      .title { font-size: 14px; font-weight: bold; fill: #fff; }
+      .detail { font-size: 11.5px; fill: #333; }
+      .proto-label { font-size: 11px; fill: #555; font-weight: bold; }
+      .proto-detail { font-size: 10px; fill: #777; }
+      .arrow { stroke: #888; stroke-width: 2; fill: none; marker-end: url(#arrowR); marker-start: url(#arrowL); }
+    </style>
+    <marker id="arrowR" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
+      <path d="M0,0 L8,3 L0,6" fill="#888"/>
+    </marker>
+    <marker id="arrowL" markerWidth="8" markerHeight="6" refX="0" refY="3" orient="auto">
+      <path d="M8,0 L0,3 L8,6" fill="#888"/>
+    </marker>
+  </defs>
+
+  <!-- M5Stack CoreS3 -->
+  <rect x="20" y="30" width="260" height="260" class="box" fill="#f0f7ff" stroke="#4a90d9"/>
+  <rect x="20" y="30" width="260" height="36" rx="12" ry="12" fill="#4a90d9"/>
+  <rect x="20" y="54" width="260" height="12" fill="#4a90d9"/>
+  <text x="150" y="54" text-anchor="middle" class="title">M5Stack CoreS3</text>
+  <text x="40" y="92" class="detail">🎤 マイク（ES7210）</text>
+  <text x="40" y="116" class="detail">🔊 スピーカー（AW88298）</text>
+  <text x="40" y="140" class="detail">🖥️ ディスプレイ（Avatar）</text>
+  <text x="40" y="164" class="detail">📶 Wi-Fi（ESP32-S3）</text>
+
+  <!-- Node.js中継サーバ -->
+  <rect x="350" y="30" width="260" height="260" class="box" fill="#f0fff0" stroke="#5aaa5a"/>
+  <rect x="350" y="30" width="260" height="36" rx="12" ry="12" fill="#5aaa5a"/>
+  <rect x="350" y="54" width="260" height="12" fill="#5aaa5a"/>
+  <text x="480" y="54" text-anchor="middle" class="title">Node.js 中継サーバ</text>
+  <text x="370" y="92" class="detail">🔌 DeviceServer</text>
+  <text x="370" y="116" class="detail">☁️ AzureRealtimeClient</text>
+  <text x="370" y="140" class="detail">⏳ バックプレッシャー制御</text>
+  <text x="370" y="164" class="detail">🔄 フォーマット変換</text>
+
+  <!-- Azure OpenAI -->
+  <rect x="680" y="30" width="260" height="260" class="box" fill="#fff7f0" stroke="#d97a4a"/>
+  <rect x="680" y="30" width="260" height="36" rx="12" ry="12" fill="#d97a4a"/>
+  <rect x="680" y="54" width="260" height="12" fill="#d97a4a"/>
+  <text x="810" y="54" text-anchor="middle" class="title">Azure OpenAI</text>
+  <text x="700" y="92" class="detail">🤖 gpt-realtime-1.5</text>
+  <text x="700" y="116" class="detail">🗣️ 音声認識 + 生成</text>
+  <text x="700" y="140" class="detail">🛠️ Function Calling</text>
+  <text x="700" y="164" class="detail">👂 VAD（発話検出）</text>
+
+  <!-- Arrow: CoreS3 <-> Node.js -->
+  <line x1="280" y1="210" x2="350" y2="210" class="arrow"/>
+  <text x="315" y="200" text-anchor="middle" class="proto-label">WebSocket</text>
+  <text x="315" y="234" text-anchor="middle" class="proto-detail">ws://LAN:8080</text>
+  <text x="315" y="250" text-anchor="middle" class="proto-detail">PCM16バイナリ</text>
+  <text x="315" y="266" text-anchor="middle" class="proto-detail">JSONコマンド</text>
+
+  <!-- Arrow: Node.js <-> Azure -->
+  <line x1="610" y1="210" x2="680" y2="210" class="arrow"/>
+  <text x="645" y="200" text-anchor="middle" class="proto-label">WebSocket</text>
+  <text x="645" y="234" text-anchor="middle" class="proto-detail">wss://Azure</text>
+  <text x="645" y="250" text-anchor="middle" class="proto-detail">JSON + base64</text>
+</svg>

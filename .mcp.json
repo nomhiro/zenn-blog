@@ -1,10 +1,17 @@
 {
   "mcpServers": {
-    "deepwiki": {
+    "playwright": {
       "command": "npx",
+      "args": ["@playwright/mcp@latest"]
+    },
+    "serena": {
+      "command": "uvx",
       "args": [
-        "mcp-remote",
-        "https://mcp.deepwiki.com/sse"
+        "--from",
+        "git+https://github.com/oraios/serena",
+        "serena-mcp-server",
+        "--enable-web-dashboard",
+        "False"
       ]
     }
   }
