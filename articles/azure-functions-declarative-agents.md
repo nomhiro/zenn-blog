@@ -503,23 +503,23 @@ azd up
 
 ```json
 {
-	"servers": {
-		"techscout": {
+  "servers": {
+    "techscout": {
       "type": "http",
       "url": "https://<app>.azurewebsites.net/runtime/webhooks/mcp",
       "headers": {
         "x-functions-key": "${input:functions-mcp-extension-system-key}"
       }
     }
-	},
-	"inputs": [
-		{
+  },
+  "inputs": [
+    {
       "type": "promptString",
       "id": "functions-mcp-extension-system-key",
       "description": "Azure Functions MCP Extension System Key",
       "password": true
     }
-	]
+  ]
 }
 ```
 
