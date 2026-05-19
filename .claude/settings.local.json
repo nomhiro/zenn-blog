@@ -58,8 +58,7 @@
   },
   "enableAllProjectMcpServers": true,
   "enabledMcpjsonServers": [
-    "microsoft.docs.mcp",
-    "deepwiki",
-    "serena"
-  ]
+    "deepwiki"
+  ],
+  "enableAllProjectMcpServers": true
 }
