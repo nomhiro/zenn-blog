@@ -1,5 +1,5 @@
 ---
-title: "Microsoft Agent Framework × AG-UI で作る『AIが画面を選んで描く』予約アシスタント"
+title: "Microsoft Agent Framework × AG-UI をお試し"
 emoji: "🎨"
 type: "tech" # tech: 技術記事 / idea: アイデア
 topics: ["AgentFramework", "AGUI", "Python", "GenerativeUI", "CopilotKit"]
