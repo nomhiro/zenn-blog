@@ -3,7 +3,7 @@ title: "Microsoft Agent Framework × AG-UI をお試し"
 emoji: "🎨"
 type: "tech" # tech: 技術記事 / idea: アイデア
 topics: ["AgentFramework", "AGUI", "Python", "GenerativeUI", "CopilotKit"]
-published: false
+published: true
 ---
 
 # はじめに
