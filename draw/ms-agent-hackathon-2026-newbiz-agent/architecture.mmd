@@ -1,0 +1,72 @@
+%% システムアーキテクチャ図（PNG 書き出し用ソース）
+%% mermaid.live や VS Code の Mermaid 拡張で開き、PNG を
+%% images/ms-agent-hackathon-2026-newbiz-agent/architecture.png に書き出すと
+%% 記事側を ![](/images/.../architecture.png) に差し替えられます。
+flowchart TB
+  subgraph UI["フロントエンド（Flask + Jinja2）"]
+    P[プロジェクト管理画面]
+    RV[HITL レビュー画面<br/>iframe + アクション]
+    CU[Idea Pool キュレーション画面]
+  end
+
+  subgraph API["Azure Functions（HTTP / Webhook）"]
+    H[HTTP Trigger]
+    WH[HITL Webhook<br/>署名検証]
+  end
+
+  subgraph ORCH["Azure Durable Functions（耐久オーケストレーション）"]
+    M["メインオーケストレーター<br/>= プロジェクトID"]
+    S1[Stage1 並列調査]
+    S2[Stage2 深掘り]
+    S3[Stage3 並列レビュー]
+    S4[Stage4 最終統合]
+    TM["Timer Trigger<br/>Idea Scout（日次）/ Org Dreamer（週次）"]
+  end
+
+  subgraph MAF["Microsoft Agent Framework（Magentic Workflow）"]
+    LO["Lead Orchestrator<br/>（Magentic Manager）"]
+    MR[市場リサーチ]
+    CA[競合分析]
+    IPA[知財調査]
+    IAA[社内資産マッチング]
+    OG["Outcome Grader<br/>別モデルファミリー / 別スレッド"]
+    CV[Concept Visualizer]
+    OS[Idea Scout]
+    OD[Org Dreamer]
+  end
+
+  subgraph CTX["コンテキスト 4 階層"]
+    AT[AgentThread]
+    SS[SharedState]
+    CP["Context Provider<br/>Mem0 + Azure Managed Redis"]
+    CK[Workflow Checkpoint]
+  end
+
+  subgraph MCP["MCP サーバー群（FastMCP・一部自作）"]
+    PT["特許検索<br/>SQLite + FTS5 + ベクトル"]
+    RG["社内資産 RAG<br/>Azure AI Search"]
+    WS["Web 検索<br/>Bing / Tavily"]
+    LN[Microsoft Learn]
+    SG[シグナル収集]
+  end
+
+  subgraph STORE["ストレージ / モデル / 観測"]
+    BL["Blob Storage<br/>HTML 成果物 + SAS URL"]
+    FD[Microsoft Foundry / Azure OpenAI]
+    AI["Application Insights<br/>OpenTelemetry トレース"]
+  end
+
+  UI --> API --> M
+  M --> S1 --> S2 --> S3 --> S4
+  TM -.-> OS
+  TM -.-> OD
+  S1 --> LO
+  LO --> MR & CA & IPA & IAA
+  S1 --> OG
+  S4 --> CV
+  MR & CA & IPA & IAA --> MCP
+  MAF --- CTX
+  MAF --> FD
+  MR & CA & IPA & IAA & LO & OG & CV --> BL
+  MAF -. trace .-> AI
+  RV -. Webhook .-> WH --> M

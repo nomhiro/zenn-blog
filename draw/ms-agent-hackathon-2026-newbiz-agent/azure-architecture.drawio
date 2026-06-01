@@ -1,0 +1,157 @@
+<mxfile host="65bd71144e">
+    <diagram id="azure-arch-shirokuma" name="Azure構成図">
+        <mxGraphModel dx="462" dy="544" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1080" pageHeight="840" background="#ffffff" math="0" shadow="0">
+            <root>
+                <mxCell id="0"/>
+                <mxCell id="1" parent="0"/>
+                <mxCell id="title" value="株式会社しろくま 新規事業アイデア発想AIエージェント ─ Azure 構成図" style="text;html=1;align=center;verticalAlign=middle;fontSize=16;fontStyle=1;fontColor=#003A6B;" parent="1" vertex="1">
+                    <mxGeometry x="220" y="18" width="840" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="azure" value="Microsoft Azure" style="rounded=1;whiteSpace=wrap;html=1;dashed=1;fillColor=none;strokeColor=#0078D4;fontColor=#0078D4;fontSize=14;verticalAlign=top;align=left;spacingLeft=10;spacingTop=6;arcSize=4;" parent="1" vertex="1">
+                    <mxGeometry x="220" y="60" width="840" height="760" as="geometry"/>
+                </mxCell>
+                <mxCell id="users" value="利用者（HITL レビュアー）" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FBEFF4;strokeColor=#C2185B;fontColor=#7A123E;fontSize=12;verticalAlign=top;align=center;spacingTop=6;" parent="1" vertex="1">
+                    <mxGeometry x="7" y="150" width="170" height="250" as="geometry"/>
+                </mxCell>
+                <mxCell id="u1" value="企画担当者" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FDE7EF;strokeColor=#C2185B;fontColor=#4A0E27;fontSize=12;" parent="1" vertex="1">
+                    <mxGeometry x="22" y="190" width="140" height="40" as="geometry"/>
+                </mxCell>
+                <mxCell id="u2" value="知財部担当" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FDE7EF;strokeColor=#C2185B;fontColor=#4A0E27;fontSize=12;" parent="1" vertex="1">
+                    <mxGeometry x="22" y="240" width="140" height="40" as="geometry"/>
+                </mxCell>
+                <mxCell id="u3" value="法務担当" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FDE7EF;strokeColor=#C2185B;fontColor=#4A0E27;fontSize=12;" parent="1" vertex="1">
+                    <mxGeometry x="22" y="290" width="140" height="40" as="geometry"/>
+                </mxCell>
+                <mxCell id="u4" value="経営層" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FDE7EF;strokeColor=#C2185B;fontColor=#4A0E27;fontSize=12;" parent="1" vertex="1">
+                    <mxGeometry x="22" y="340" width="140" height="40" as="geometry"/>
+                </mxCell>
+                <mxCell id="ca" value="Azure Container Apps&#xa;Flask Web UI" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#CFE4FA;strokeColor=#0078D4;fontColor=#003A6B;fontSize=12;" parent="1" vertex="1">
+                    <mxGeometry x="288" y="95" width="180" height="70" as="geometry"/>
+                </mxCell>
+                <mxCell id="func" value="Azure Functions&#xa;（HTTP / Webhook /&#xa;Durable Functions / Timer）" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#CFE4FA;strokeColor=#0078D4;fontColor=#003A6B;fontSize=12;" parent="1" vertex="1">
+                    <mxGeometry x="518" y="85" width="250" height="90" as="geometry"/>
+                </mxCell>
+                <mxCell id="dts" value="Durable Task&#xa;Scheduler" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#DDEFFB;strokeColor=#0078D4;fontColor=#003A6B;fontSize=12;" parent="1" vertex="1">
+                    <mxGeometry x="868" y="95" width="170" height="70" as="geometry"/>
+                </mxCell>
+                <mxCell id="maf" value="Microsoft Agent Framework（Magentic Workflow）" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#EAF3FC;strokeColor=#0078D4;fontColor=#0B5394;fontSize=12;verticalAlign=top;align=left;spacingLeft=8;spacingTop=6;" parent="1" vertex="1">
+                    <mxGeometry x="288" y="205" width="470" height="175" as="geometry"/>
+                </mxCell>
+                <mxCell id="lead" value="Lead Orchestrator&#xa;(Magentic Manager)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#CFE4FA;strokeColor=#0078D4;fontColor=#003A6B;fontSize=11;" parent="1" vertex="1">
+                    <mxGeometry x="303" y="245" width="200" height="45" as="geometry"/>
+                </mxCell>
+                <mxCell id="workers" value="4 専門エージェント&#xa;市場 / 競合 / 知財 / 社内資産" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#CFE4FA;strokeColor=#0078D4;fontColor=#003A6B;fontSize=11;" parent="1" vertex="1">
+                    <mxGeometry x="303" y="300" width="200" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="grader" value="Outcome Grader&#xa;別モデルファミリー・別スレッド" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E6D6F7;strokeColor=#8661C5;fontColor=#3B2A57;fontSize=11;" parent="1" vertex="1">
+                    <mxGeometry x="518" y="245" width="225" height="45" as="geometry"/>
+                </mxCell>
+                <mxCell id="concept" value="Concept&#xa;Visualizer" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#CFE4FA;strokeColor=#0078D4;fontColor=#003A6B;fontSize=11;" parent="1" vertex="1">
+                    <mxGeometry x="518" y="300" width="100" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="scouts" value="Idea Scout /&#xa;Org Dreamer" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#CFE4FA;strokeColor=#0078D4;fontColor=#003A6B;fontSize=11;" parent="1" vertex="1">
+                    <mxGeometry x="633" y="300" width="110" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="foundry" value="Microsoft Foundry /&#xa;Azure OpenAI&#xa;（LLM エンドポイント）" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E6D6F7;strokeColor=#8661C5;fontColor=#3B2A57;fontSize=12;" parent="1" vertex="1">
+                    <mxGeometry x="868" y="205" width="170" height="85" as="geometry"/>
+                </mxCell>
+                <mxCell id="mcp" value="MCP サーバー群（FastMCP / Container Apps）" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#EAF3FC;strokeColor=#0078D4;fontColor=#0B5394;fontSize=12;verticalAlign=top;align=left;spacingLeft=8;spacingTop=6;" parent="1" vertex="1">
+                    <mxGeometry x="285.5" y="440" width="470" height="110" as="geometry"/>
+                </mxCell>
+                <mxCell id="m1" value="特許検索" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#DDEFFB;strokeColor=#0078D4;fontColor=#003A6B;fontSize=11;" parent="1" vertex="1">
+                    <mxGeometry x="300.5" y="480" width="105" height="55" as="geometry"/>
+                </mxCell>
+                <mxCell id="m2" value="社内資産 RAG" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#DDEFFB;strokeColor=#0078D4;fontColor=#003A6B;fontSize=11;" parent="1" vertex="1">
+                    <mxGeometry x="410.5" y="480" width="105" height="55" as="geometry"/>
+                </mxCell>
+                <mxCell id="m3" value="シグナル収集" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#DDEFFB;strokeColor=#0078D4;fontColor=#003A6B;fontSize=11;" parent="1" vertex="1">
+                    <mxGeometry x="520.5" y="480" width="105" height="55" as="geometry"/>
+                </mxCell>
+                <mxCell id="m4" value="Web / MS Learn" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#DDEFFB;strokeColor=#0078D4;fontColor=#003A6B;fontSize=11;" parent="1" vertex="1">
+                    <mxGeometry x="630.5" y="480" width="110" height="55" as="geometry"/>
+                </mxCell>
+                <mxCell id="cosmos" value="Azure Cosmos DB (NoSQL)&#xa;― システム・オブ・レコード ―&#xa;・プロジェクト状態 / HITL 履歴&#xa;・Idea Pool / Grader スコア&#xa;・組織知メモリ&#xa;・特許 / 社内資産のベクトル検索" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#C8F1E4;strokeColor=#00A88F;strokeWidth=2;fontColor=#064A3E;fontSize=12;verticalAlign=middle;align=left;spacingLeft=10;" parent="1" vertex="1">
+                    <mxGeometry x="280" y="580" width="260" height="165" as="geometry"/>
+                </mxCell>
+                <mxCell id="redis" value="Azure Cache for Redis&#xa;Mem0 バックエンド / 短期メモリ" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F8D7C4;strokeColor=#C0560B;fontColor=#5A2705;fontSize=12;" parent="1" vertex="1">
+                    <mxGeometry x="575.5" y="580" width="200" height="65" as="geometry"/>
+                </mxCell>
+                <mxCell id="blob" value="Azure Blob Storage&#xa;HTML 成果物 + SAS URL" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#DDEFFB;strokeColor=#0078D4;fontColor=#003A6B;fontSize=12;" parent="1" vertex="1">
+                    <mxGeometry x="840" y="580" width="180" height="65" as="geometry"/>
+                </mxCell>
+                <mxCell id="kv" value="Azure Key Vault" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFF1C2;strokeColor=#C19C00;fontColor=#5C4A00;fontSize=12;" parent="1" vertex="1">
+                    <mxGeometry x="285.5" y="765" width="210" height="55" as="geometry"/>
+                </mxCell>
+                <mxCell id="appi" value="Application Insights /&#xa;Azure Monitor（OpenTelemetry）" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFF1C2;strokeColor=#C19C00;fontColor=#5C4A00;fontSize=12;" parent="1" vertex="1">
+                    <mxGeometry x="525.5" y="765" width="250" height="55" as="geometry"/>
+                </mxCell>
+                <mxCell id="entra" value="Microsoft Entra ID /&#xa;Managed Identity" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFF1C2;strokeColor=#C19C00;fontColor=#5C4A00;fontSize=12;" parent="1" vertex="1">
+                    <mxGeometry x="795.5" y="765" width="180" height="55" as="geometry"/>
+                </mxCell>
+                <mxCell id="e_users_ca" value="HTTPS" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=block;strokeColor=#5A5A5A;fontSize=10;fontColor=#333;" parent="1" source="users" target="ca" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="e_ca_func" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=block;startArrow=block;strokeColor=#5A5A5A;" parent="1" source="ca" target="func" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="e_func_dts" value="耐久状態" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=block;startArrow=block;strokeColor=#5A5A5A;fontSize=10;fontColor=#333;" parent="1" source="func" target="dts" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="e_func_maf" value="起動 / 委任" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=block;strokeColor=#5A5A5A;fontSize=10;fontColor=#333;" parent="1" source="func" target="maf" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="e_maf_foundry" value="LLM" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=block;strokeColor=#5A5A5A;fontSize=10;fontColor=#333;exitX=1;exitY=0.25;exitDx=0;exitDy=0;" parent="1" source="maf" target="foundry" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="e_maf_mcp" value="ツール" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=block;strokeColor=#5A5A5A;fontSize=10;fontColor=#333;" parent="1" source="maf" target="mcp" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="e_m2_cosmos" value="社内資産検索" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=block;strokeColor=#00A88F;fontSize=10;fontColor=#064A3E;entryX=0.704;entryY=-0.012;entryDx=0;entryDy=0;entryPerimeter=0;" parent="1" source="m2" target="cosmos" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="e_m1_cosmos" value="ベクトル検索" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=block;strokeColor=#00A88F;fontSize=10;fontColor=#064A3E;entryX=0.281;entryY=0.012;entryDx=0;entryDy=0;entryPerimeter=0;" parent="1" source="m1" target="cosmos" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="e_maf_cosmos" value="状態 / 組織知 / Idea Pool" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=block;strokeColor=#00A88F;fontSize=10;fontColor=#064A3E;exitX=0.411;exitY=1.006;exitDx=0;exitDy=0;exitPerimeter=0;" parent="1" source="maf" target="cosmos" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <Array as="points">
+                            <mxPoint x="481" y="400"/>
+                            <mxPoint x="250" y="400"/>
+                            <mxPoint x="250" y="663"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="e_maf_redis" value="Mem0" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=block;strokeColor=#5A5A5A;fontSize=10;fontColor=#333;exitX=0.56;exitY=1;exitDx=0;exitDy=0;exitPerimeter=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;" parent="1" source="maf" target="redis" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <Array as="points">
+                            <mxPoint x="551" y="400"/>
+                            <mxPoint x="800" y="400"/>
+                            <mxPoint x="800" y="613"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="e_maf_blob" value="HTML" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=block;strokeColor=#5A5A5A;fontSize=10;fontColor=#333;exitX=1;exitY=0.75;exitDx=0;exitDy=0;" parent="1" source="maf" target="blob" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="e_func_kv" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=open;dashed=1;strokeColor=#C19C00;exitX=0.008;exitY=0.833;exitDx=0;exitDy=0;exitPerimeter=0;" parent="1" source="func" target="kv" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <Array as="points">
+                            <mxPoint x="520" y="180"/>
+                            <mxPoint x="240" y="180"/>
+                            <mxPoint x="240" y="793"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="e_func_appi" value="trace" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=open;dashed=1;strokeColor=#C19C00;fontSize=10;fontColor=#5C4A00;exitX=0.75;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="1" source="func" target="appi" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <Array as="points">
+                            <mxPoint x="790" y="175"/>
+                            <mxPoint x="790" y="720"/>
+                            <mxPoint x="651" y="720"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+            </root>
+        </mxGraphModel>
+    </diagram>
+</mxfile>
