@@ -1,0 +1,52 @@
+<mxfile host="app.diagrams.net">
+  <diagram id="runtime-project-anatomy" name="project-anatomy">
+    <mxGraphModel dx="760" dy="560" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="720" pageHeight="520" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+
+        <mxCell id="c0" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#999999;verticalAlign=top;arcSize=3;" vertex="1" parent="1">
+          <mxGeometry x="20" y="20" width="680" height="480" as="geometry" />
+        </mxCell>
+        <mxCell id="t0" value="&lt;b&gt;関数アプリ プロジェクト（Python）&lt;/b&gt;" style="text;html=1;align=left;verticalAlign=middle;fillColor=none;strokeColor=none;" vertex="1" parent="1">
+          <mxGeometry x="38" y="28" width="400" height="24" as="geometry" />
+        </mxCell>
+        <mxCell id="h1" value="&lt;b&gt;必須&lt;/b&gt;" style="text;html=1;align=center;verticalAlign=middle;fillColor=none;strokeColor=none;" vertex="1" parent="1">
+          <mxGeometry x="60" y="70" width="300" height="24" as="geometry" />
+        </mxCell>
+        <mxCell id="h2" value="&lt;b&gt;任意 / 条件付き&lt;/b&gt;" style="text;html=1;align=center;verticalAlign=middle;fillColor=none;strokeColor=none;" vertex="1" parent="1">
+          <mxGeometry x="380" y="70" width="300" height="24" as="geometry" />
+        </mxCell>
+
+        <mxCell id="r1" value="&lt;b&gt;function_app.py&lt;/b&gt;&lt;br&gt;エントリポイント" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
+          <mxGeometry x="60" y="106" width="300" height="58" as="geometry" />
+        </mxCell>
+        <mxCell id="r2" value="&lt;b&gt;*.agent.md&lt;/b&gt;&lt;br&gt;エージェントを定義" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
+          <mxGeometry x="60" y="178" width="300" height="58" as="geometry" />
+        </mxCell>
+        <mxCell id="r3" value="&lt;b&gt;host.json&lt;/b&gt;&lt;br&gt;Functions ホスト構成" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
+          <mxGeometry x="60" y="250" width="300" height="58" as="geometry" />
+        </mxCell>
+        <mxCell id="r4" value="&lt;b&gt;requirements.txt&lt;/b&gt;&lt;br&gt;ランタイム＋依存関係" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
+          <mxGeometry x="60" y="322" width="300" height="58" as="geometry" />
+        </mxCell>
+
+        <mxCell id="o1" value="&lt;b&gt;agents.config.yaml&lt;/b&gt;&lt;br&gt;アプリ全体の既定値" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffe6cc;strokeColor=#d79b00;" vertex="1" parent="1">
+          <mxGeometry x="380" y="106" width="300" height="58" as="geometry" />
+        </mxCell>
+        <mxCell id="o2" value="&lt;b&gt;mcp.json&lt;/b&gt;&lt;br&gt;MCP／コネクタ定義" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffe6cc;strokeColor=#d79b00;" vertex="1" parent="1">
+          <mxGeometry x="380" y="178" width="300" height="58" as="geometry" />
+        </mxCell>
+        <mxCell id="o3" value="&lt;b&gt;tools/&lt;/b&gt;&lt;br&gt;カスタム Python ツール" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffe6cc;strokeColor=#d79b00;" vertex="1" parent="1">
+          <mxGeometry x="380" y="250" width="300" height="58" as="geometry" />
+        </mxCell>
+        <mxCell id="o4" value="&lt;b&gt;skills/&lt;/b&gt;&lt;br&gt;再利用可能な SKILL.md" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffe6cc;strokeColor=#d79b00;" vertex="1" parent="1">
+          <mxGeometry x="380" y="322" width="300" height="58" as="geometry" />
+        </mxCell>
+        <mxCell id="o5" value="&lt;b&gt;infra/&lt;/b&gt;&lt;br&gt;IaC（azd など）" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffe6cc;strokeColor=#d79b00;" vertex="1" parent="1">
+          <mxGeometry x="380" y="394" width="300" height="58" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

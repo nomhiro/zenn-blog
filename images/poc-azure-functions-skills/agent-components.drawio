@@ -1,0 +1,49 @@
+<mxfile host="app.diagrams.net">
+  <diagram id="agent-components" name="agent-components">
+    <mxGraphModel dx="840" dy="600" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="840" pageHeight="560" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+
+        <mxCell id="n1" value="プロフィール更新イベント（Event Grid）" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
+          <mxGeometry x="300" y="20" width="270" height="54" as="geometry" />
+        </mxCell>
+        <mxCell id="n2" value="&lt;b&gt;src/recommend_vehicle.agent.md&lt;/b&gt;&lt;br&gt;event_grid_trigger ／ builtin_endpoints なし" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;" vertex="1" parent="1">
+          <mxGeometry x="285" y="120" width="300" height="64" as="geometry" />
+        </mxCell>
+        <mxCell id="note" value="&lt;i&gt;Microsoft Agent Framework が実行&lt;/i&gt;" style="text;html=1;align=left;verticalAlign=middle;fillColor=none;strokeColor=none;fontColor=#555555;" vertex="1" parent="1">
+          <mxGeometry x="605" y="126" width="210" height="40" as="geometry" />
+        </mxCell>
+
+        <mxCell id="n3" value="&lt;b&gt;tools/get_profile.py&lt;/b&gt;&lt;br&gt;保有車・家族構成を取得" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
+          <mxGeometry x="15" y="250" width="190" height="52" as="geometry" />
+        </mxCell>
+        <mxCell id="n4" value="data/profiles.json" style="shape=cylinder;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#666666;" vertex="1" parent="1">
+          <mxGeometry x="40" y="338" width="140" height="54" as="geometry" />
+        </mxCell>
+        <mxCell id="n5" value="&lt;b&gt;tools/lookup_catalog.py&lt;/b&gt;&lt;br&gt;カタログ／価格を照会（接地）" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
+          <mxGeometry x="225" y="250" width="195" height="52" as="geometry" />
+        </mxCell>
+        <mxCell id="n6" value="data/catalog.json" style="shape=cylinder;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#666666;" vertex="1" parent="1">
+          <mxGeometry x="252" y="338" width="140" height="54" as="geometry" />
+        </mxCell>
+
+        <mxCell id="n7" value="&lt;b&gt;skills/vehicle-matching/SKILL.md&lt;/b&gt;&lt;br&gt;家族構成→ボディタイプの指針&lt;br&gt;（段階的開示）" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;" vertex="1" parent="1">
+          <mxGeometry x="605" y="232" width="210" height="86" as="geometry" />
+        </mxCell>
+
+        <mxCell id="n8" value="&lt;b&gt;最終応答&lt;/b&gt;：おすすめ車種（複数・理由つき）&lt;br&gt;通知・送信なし（副作用なし）" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;" vertex="1" parent="1">
+          <mxGeometry x="290" y="460" width="300" height="66" as="geometry" />
+        </mxCell>
+
+        <mxCell id="e1" value="起動" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="n1" target="n2"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell id="e2" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;exitX=0;exitY=0.5;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="n2" target="n3"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell id="e3" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;exitX=0.25;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="n2" target="n5"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell id="e4" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="n2" target="n7"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell id="e5" value="取得" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=open;dashed=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="n3" target="n4"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell id="e6" value="接地" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=open;dashed=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="n5" target="n6"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell id="e8" value="理由つきで返す" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="n2" target="n8"><mxGeometry relative="1" as="geometry" /></mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
