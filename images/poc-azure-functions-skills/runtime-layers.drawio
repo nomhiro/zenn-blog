@@ -1,0 +1,74 @@
+<mxfile host="app.diagrams.net">
+  <diagram id="runtime-layers" name="layers">
+    <mxGraphModel dx="780" dy="780" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="760" pageHeight="770" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+
+        <!-- L1: trigger (green) -->
+        <mxCell id="l1" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;verticalAlign=top;" vertex="1" parent="1">
+          <mxGeometry x="110" y="20" width="540" height="150" as="geometry" />
+        </mxCell>
+        <mxCell id="l1t" value="&lt;b&gt;イベント／トリガー&lt;/b&gt;&lt;br&gt;エージェントを起動するイベント" style="text;html=1;align=center;verticalAlign=middle;fillColor=none;strokeColor=none;" vertex="1" parent="1">
+          <mxGeometry x="126" y="28" width="508" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="c_http" value="HTTP" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#82b366;fontSize=11;" vertex="1" parent="1"><mxGeometry x="140" y="84" width="100" height="30" as="geometry" /></mxCell>
+        <mxCell id="c_timer" value="タイマー" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#82b366;fontSize=11;" vertex="1" parent="1"><mxGeometry x="252" y="84" width="100" height="30" as="geometry" /></mxCell>
+        <mxCell id="c_queue" value="キュー" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#82b366;fontSize=11;" vertex="1" parent="1"><mxGeometry x="364" y="84" width="100" height="30" as="geometry" /></mxCell>
+        <mxCell id="c_blob" value="Blob" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#82b366;fontSize=11;" vertex="1" parent="1"><mxGeometry x="476" y="84" width="100" height="30" as="geometry" /></mxCell>
+        <mxCell id="c_eg" value="Event Grid" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#82b366;fontSize=11;" vertex="1" parent="1"><mxGeometry x="170" y="122" width="130" height="30" as="geometry" /></mxCell>
+        <mxCell id="c_sb" value="Service Bus" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#82b366;fontSize=11;" vertex="1" parent="1"><mxGeometry x="312" y="122" width="130" height="30" as="geometry" /></mxCell>
+        <mxCell id="c_conn" value="コネクタ" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#82b366;fontSize=11;" vertex="1" parent="1"><mxGeometry x="454" y="122" width="110" height="30" as="geometry" /></mxCell>
+
+        <!-- L2: runtime (purple) -->
+        <mxCell id="l2" value="&lt;b&gt;ランタイム&lt;/b&gt;&lt;br&gt;エージェントを構築・登録" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;" vertex="1" parent="1">
+          <mxGeometry x="275" y="210" width="210" height="64" as="geometry" />
+        </mxCell>
+
+        <!-- L3: middle row -->
+        <mxCell id="l3i" value="&lt;b&gt;指示&lt;/b&gt;&lt;br&gt;.agent.md" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;" vertex="1" parent="1">
+          <mxGeometry x="40" y="320" width="180" height="64" as="geometry" />
+        </mxCell>
+        <mxCell id="l3e" value="&lt;b&gt;エージェント実行&lt;/b&gt;&lt;br&gt;Microsoft Agent Framework" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
+          <mxGeometry x="275" y="320" width="210" height="64" as="geometry" />
+        </mxCell>
+        <mxCell id="l3m" value="&lt;b&gt;モデル&lt;/b&gt;&lt;br&gt;OpenAI / Foundry" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#666666;" vertex="1" parent="1">
+          <mxGeometry x="540" y="320" width="180" height="64" as="geometry" />
+        </mxCell>
+
+        <!-- L4: tools (orange) -->
+        <mxCell id="l4" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffe6cc;strokeColor=#d79b00;verticalAlign=top;" vertex="1" parent="1">
+          <mxGeometry x="110" y="430" width="540" height="150" as="geometry" />
+        </mxCell>
+        <mxCell id="l4t" value="&lt;b&gt;ツール／機能&lt;/b&gt;&lt;br&gt;エージェントが呼び出す機能" style="text;html=1;align=center;verticalAlign=middle;fillColor=none;strokeColor=none;" vertex="1" parent="1">
+          <mxGeometry x="126" y="438" width="508" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="c_mcp" value="リモート MCP" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#d79b00;fontSize=11;" vertex="1" parent="1"><mxGeometry x="160" y="494" width="120" height="30" as="geometry" /></mxCell>
+        <mxCell id="c_conn2" value="コネクタ" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#d79b00;fontSize=11;" vertex="1" parent="1"><mxGeometry x="296" y="494" width="110" height="30" as="geometry" /></mxCell>
+        <mxCell id="c_skill" value="スキル" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#d79b00;fontSize=11;" vertex="1" parent="1"><mxGeometry x="422" y="494" width="100" height="30" as="geometry" /></mxCell>
+        <mxCell id="c_sandbox" value="サンドボックス実行" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#d79b00;fontSize=11;" vertex="1" parent="1"><mxGeometry x="210" y="532" width="150" height="30" as="geometry" /></mxCell>
+        <mxCell id="c_pytool" value="カスタム Python" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#d79b00;fontSize=11;" vertex="1" parent="1"><mxGeometry x="378" y="532" width="150" height="30" as="geometry" /></mxCell>
+
+        <!-- L5: serverless platform (gray) -->
+        <mxCell id="l5" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#999999;verticalAlign=top;" vertex="1" parent="1">
+          <mxGeometry x="60" y="620" width="640" height="130" as="geometry" />
+        </mxCell>
+        <mxCell id="l5t" value="&lt;b&gt;サーバーレス基盤（Flex 従量課金プラン）&lt;/b&gt;" style="text;html=1;align=center;verticalAlign=middle;fillColor=none;strokeColor=none;" vertex="1" parent="1">
+          <mxGeometry x="76" y="628" width="608" height="24" as="geometry" />
+        </mxCell>
+        <mxCell id="c_mi" value="マネージド ID" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#999999;fontSize=11;" vertex="1" parent="1"><mxGeometry x="100" y="666" width="130" height="30" as="geometry" /></mxCell>
+        <mxCell id="c_ai" value="Application Insights" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#999999;fontSize=11;" vertex="1" parent="1"><mxGeometry x="246" y="666" width="190" height="30" as="geometry" /></mxCell>
+        <mxCell id="c_vnet" value="VNet 統合" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#999999;fontSize=11;" vertex="1" parent="1"><mxGeometry x="452" y="666" width="110" height="30" as="geometry" /></mxCell>
+        <mxCell id="c_sess" value="セッション履歴（Blob）" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#999999;fontSize=11;" vertex="1" parent="1"><mxGeometry x="160" y="704" width="190" height="30" as="geometry" /></mxCell>
+        <mxCell id="c_scale" value="0→N スケール" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#999999;fontSize=11;" vertex="1" parent="1"><mxGeometry x="366" y="704" width="140" height="30" as="geometry" /></mxCell>
+
+        <!-- edges -->
+        <mxCell id="le1" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;" edge="1" parent="1" source="l1" target="l2"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell id="le2" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;" edge="1" parent="1" source="l2" target="l3e"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell id="le3" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;" edge="1" parent="1" source="l3i" target="l3e"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell id="le4" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;" edge="1" parent="1" source="l3e" target="l3m"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell id="le5" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;" edge="1" parent="1" source="l3e" target="l4"><mxGeometry relative="1" as="geometry" /></mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
