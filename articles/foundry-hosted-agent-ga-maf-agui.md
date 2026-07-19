@@ -26,7 +26,7 @@ https://x.com/jeffhollan
 ## TL;DR
 
 - Microsoft Foundry の **Hosted Agent が一般提供**（GA）になりました（2026年7月）。GPT-5.6 の GA・アジア太平洋データゾーンと同時の発表です。
-- ただし「GAで初めて来た機能」と「5月のプレビュー・リフレッシュで来た機能」は別物。根本的なアーキテクチャ刷新（レプリカ方式 → セッションサンドボックス方式）は**5月時点で完了**しています。GAではそこに本番SLA・回復性のあるタスク（プライベートプレビュー）などが乗った、という整理が正確です。
+- ただし「GAで初めて来た機能」と「5月のプレビュー・リフレッシュで来た機能」は別物。根本的なアーキテクチャ刷新（レプリカ方式 → セッションサンドボックス方式）は**5月時点で完了**しています。GAではそこに本番SLA・回復性のあるタスク（プライベートプレビュー）などが乗った、という関係です。
 - ハンズオンでは、MAF で作った予約アシスタント（推論 → 在庫検索・見積ツールの呼び出し）を Hosted Agent に載せます。エントリポイントは **`InvocationsHostServer` に `Agent` を渡すだけの約10行**。`azd up` 一発、実測3分でクラウドのエージェントエンドポイントが立ちました。
 - とはいえ GA 直後らしいハマりどころもありました。**手書き `azure.yaml` に必須の `infra: provider: microsoft.foundry`**、**`env:` ではなく `environmentVariables:`**（map 形式ではなく list 形式）、**ロール改名**（`Azure AI User` → `Foundry User`）と **identity が2つある問題**。全部実測ログ付きで書きます。
 - セッション状態の維持（`--session-id` の追撃ターンで文脈が引き継がれる）、未使用時ゼロ課金、専用 Entra ID、OpenTelemetry トレースまで、Hosted Agent のうれしさを一通り体験できる構成です。
@@ -104,7 +104,7 @@ https://ankitbko.github.io/blog/2026/05/hosted-agents-part-1/
 
 - レプリカ数もウォームプールも設定不要。**セッション単位**でスケール。
 - アイドル時はコンピュートが解放され、**動いていない時間は課金されない**。
-- コールドスタートは予測可能で、再開時にセッションの状態（`$HOME` / `/files`）が復元される。
+- コールドスタートにかかる時間は読みやすく、再開時にはセッションの状態（`$HOME` / `/files`）が復元される。
 
 📖
 https://learn.microsoft.com/ja-jp/azure/foundry/agents/concepts/hosted-agents
@@ -168,7 +168,7 @@ https://azure.microsoft.com/pricing/details/foundry-agent-service/
 
 ### プロトコルの選択
 
-Hosted Agent は複数のプロトコルを選べます。会話エージェントの推奨スタートは OpenAI 互換の **Responses**（会話履歴の管理までプラットフォームがやってくれる）。今回は独自ペイロード（`{"message": "..."}` のシンプルな JSON）で受けたいので、任意ペイロードを素通しできる **Invocations** を使います。「プラットフォームがペイロードを解釈しない」というこのプロトコルの性格は、ハンズオンの中で面白い形で見えてきます。
+Hosted Agent は複数のプロトコルを選べます。会話エージェントならまず勧められているのは OpenAI 互換の **Responses**（会話履歴の管理までプラットフォームがやってくれる）。今回は独自ペイロード（`{"message": "..."}` のシンプルな JSON）で受けたいので、任意ペイロードを素通しできる **Invocations** を使います。Invocations では、プラットフォームはペイロードの中身をまったく解釈しません。これが実際どういうことかは、あとで Playground を触るとよく分かります。
 
 :::message
 トレードオフ：Invocations は自由度が高い代わりに、Teams / M365 Copilot への自動ブリッジ（Activity）や A2A は**使えません**。会話系で Teams 配信も欲しいなら Responses を選ぶことになります。
@@ -390,7 +390,7 @@ if __name__ == "__main__":
     server.run()
 ```
 
-「**MAFで実装したエージェント が約10行で丸ごと本番ランタイムに載る**」ことが何よりの良さですね。
+「**MAFで実装したエージェントが約10行で丸ごと本番ランタイムに載る**」ことが何よりの良さですね。
 
 ワイヤは `InvocationsHostServer` が規定していて、リクエストが `{"message": "...", "stream": bool}`、レスポンスが `{"response": "...", "session_id": "..."}`（`stream: true` ならテキストの SSE）です。エージェント側で規定するプロトコルなので、クライアントはこの形を知っている必要があります。ここが「プラットフォームは中身を解釈しない」Invocations らしいところで、後で Playground の挙動にも表れます。
 
@@ -460,7 +460,7 @@ azd ai agent monitor shirokuma-reservation --session-id <id>   # コンテナロ
 
 `session_not_ready` (424) のようなエラーは、`monitor --session-id` でコンテナログを見るのが最短です（前述の env 未設定クラッシュもこれで特定しました）。
 
-可観測性について1つ実態を補足します。ドキュメント上は `APPLICATIONINSIGHTS_CONNECTION_STRING` がランタイム注入されることになっていますが、今回の Bicep-less 構成（`infra: provider: microsoft.foundry`）で作られたのは Foundry アカウント・プロジェクト・ACR の3つだけで、**Application Insights は作成されませんでした**。
+可観測性について、実際に動かして分かったことを1つ補足します。ドキュメント上は `APPLICATIONINSIGHTS_CONNECTION_STRING` がランタイム注入されることになっていますが、今回の Bicep-less 構成（`infra: provider: microsoft.foundry`）で作られたのは Foundry アカウント・プロジェクト・ACR の3つだけで、**Application Insights は作成されませんでした**。
 
 それでも adapter の OpenTelemetry 計装は生きていて、推論・ツール呼び出しのスパンが**コンテナの stdout に出力される**ため、`monitor` 経由でトレースを追えます。Application Insights で Transaction search を使いたい場合は、リソースを自分で作って接続文字列をエージェントの `environmentVariables` に渡す一手間が必要そうです（このあたりも GA 直後らしいところ）。
 
@@ -471,7 +471,7 @@ azd ai agent monitor shirokuma-reservation --session-id <id>   # コンテナロ
 
 ## まとめ
 
-- Hosted Agent は **GA**。ただし「刷新（5月）」と「GA（7月）」で来た機能は分けて理解するのが正確です。
+- Hosted Agent は **GA**。ただし「刷新（5月）」と「GA（7月）」で来た機能は別物なので、分けて覚えておくと混乱しません。
 - メリットの核は **任意フレームワーク/言語/モデル × セッション分離 × 未使用時ゼロ課金 × 専用ID × 組み込み可観測性**。本番化の「配管」をまるごと肩代わりしてくれます。
 - 載せる作業は「`azure.yaml` を書く → `InvocationsHostServer` に `Agent` を渡す約10行のエントリポイント → `azd up`」だけ。めちゃめちゃ楽ですね。
 - Invocations は pass-through です。プラットフォームはペイロードを解釈しない（Playground のチャットが応答を描画できないのはその裏返し）ので、**ワイヤの主導権は開発者側**にあります。会話系で Teams 配信までやるなら Responses を選ぶ、という使い分けです。
