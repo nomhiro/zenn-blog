@@ -3,7 +3,7 @@ title: "エージェントに記憶を持たせる。Foundry Agent Service の M
 emoji: "🧠"
 type: "tech"
 topics: ["azure", "foundry", "ai", "agent", "python"]
-published: false
+published: true
 ---
 
 :::message alert
