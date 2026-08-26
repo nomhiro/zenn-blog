@@ -27,7 +27,7 @@ Memory の仕組みを裏側まで掘ってから、実際に手を動かして�
 
 ## エージェントの「記憶」には2つのアプローチがある
 
-| 観点 | マネージド Memory（本記事） | Agent Memory Toolkit（姉妹記事） |
+| 観点 | マネージド Memory（本記事） | Agent Memory Toolkit（[姉妹記事](https://zenn.dev/nomhiro/articles/cosmosdb-agent-memory-toolkit-poc)） |
 |---|---|---|
 | ストレージ | Microsoft 管理（実装は非公開） | 自分の Cosmos DB アカウント |
 | 組み込み方 | `memory_search_preview` ツールを付ける | `context_providers` に1オブジェクト注入 |
@@ -38,7 +38,7 @@ Memory の仕組みを裏側まで掘ってから、実際に手を動かして�
 | 運用の手間 | ほぼゼロ | Cosmos の設計・インデックス・TTL・課金を自分で見る |
 | 向いているユースケース | 記憶の中身に説明責任を負わない社内向けアシスタント | 保存内容の説明・監査・削除が要件になる業務 |
 
-「とりあえずエージェントに記憶を持たせたい」なら本記事のマネージド Memory、「保存されている内容を監査したい、抽出ルールを自分で決めたい」なら姉妹記事の Toolkit、という住み分けになります。
+「とりあえずエージェントに記憶を持たせたい」なら本記事のマネージド Memory、「保存されている内容を監査したい、抽出ルールを自分で決めたい」なら[姉妹記事](https://zenn.dev/nomhiro/articles/cosmosdb-agent-memory-toolkit-poc)の Toolkit、という住み分けになります。
 
 :::message
 姉妹記事: [Agent Memory Toolkit で Cosmos DB にエージェントの記憶を持たせる（セルフマネージド編）](https://zenn.dev/nomhiro/articles/cosmosdb-agent-memory-toolkit-poc)
