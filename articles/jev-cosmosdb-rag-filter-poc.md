@@ -6,13 +6,14 @@ topics: ["Azure", "CosmosDB", "RAG", "AzureOpenAI", "Jev"]
 published: false
 ---
 
+![](/images/jev-cosmosdb-rag-filter-poc/thumbnail.png)
+
 # はじめに
 
 Jevが話題ですねー　この頃わたしのXのタイムラインが、Jevだけで7割くらい埋まるようになりました。TypeSafe AIが2026年9月15日に発表した「Jev」というAIモデルです。文章を一切生成せず、「Choice（選択）」「Score（段階評価）」「Noul（Yes/No確率）」の3種類の判断だけを返すという分類器のようなモデルです。
 
 Jevは、文章を生成せず「型付きの判断＋キャリブレーション済み確率」だけを返すAIモデルです。応答は70〜500msと速く、コストもLLMの数十〜数百分の一と謳われています。
 
-📖
 https://typesafe.ai/blog/introducing-system-one-models-and-jev
 
 Jevを使ってみよう！ということで、以下のようなユースケースを想定して試してみます。
@@ -39,12 +40,10 @@ https://learn.microsoft.com/ja-jp/azure/cosmos-db/nosql/vector-search
 
 Jevは、TypeSafe AIが「System One Model」と呼ぶモデルクラスの一つです。名前はたぶん心理学の「システム1（直感的・即断的な思考）」から来ていて、じっくり考えて文章を書くLLM（システム2寄り）とは真逆の立ち位置を狙っています。
 
-📖
 https://docs.typesafe.ai/concepts/system-one
 
 創業者のDiogo Almeida氏はOpenAI出身。RLHFやChatGPTの開発に関わっていた人らしく、発表と同時にシリーズAで4,000万ドル（リード：DCVC）も調達したというから、景気のいい話です。
 
-📖
 https://typesafe.ai/blog/introducing-system-one-models-and-jev
 https://www.kucoin.com/news/flash/ex-openai-researcher-launches-typesafe-ai-with-non-text-model-jev
 
@@ -55,9 +54,8 @@ https://www.kucoin.com/news/flash/ex-openai-researcher-launches-typesafe-ai-with
 - **出力は選択肢に制約される**：存在しないラベルを返すような構造化エラーは起きない
 - **できないこと**：文章生成、コード生成、算術、判断理由の説明
 
-公式ブログは「frontier-intelligence function call」と呼んでいます。要するにLLMの置き換えじゃなくて、**エージェントやワークフローの「制御層」を安く速くする部品**ってことですね。実際に触ってみても、たしかにそうだなと納得しました。
+公式ブログは「frontier-intelligence function call」と呼んでいます。要するにLLMの置き換えじゃなくて、エージェントやワークフローの「**制御層**」を安く速くする部品ってことですね。実際に触ってみても、たしかにそうだなと納得しました。
 
-📖
 https://typesafe.ai/blog/introducing-system-one-models-and-jev
 https://docs.typesafe.ai/concepts/system-one
 https://docs.typesafe.ai/primitives
@@ -77,9 +75,8 @@ flowchart LR
   C -->|低確信| E[LLMや人間へ<br/>エスカレーション]
 ```
 
-LLMみたいに1トークンずつ生成するんじゃなくて、質問への回答を並列サンプラーで一括生成する仕組みだそうです。だから同じstateに質問を増やしても、レイテンシはほぼ変わらないと。学習もRLHFじゃなく**RLCD（Reinforcement Learning for Calibrated Decisions）**という手法を使っていて、狙いは「確率90%と言ったら実際に90%当たる」ようにキャリブレーションすること、とのことでした。
+LLMみたいに1トークンずつ生成するんじゃなくて、質問への回答を並列サンプラーで一括生成する仕組みだそうです。だから同じstateに質問を増やしても、レイテンシはほぼ変わらないと。学習もRLHFじゃなく**RLCD**（Reinforcement Learning for Calibrated Decisions）という手法を使っていて、狙いは「確率90%と言ったら実際に90%当たる」ようにキャリブレーションすること、とのことでした。
 
-📖
 https://docs.typesafe.ai/api
 https://docs.typesafe.ai/patterns/fan-out
 https://docs.typesafe.ai/introduction/machine-learning-primer
@@ -98,7 +95,6 @@ https://typesafe.ai/blog/introducing-system-one-models-and-jev
 
 `confidence`は確率分布の「尖り具合」を表す数値です。出力自体が指定した選択肢に制約されているので、存在しないラベルを返す幻覚は構造上起きません。ここは面白い設計だなと。ただ「間違った選択肢を自信満々に選ぶ」ことは普通にあり得ます。
 
-📖
 https://docs.typesafe.ai/primitives
 https://docs.typesafe.ai/primitives/choice
 https://docs.typesafe.ai/primitives/score
@@ -127,7 +123,6 @@ uv add typesafe-sdk python-dotenv
 TYPESAFE_API_KEY=sk-xxxxxxxxxxxx
 ```
 
-📖
 https://docs.typesafe.ai/introduction/quickstart
 https://typesafe.ai/blog/introducing-system-one-models-and-jev
 
@@ -176,7 +171,6 @@ print(f"frustration: {score.score:.2f} / legend={score.legend} (confidence={scor
 
 `TypeSafeClient()` は環境変数 `TYPESAFE_API_KEY` を自動で読みにいくので、引数なしでそのまま使えます。デフォルトのモデル名は `jev-latest` でした。
 
-📖
 https://docs.typesafe.ai/introduction/quickstart
 https://docs.typesafe.ai/models
 
@@ -214,7 +208,6 @@ frustration: 1.43 / legend={0: '落ち着いている', 1: '不満', 2: '激怒'
 | confidence | Choice、Score | 0〜1の値。`probabilities`の広がり具合から計算される。1つに集中していれば高く、散らばっていれば低い |
 | legend | Score | レベル番号と説明の対応表。`criteria`で渡した内容が返ってくる |
 
-ここから、つまずきやすいところを3つ補足します。
 詳しくはこちら！！　細かい仕様は公式ページをベースにAIを使って把握してください～
 
 https://docs.typesafe.ai/sdk/python/api/types/responses
@@ -275,7 +268,6 @@ WHERE句とベクトル検索で候補を取ってから、Jevがチャンクの
 | 外したとき | 正解のチャンクが候補から落ちる | 正解のチャンクが検索の対象に入らない |
 | 向いていそうな場面 | 本文を読まないと分からない判断（対象読者の一致など） | 質問文だけで決められる絞り込み（タグなど） |
 
-📖
 https://docs.typesafe.ai/patterns/fan-out
 https://docs.typesafe.ai/primitives/choice
 https://docs.typesafe.ai/confidence
@@ -301,7 +293,6 @@ flowchart LR
   R -->|除外| X[ログに記録]
 ```
 
-📖
 https://docs.typesafe.ai/cookbooks/classifying_rag_passages
 
 ## Azureリソースの準備
@@ -325,14 +316,6 @@ resource cosmos 'Microsoft.DocumentDB/databaseAccounts@2024-11-15' = {
 ```
 
 `disableLocalAuth: true` にすることで、そもそもキーが発行されない状態にしています。代わりにCosmos DBの組み込みロール `Cosmos DB Built-in Data Contributor` をサインイン中のユーザーに割り当てて、Pythonからは`DefaultAzureCredential`（実体は`az login`のトークン）でアクセスします。
-
-:::details 💡 ハマったところ
-最初はAzure OpenAIを`kind: 'OpenAI'`の単体リソースとして書いていたんですが、レビューで「それMicrosoft Foundryのprojectじゃないの？」と指摘されました。調べてみると、今は`kind: 'AIServices'`（Microsoft Foundryリソース）に`projects`サブリソースをぶら下げる構成が標準になっていて、単体のAzure OpenAIリソースは「Foundryの機能がフルで使えない環境向け」という扱いに変わっていたんですね。
-
-さらに、Foundryの`projects`サブリソースを作るには、アカウント側・project側の両方に`identity: { type: 'SystemAssigned' }`が必要でした。これがないと`Unsupported configuration. To create projects, you must enable a managed identity on your resource.`というエラーで弾かれます。
-
-あと地味にハマったのが、`azd`のフックでPythonから`az`コマンドを呼ぶ処理。Windowsでは`az`が`az.cmd`（バッチファイル）なので、`subprocess.run(["az", ...])`のようにshell=Falseで呼ぶと`FileNotFoundError`になります。`shell=True`にして文字列で渡したら解決しました。
-:::
 
 プロビジョニングが終わると、`postprovision`フックで`azd env get-values`の出力を`.env`に自動反映するようにしておいたので、あとはPythonコードからは`.env`を読むだけで済みます。
 
@@ -451,7 +434,6 @@ async def jev_filter(query_text, chunks):
 ![](/images/jev-cosmosdb-rag-filter-poc/jev-noul-threshold.png)
 *3つのNoulの確率がすべてしきい値以上なら採用、1つでも下回れば除外*
 
-📖
 https://docs.typesafe.ai/cookbooks/classifying_rag_passages
 https://docs.typesafe.ai/sdk/python/api/clients/async
 https://docs.typesafe.ai/patterns/fan-out
@@ -471,7 +453,6 @@ Jevは文章生成も理由の説明もできないので、単体でLLMの代�
 
 今回のRAGフィルタもまさにこのパターンで、「関連しているかどうか」を判定するだけならLLMで文章を作ってもらう必要はなく、Jevのcallable関数的な返り値で十分でした。
 
-📖
 https://docs.typesafe.ai/concepts/how-to-build-with-system-one
 https://docs.typesafe.ai/patterns/intent-routing
 
@@ -481,7 +462,6 @@ https://docs.typesafe.ai/patterns/intent-routing
 
 パイプラインの中に「賢いけど喋らない分類器」を挟んでおいて、確信度が低いものだけLLMや人間にエスカレーションする、という設計にすると、コストと精度のバランスが取りやすくなりそうです。
 
-📖
 https://docs.typesafe.ai/patterns/fan-out
 https://docs.typesafe.ai/patterns/confidence-routing
 
@@ -497,7 +477,6 @@ Step 2で`scope_matches`が0.15/0.17と低く出て、「対象読者が違う�
 
 > System One models do not write replies, produce code, or generate explanations of their reasoning.
 
-📖
 https://docs.typesafe.ai/concepts/system-one
 
 バグでも検討中の機能でもなく、「そもそも説明しない」という設計上の割り切りみたいです。ロードマップで説明性機能を予告している記述も、調べた範囲では見つかりませんでした。
@@ -507,11 +486,10 @@ https://docs.typesafe.ai/concepts/system-one
 Jevが返すもので説明性に近いものといえば、confidence（確信度）とcalibration（RLCDによる確率の較正）の2つですが、どちらも個々の判断の理由を教えてくれるものではありません。
 
 - **confidence**：公式ドキュメントには「confidenceを見て、いつ実行し、いつ人やLLMにエスカレーションするか判断できる」とありますが、これは確率分布がどれだけ尖っているかを示す数値で、「なぜその選択肢を選んだか」の説明にはなりません
-- **calibration（RLCD）**：公式ドキュメントには「calibrationは予測のグループ単位で測定されるものであり、個々の回答が正しいことを保証するものではない」と明記されています
+- **calibration**（RLCD）：公式ドキュメントには「calibrationは予測のグループ単位で測定されるものであり、個々の回答が正しいことを保証するものではない」と明記されています
 
 これ、地味に見落としやすいところだと思います。「calibrationが取れている」と聞くと精度が高そうに聞こえますが、それは「confidence 90%の判断はまとめて見れば約90%当たる」という統計的な性質であって、目の前の1件がなぜその答えになったかとはまったく別の軸なんですよね。
 
-📖
 https://docs.typesafe.ai/confidence
 https://docs.typesafe.ai/introduction/machine-learning-primer
 
@@ -521,7 +499,6 @@ https://docs.typesafe.ai/introduction/machine-learning-primer
 
 > Jev's output consists only of dry options and probabilities; it lacks the ability to explain its reasoning in natural language. When the model makes a critical misjudgment, no one can trace the cause from its black-box weights. In highly regulated fields such as finance, healthcare, and law, this lack of auditability often leads directly to compliance failures.
 
-📖
 https://www.kucoin.com/news/flash/ex-openai-researcher-launches-typesafe-ai-with-non-text-model-jev
 
 意訳すると「Jevの出力は乾いた選択肢と確率だけで、重大な誤判定が起きても原因をブラックボックスな重みから追跡できる人はいない。金融・医療・法務のような規制の厳しい領域では、この監査可能性の欠如がそのままコンプライアンス違反につながりやすい」って内容です。SHAPみたいな特徴量の寄与度を出す仕組みや、判断過程をトレースする仕組みも、少なくとも今回調べた範囲では見つかりませんでした。
@@ -540,13 +517,10 @@ https://www.kucoin.com/news/flash/ex-openai-researcher-launches-typesafe-ai-with
 
 # 使ってみて感じた注意点
 
-- **アーリーアクセス**：APIキーの取得にウェイトリスト登録が必要で、SLOやデータの取り扱い条件は公開情報からは確認できませんでした
 - **否定文に弱い**：公式ドキュメントでも触れられていますが、指示を文字通りに読むため「〜ではないか」型の問いは避けた方が良さそうです
 - **日本語の精度**：公開ベンチマークは英語中心なので、日本語文書での精度は自分のデータで検証してから使うのが安全だと思います
 - **入力上限**：1リクエストあたり約64,000トークンで、stateと一番長い質問の合計は約32,000トークンまで。チャンク単位で渡す分には問題になりにくいです
 
-📖
-https://typesafe.ai/blog/introducing-system-one-models-and-jev
 https://docs.typesafe.ai/model-jaggedness/jev-1.13
 https://docs.typesafe.ai/models
 
