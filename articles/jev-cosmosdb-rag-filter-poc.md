@@ -281,7 +281,7 @@ RAGでベクトル検索をしていると、「話題は似ているけど、�
 
 これは、ベクトル類似度だけで弾くのは難しいです。なのでJevに「このチャンクの対象読者は質問の対象読者と一致しているか」を判定させて、クエリのフィルター（WHERE句）とベクトル検索に加えて第3のフィルタとして組み込んでみます。
 
-![](/images/jev-cosmosdb-rag-filter-poc/2026-09-19-05-40-58.png)
+![](/images/jev-cosmosdb-rag-filter-poc/rag-flow-post-filter.png)
 
 ```mermaid
 flowchart LR
