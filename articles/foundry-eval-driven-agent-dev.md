@@ -1054,8 +1054,6 @@ run = openai_client.evals.runs.create(eval_id=red_team_eval.id, name="red-team-v
 
 Foundry の評価機能を全体像から整理して、架空のカーリース窓口エージェントで評価駆動開発を一周してみました。
 
-評価データを分けて用意し、Rubric を自動生成してから業務要件を足し、ベースラインを測りました。そのあと、手での改善と Agent Optimizer の改善を同じ物差しで比べました。最後は、継続評価・定期評価・アラートで運用中の劣化に気づけるかも試しています。
-
 やってみて一番の学びは、**評価駆動開発での人の役割は、業務を知っている人が評価器を正しく作ること**だ、ということでした。
 
 Relevance は、窓口として最悪の回答に 4.79/5 という高い点を付けました。汎用の評価器は「質問に答えたか」は見られても、「この窓口で答えてよいことか」は知りません。そこを採点項目として書き込めたのが Rubric で、自動生成で叩き台を作り、業務を知っている人が要件と重みを足す、という役割分担がしっくりきました。Optimizer 版の「24時間デスクを案内しなくなった」問題に気づけたのも、業務的に落とせない振る舞いを dimension として持っていたからです。
@@ -1065,31 +1063,3 @@ Relevance は、窓口として最悪の回答に 4.79/5 という高い点を�
 Foundry の評価まわりは、評価の実行、比較、分析、最適化、監視までが一つのプロジェクトの中でつながっていて、道具はほぼそろっていて、Optimizer は改善案まで自動で作ってくれます。だからこそ、何を良しとするかを決めて、その物差しを正しく保つところに人の力を使うべきなんだなと実感しました。
 
 次は、今回スコープ外にした CI/CD（GitHub Actions の `microsoft/ai-agent-evals`）で、プルリクエストごとに Rubric で採点するところまでやってみたいと思います。
-
-# 参考リンク
-
-https://learn.microsoft.com/azure/foundry/concepts/observability
-
-https://learn.microsoft.com/ja-jp/azure/foundry/concepts/evaluation-evaluators/rubric-evaluators
-
-https://learn.microsoft.com/azure/foundry/concepts/evaluation-evaluators/agent-evaluators
-
-https://learn.microsoft.com/azure/foundry/observability/how-to/evaluate-agent
-
-https://learn.microsoft.com/azure/foundry/observability/how-to/cloud-evaluation-targets
-
-https://learn.microsoft.com/azure/foundry/observability/how-to/evaluation-dataset-synthetic
-
-https://learn.microsoft.com/azure/foundry/observability/how-to/cluster-analysis
-
-https://learn.microsoft.com/azure/foundry/agents/concepts/agent-optimizer-overview
-
-https://learn.microsoft.com/azure/foundry/agents/quickstarts/quickstart-optimize-prompt-agent
-
-https://learn.microsoft.com/azure/foundry/observability/how-to/how-to-monitor-agents-dashboard
-
-https://learn.microsoft.com/azure/foundry/how-to/develop/run-ai-red-teaming-cloud
-
-https://learn.microsoft.com/azure/foundry/how-to/evaluation-github-action
-
-https://www.docswell.com/s/chips0711/KX2D8Y-20260925-sukiyanenazure42-foundry-eval-optimize-deepdive
