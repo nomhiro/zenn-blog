@@ -1,10 +1,12 @@
 ---
-title: "Foundry の評価機能をフル活用して、エージェントを「評価駆動」で育ててみた（Rubric・Optimizer・継続評価）"
+title: "Foundry の評価機能をフル活用して、エージェントを「評価駆動」で育てよう！（Rubric・Optimizer・継続評価）"
 emoji: "📏"
 type: "tech"
 topics: ["azure", "foundry", "aiagent", "evaluation", "python"]
 published: false
 ---
+
+![](/images/foundry-eval-driven-agent-dev/thumbnail.png)
 
 :::message alert
 本記事の内容は **2026年9月26日時点** の情報に基づいています。Rubric Evaluator、Agent Optimizer、合成データ生成、Cluster analysis、継続評価まわりは **preview** です。API や画面は変わる可能性があります。
@@ -286,6 +288,8 @@ project_client = AIProjectClient(
 
 ここは地味ですが大事なところです。**改善のヒントを探すデータと、改善を判定するデータを分けておかないと**、試験問題を見ながら勉強して「点数が上がった！」と喜ぶことになります。
 
+![](/images/foundry-eval-driven-agent-dev/data-split.png)
+
 手書きのゴールデンはこんな感じです（抜粋）。
 
 ```jsonl
@@ -474,6 +478,10 @@ Task Completion は、次のような回答を不合格にしていました。
 ```
 
 全項目が4点なら 0.75 です。ということは、閾値 0.6 は「3点がちらほらあっても合格」という、かなり甘い基準でした。
+
+Step 4 で見た「解約できますか？」の行（不合格、0.69）を、この式に当てはめるとこうなります。
+
+![](/images/foundry-eval-driven-agent-dev/rubric-scoring.png)
 
 :::message
 ドキュメントの出力例（合格例 0.9419）は「加重平均 ÷ 5」で計算すると一致します。一方で、今回の実データはすべて「(加重平均 − 1) ÷ 4」で一致しました。どちらが正しい仕様なのかは分かりませんが、閾値を決めるときは自分のデータで検算するのがおすすめです。
@@ -728,6 +736,8 @@ candidate_1 の指示文は、v1 の約11倍（7.4KB）に膨らんでいまし�
 
 反映前に指示文を読んで心配したことが、そのまま起きていました。「検索で確認できない番号は案内しない」という一文が効きすぎて、約款に載っている24時間デスクまで案内しなくなっています。
 
+![](/images/foundry-eval-driven-agent-dev/optimizer-trap.png)
+
 一方で、Optimizer 版が勝っているところもあります。「資料で確認できない」と明示する力（evidence_limitation_disclosure）は3者で一番高く、Task Adherence も上がりました。全体スコアの数字だけでは見えない得意・不得意があるんですよね。
 
 ### 判断
@@ -908,6 +918,10 @@ Azure Monitor で発火したアラートを数えると、1時間で16件あり
 
 モニターの rubric_quality のグラフでも、12時台にガクッと落ちて、アラートの帯が出ています。あとは v2 の指示文で新しいバージョンを作り直せばロールバック完了です。
 
+流れを時系列でまとめると、こんな感じです。
+
+![](/images/foundry-eval-driven-agent-dev/continuous-detect.png)
+
 ### 途中で気づいた「ずれ」
 
 表の上2行を見て、あれ？と思った方もいるかもしれません。このあたりで、ドキュメントを読むだけでは分からない挙動にいくつか出会いました。
@@ -972,6 +986,8 @@ run = openai_client.evals.runs.create(eval_id=red_team_eval.id, name="red-team-v
 | ② 評価器が意図どおりに判定しているか確かめる | 入力の渡し方、閾値、集計、アラート条件を実データで検算する | Task Adherence は渡し方で合格率が 0〜83% まで動いた。Rubric の計算式を検算して閾値を決めた。Red Teaming の ASR と推論欄が食い違っていた。アラートが開発中の評価にまで鳴った |
 
 ①は業務を知っている人にしかできません。Task Completion が正しい拒否を不合格にしたのも、Optimizer 版が24時間デスクを案内しなくなったのも、「この窓口では何が正解か」が評価器に十分書かれていなかったからです。②は、作った評価器を本番で信用するための検品作業です。①がなければ何を測っているか分からないし、②がなければ測った数字を信用できない、という関係ですね。
+
+![](/images/foundry-eval-driven-agent-dev/human-roles.png)
 
 ## 評価駆動開発のコツ
 
