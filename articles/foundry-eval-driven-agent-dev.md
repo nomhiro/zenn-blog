@@ -54,6 +54,8 @@ https://www.docswell.com/s/chips0711/KX2D8Y-20260925-sukiyanenazure42-foundry-ev
 
 Foundry の評価機能は、この3つを管理して、変更前後を比べられるようにする仕組みだと捉えるとスッキリします。
 
+![](/images/foundry-eval-driven-agent-dev/overview-why-hard.png)
+
 ## ライフサイクルで見る評価
 
 Foundry のドキュメントでは、評価をライフサイクルの3段階で整理しています。
@@ -65,6 +67,8 @@ Foundry のドキュメントでは、評価をライフサイクルの3段階�
 | リリース後の監視 | 本番トラフィックで劣化に気づく | 継続評価、定期評価、モニターダッシュボード、アラート、定期 Red Teaming |
 
 https://learn.microsoft.com/azure/foundry/concepts/observability
+
+![](/images/foundry-eval-driven-agent-dev/overview-lifecycle.png)
 
 ## 用語の整理（OpenAI Evals API 互換）
 
@@ -83,6 +87,8 @@ https://learn.microsoft.com/azure/foundry/concepts/observability
 | ベースライン | 比較の基準にする run。この記事では最初の版（v1）の結果 | 「前回のテストの点数」 |
 
 同じ eval の下にある run は、同じデータ形式と同じ評価器で採点されます。なので、比較したい run は同じ eval の下に積むのが基本です。これは、あとで版どうしを比べるときに大事になります。
+
+![](/images/foundry-eval-driven-agent-dev/overview-eval-run.png)
 
 :::message
 ローカルで `evaluate()` を回す `azure-ai-evaluation` SDK もありますが、ドキュメント上は「Foundry (classic)」側の扱いになっています。新しい Foundry ではクラウド評価（Evals API）が主軸です。
@@ -121,6 +127,8 @@ https://learn.microsoft.com/azure/foundry/concepts/evaluation-evaluators/agent-e
 | Rubric | 採点項目（dimension）と重みを定義し、LLM が項目ごとに採点する |
 
 https://learn.microsoft.com/azure/foundry/concepts/evaluation-evaluators/custom-evaluators
+
+![](/images/foundry-eval-driven-agent-dev/overview-evaluators.png)
 
 ## Rubric Evaluator とは
 
@@ -177,6 +185,10 @@ Rubric は preview です。ポータル上の表示とドキュメント（2026
 | アラート | 継続評価の合格率が閾値を下回ったら Azure Monitor で通知する |
 
 https://learn.microsoft.com/azure/foundry/observability/how-to/how-to-monitor-agents-dashboard
+
+定期評価と継続評価の違いは、健康診断に例えると分かりやすいです。
+
+![](/images/foundry-eval-driven-agent-dev/overview-monitoring.png)
 
 全体をまとめると、こんなループになります。
 
