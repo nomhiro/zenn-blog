@@ -629,6 +629,10 @@ graph LR
 
 ---
 
-# まとめ
+Microsoft-Decision-1は、Qwen3.5-9Bがベースで、今後はMAIやOpenAIのモデルに載せ替える予定だそうなので、今後も楽しみですね！
 
-Microsoft-Decision-1は、Qwen3.5-9Bがベースで、今後はMAIやOpenAIのモデルに載せ替える予定だそうなので、今後も楽しみですね～～
+# 参考
+
+- [Microsoft-Decision-1公式ドキュメント](https://learn.microsoft.com/ja-jp/azure/ai-services/openai/concepts/models#microsoft-decision-1)
+- [Jev公式ドキュメント](https://docs.jev.ai/)
+- [OpenAI Decisions公式ドキュメント](https://platform.openai.com/docs/guides/decisions)
