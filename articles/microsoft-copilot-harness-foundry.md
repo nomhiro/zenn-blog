@@ -27,8 +27,6 @@ https://zenn.dev/nomhiro/articles/microsoft-copilot-harness-foundry-try
 - AWS、OpenAI、Anthropic、LangChain、Googleのハーネスと比べて、何が違うのか
 - Foundry、GitHub Copilot、Copilot Studio・Microsoft 365の立場ごとに、何が嬉しいのか
 
-AzureやFoundryを少し触ったことがある人なら読めるように書いています。エージェントを自作した経験はなくても大丈夫です。
-
 :::message alert
 本記事の内容は **2026年10月31日時点** の情報に基づいています。FoundryのCopilot Harnessはパブリックプレビューのため、仕様や料金は変わる可能性があります。
 :::
