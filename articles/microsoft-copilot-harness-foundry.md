@@ -12,7 +12,7 @@ published: false
 
 https://devblogs.microsoft.com/foundry/microsoft-copilot-harness-in-foundry/
 
-発表を読んで最初に思ったのは、「ハーネスって結局なに？モデルとは何が違うの？」でした。しかもFoundry、GitHub Copilot、Copilot Studioと、いろんな製品の名前が一緒に出てきます。なので、どれとどれが同じもので、使う側に何が嬉しいのかを、調べて整理してみました。
+この記事は、実際にいろいろ試す前に、情報を整理しておきたくてまとめたものです。
 
 実際に動かしてみた結果は、別の記事にまとめています。
 
