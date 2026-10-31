@@ -1,5 +1,5 @@
 ---
-title: "Microsoft Copilot Harness が Foundry にきた！ハーネスって何が嬉しいの？を整理して動かしてみた"
+title: "Microsoft Copilot Harness が Foundry にきた！ハーネスって何が嬉しいの？を整理してみた"
 emoji: "🐴"
 type: "tech"
 topics: ["azure", "microsoftfoundry", "githubcopilot", "aiagent", "copilot"]
@@ -14,7 +14,9 @@ https://devblogs.microsoft.com/foundry/microsoft-copilot-harness-in-foundry/
 
 発表を読んで最初に思ったのは、「ハーネスって結局なに？モデルとは何が違うの？」でした。しかもFoundry、GitHub Copilot、Copilot Studioと、いろんな製品の名前が一緒に出てきます。なので、どれとどれが同じもので、使う側に何が嬉しいのかを、調べて整理してみました。
 
-調べるだけだと実感がわかないので、実際にFoundryにハーネス付きのエージェントを作って、ハーネスなしのエージェントと同じ問題を解かせて比べてもいます。
+実際に動かしてみた結果は、別の記事にまとめています。
+
+https://zenn.dev/nomhiro/articles/microsoft-copilot-harness-foundry-try
 
 > Microsoft Copilot Harnessは、モデルのまわりにある「考える→道具を使う→結果を見る→また考える」の繰り返しを丸ごと引き受けてくれる、GitHub生まれのエージェント実行基盤です。
 
@@ -23,9 +25,7 @@ https://devblogs.microsoft.com/foundry/microsoft-copilot-harness-in-foundry/
 | やること | 内容 |
 |------|------|
 | 整理 | ハーネスとは何か、Microsoftのどの製品で使われているか |
-| 作成 | azd（Azure Developer CLI）でFoundryにハーネス付きのエージェントを作る |
-| 比較 | 同じモデルで「ハーネスあり」「ハーネスなし」「Code Interpreter付き」に同じ問題を解かせる |
-| 移植 | Foundry用に書いたスキル（作業手順を書いたSKILL.md）を、そのままGitHub Copilot CLIで動かす |
+| 整理 | Foundryで何が変わるのか（3通りの作り方、ハーネスの道具、ワークスペース） |
 | 比較 | AWS、OpenAI、Anthropic、LangChain、Googleのハーネスと比べて、何が違うのか |
 | 整理 | Foundry、GitHub Copilot、Copilot Studio・Microsoft 365の立場ごとに、何が嬉しいのか |
 
@@ -226,546 +226,19 @@ https://learn.microsoft.com/azure/foundry/agents/how-to/use-tools-skills-copilot
 
 ---
 
-# 実際に動かしてみる
+# 実際に動かしてみた
 
-ここからは、実際にFoundryにハーネス付きのエージェントを作ってみます。
+Japan Eastに`gpt-6-luna`でハーネス付きのエージェントを作り、ハーネスなしのエージェントと同じ問題を解かせて比べてみました。手順と結果は、こちらの記事に書いています。
 
-## 今回の構成
+https://zenn.dev/nomhiro/articles/microsoft-copilot-harness-foundry-try
 
-Japan Eastに新しいFoundryプロジェクトを作り、モデルは`gpt-6-luna`を使います。同じモデル、同じ指示で、エージェントを3体用意しました。
+分かったことを3つだけ挙げます。
 
-| エージェント | 実行環境 | ツール・スキル | 作り方 |
-|------|------|------|------|
-| `harness-analyst` | Copilot Harness | ハーネスの5つのツール + スキル`sales-report-ja` | azd |
-| `default-ci-analyst` | 既定 | Code Interpreter | Python SDK |
-| `default-analyst` | 既定 | なし | Python SDK |
+- **ハーネス付きは、毎回まずスキルを読みに行った**。指示には「スキルに従って」としか書いていないのに、スキルに書いた見出しと検算のやり方を守って答えてきました
+- **失敗しても自分で立て直した**。グラフを頼んだら、ライブラリがなければ`pip install`し、日本語フォントがなければ英語に切り替えて描き直しました
+- **計算だけならCode Interpreterのほうが速くて軽かった**。ハーネス付きは入力トークンが約6倍で、時間も少し長くかかりました
 
-Code Interpreterは、既定のプロンプトエージェントにも付けられる「Pythonを実行するツール」です。これもサンドボックスでコードを動かすので、ハーネスと似ています。違いは、Code Interpreterが「Pythonを動かす道具を1つ足す」だけなのに対して、ハーネスはスキル、シェル、ファイル、サブエージェントを使うループ全体を受け持つところです。この差が結果にどう出るかを見てみます。
-
-```mermaid
-graph TB
-    subgraph Local["手元の PC"]
-        Azd[azd<br/>azure.yaml]
-        Py[Python SDK<br/>比較実験スクリプト]
-        CLI[GitHub Copilot CLI]
-        Skill[SKILL.md<br/>sales-report-ja]
-    end
-    subgraph Foundry["Microsoft Foundry（Japan East）"]
-        Model[gpt-6-luna]
-        A[harness-analyst<br/>Copilot Harness]
-        B[default-ci-analyst<br/>Code Interpreter]
-        C[default-analyst<br/>ツールなし]
-        FSkill[スキル sales-report-ja]
-        Files[(Foundry Files)]
-    end
-    Azd -->|azd up| A
-    Azd -->|公開| FSkill
-    Skill --> Azd
-    Skill -->|同じファイルをコピー| CLI
-    Py -->|create_version| B
-    Py -->|create_version| C
-    Py -->|Responses API| A
-    Py -->|Responses API| B
-    Py -->|Responses API| C
-    FSkill -.-> A
-    Files -->|入力ファイル| A
-    A -->|成果物| Files
-    A --> Model
-    B --> Model
-    C --> Model
-```
-
-記事中のコードは、説明に必要なところだけの抜粋です。
-
-## 前提条件
-
-| 項目 | 内容 |
-|------|------|
-| Azure | サブスクリプションと、リソースグループを作れる権限 |
-| ロールの割り当て | 検証2でエージェントにロールを付けるため、所有者かロールベースのアクセス制御管理者などの権限 |
-| リージョン | ハーネスの対応リージョン（今回はJapan East） |
-| モデル | 推論とツール呼び出しに対応したモデル（今回は`gpt-6-luna`） |
-| azd | 1.37.0以上と、Foundry拡張の`azure.ai.agents` 1.0.0-beta.22以上 |
-| Python | `azure-ai-projects` 2.9.0以上（今回は2.10.0）、`azure-identity` |
-| GitHub Copilot CLI | 検証3で使う。GitHub Copilotの契約が必要 |
-
-## Step 1: azdとFoundry拡張を用意する
-
-手元のazdが1.28だったので、まず更新しました。Windowsではwingetを使います。
-
-```powershell
-winget upgrade Microsoft.Azd
-```
-
-macOSなら`brew upgrade azd`です。続いてFoundry拡張を入れます。`microsoft.foundry`を入れると、`azure.ai.agents`や`azure.ai.skills`なども一緒に入ります。
-
-```bash
-azd extension install microsoft.foundry
-azd extension update microsoft.foundry
-azd extension list --installed
-```
-
-こんな感じになればOKです。
-
-```text
-azure.ai.agents        Foundry agents (Beta)     Up to date   1.0.0-beta.23
-azure.ai.projects      Foundry Projects (Beta)   Up to date   1.0.0-beta.16
-azure.ai.skills        Foundry skills (Beta)     Up to date   1.0.0-beta.10
-microsoft.foundry      Microsoft Foundry (Beta)  Up to date   1.0.0-beta.4
-```
-
-もう1つ、ハーネスのプレビュー機能を有効にする環境変数を設定します。シェルを開き直すたびに必要です。
-
-```bash
-# bash
-export AZD_ALPHA_ENABLE_AGENTS_MANAGED_HARNESS=true
-```
-
-```powershell
-# PowerShell
-$env:AZD_ALPHA_ENABLE_AGENTS_MANAGED_HARNESS = "true"
-```
-
-## Step 2: ハーネス付きのエージェントのひな形を作る
-
-`azd ai agent init`に`--harness`オプションがあるので、これを付けて初期化します。
-
-```bash
-azd ai agent init harness-analyst \
-  --no-prompt \
-  --kind prompt \
-  --agent-name harness-analyst \
-  --model gpt-6-luna \
-  --harness microsoft_copilot_preview \
-  --instructions "You are a careful data analyst."
-```
-
-実行すると、対応リージョンも教えてくれます。
-
-```text
-The Microsoft Copilot harness requires a Foundry project in one of these regions: australiaeast, canadacentral, centralus, germanywestcentral, japaneast, swedencentral, uksouth, westeurope, westus.
-
-Initialized prompt agent "harness-analyst".
-  Harness:       microsoft_copilot_preview
-```
-
-Japan Eastが入っているのは嬉しいですね。
-
-## Step 3: スキルを書く
-
-スキルは、手順書をフォルダにまとめたものです。`SKILL.md`の先頭に名前と説明を書き、本文に手順を書きます。今回は「売上データを集計して、決まった書式でレポートにする」スキルを作りました。
-
-```markdown:skills/sales-report-ja/SKILL.md
----
-name: sales-report-ja
-description: 売上データ（CSV）を集計して、日本語の売上レポートを決まった書式で作る。売上の集計、地域別・商品別の比較、月次の推移を聞かれたときに使う。
----
-
-# 売上レポート（日本語）
-
-売上データを集計してレポートを書くときは、次の手順に従う。
-
-## 集計のルール
-
-1. 数値は頭の中で計算しない。必ずコード（Python など）で CSV を読み込んで計算する。
-2. 売上金額は `units * unit_price * (1 - discount_rate)` で行ごとに求めてから合計する。
-3. 合計値は、地域別の合計を足した値と、全行を直接足した値の2通りで検算し、一致を確認する。
-4. 金額は円単位に四捨五入し、3桁区切り（例: 12,345,678円）で書く。
-
-## レポートの書式
-
-次の見出しで、この順に書く。
-
-- `## 結論`: 質問への答えを2〜3行で
-- `## 集計結果`: Markdown の表で
-- `## 検算`: 2通りの合計値と、一致したかどうか
-- `## 前提と注意`: 計算式、欠損値の扱いなど
-
-推測や補完をした値には「（推定）」と書く。データに無い列や値を作らない。
-```
-
-ツールとスキルの違いは、「道具」と「作業マニュアル」の違いだと考えると分かりやすいです。シェルやWeb検索は道具で、スキルは「この仕事はこの順番で、この道具を使ってやる」という社内マニュアルです。新人さんにマニュアルを全部暗記させるのではなく、該当する仕事が来たときに開いてもらう、そんなイメージです。
-
-## Step 4: azure.yamlにスキルとハーネスを書く
-
-生成された`azure.yaml`に、モデルのデプロイとスキルを足します。
-
-```yaml:azure.yaml
-infra:
-    provider: microsoft.foundry
-name: harness-analyst
-services:
-    ai-project:
-        host: azure.ai.project
-        deployments:
-            - name: gpt-6-luna
-              model:
-                  format: OpenAI
-                  name: gpt-6-luna
-                  version: '2026-09-22'
-              sku:
-                  name: GlobalStandard
-                  capacity: 200
-
-    # 再利用できるスキル（SKILL.md を含むフォルダをそのまま公開する）
-    sales-report-ja:
-        host: azure.ai.skill
-        uses:
-            - ai-project
-        archive: ./skills/sales-report-ja
-
-    # Copilot Harness を使うプロンプトエージェント
-    harness-analyst:
-        host: azure.ai.agent
-        project: .
-        kind: prompt
-        name: harness-analyst
-        model: gpt-6-luna
-        harness:
-            type: microsoft_copilot_preview
-        instructions: |
-            あなたは慎重なデータアナリストです。売上データの質問には、添付のスキル sales-report-ja に従って答えてください。
-            数値を推測で書かず、根拠を示してください。
-        skills:
-            - sales-report-ja
-        uses:
-            - ai-project
-            - sales-report-ja
-```
-
-ポイントは3つです。
-
-- `harness.type: microsoft_copilot_preview`で、ハーネスを選ぶ
-- スキルは`host: azure.ai.skill`の別サービスとして書き、`archive`に`SKILL.md`のあるフォルダを指定する
-- エージェントの`skills`でスキルを付け、`uses`でスキルを先にデプロイさせる
-
-## Step 5: デプロイして確認する
-
-リージョンなどを設定して、`azd up`します。
-
-```bash
-azd env set AZURE_LOCATION japaneast
-azd env set AZURE_RESOURCE_GROUP rg-copilot-harness-poc
-azd env set AZURE_AI_PROJECT_NAME copilot-harness-poc
-azd up --no-prompt
-```
-
-リソースグループ、Foundry、プロジェクト、モデルのデプロイ、スキル、エージェントまで、1回でできあがります。このあとのスクリプトで使うプロジェクトのエンドポイントは、`azd env get-value FOUNDRY_PROJECT_ENDPOINT`で取れます。
-
-デプロイ後、`azd ai agent show`で中身を見ると、ハーネスとスキルが付いていました。
-
-```json
-"definition": {
-  "harness": { "type": "microsoft_copilot_preview" },
-  "kind": "prompt",
-  "model": "gpt-6-luna",
-  "skills": [ { "name": "sales-report-ja", "version": "1" } ]
-}
-```
-
-スキルにはバージョン番号が付いています。スキルを書き換えて再デプロイすると新しいバージョンになり、エージェントのバージョンごとに「どのバージョンのスキルを使うか」が固定されます。スキルをコードと同じようにバージョン管理できるわけです。
-
-:::message alert
-**azdで`uses`にスキルを書くと、スキルまで付いてしまった**
-
-最初は比較用の2体も同じ`azure.yaml`に書いていました。するとazdに「`uses`に`sales-report-ja`を書け」と怒られたので、比較用の2体の`uses`にスキルを足しました。ところが、デプロイ後の定義を見ると、`skills`に書いていない2体にも`sales-report-ja`が付いていました。
-
-ドキュメントには「`uses`に書いても、それだけではエージェントに付かない」とあるので、少なくとも`azure.ai.agents` 1.0.0-beta.23では、ドキュメントと動きが違うようです。比較の条件が揃わなくなるので、比較用の2体は`azure.yaml`から外し、Python SDKでスキルなしのバージョンを作り直しました。
-:::
-
-比較用の2体を作るSDKのコードはこんな感じです。
-
-```python:scripts/create_baselines.py
-import os
-
-from azure.ai.projects import AIProjectClient
-from azure.ai.projects.models import CodeInterpreterTool, PromptAgentDefinition
-from azure.identity import DefaultAzureCredential
-
-ENDPOINT = os.environ["FOUNDRY_PROJECT_ENDPOINT"]
-INSTRUCTIONS = "あなたは慎重なデータアナリストです。\n数値を推測で書かず、根拠を示してください。\n"
-
-project = AIProjectClient(endpoint=ENDPOINT, credential=DefaultAzureCredential(), allow_preview=True)
-
-# 既定の実行環境、ツールなし
-project.agents.create_version(
-    agent_name="default-analyst",
-    definition=PromptAgentDefinition(model="gpt-6-luna", instructions=INSTRUCTIONS),
-)
-# 既定の実行環境 + Code Interpreter
-project.agents.create_version(
-    agent_name="default-ci-analyst",
-    definition=PromptAgentDefinition(
-        model="gpt-6-luna", instructions=INSTRUCTIONS, tools=[CodeInterpreterTool()]
-    ),
-)
-```
-
-ちなみにSDKでハーネスを付けるときは、`PromptAgentDefinition(harness=MicrosoftCopilotHarness())`と書きます。SDKの中を見てみたら、`MicrosoftCopilotHarness`と並んで`GitHubCopilotHarness`というクラスも残っていました。改名の名残ですね。
-
-## 動作確認: 使える道具を聞いてみる
-
-3体それぞれに、新しい会話で「あなたが使えるツールを全部教えて」と聞いてみました。ハーネス付きのエージェントは、ワークスペースが会話ごとに用意されるので、先に会話（conversation）を作ってから呼びます。
-
-```python:scripts/smoke.py
-# name はエージェント名（harness-analyst など）
-openai = project.get_openai_client(agent_name=name)
-conv = openai.conversations.create()
-res = openai.responses.create(
-    conversation=conv.id,
-    input="あなたが使えるツールを全部、名前だけ箇条書きで教えてください。",
-)
-```
-
-結果はこうでした。
-
-| エージェント | 答えたツールの数 | 入力トークン |
-|------|------|------|
-| `harness-analyst` | 15個 | 11,907 |
-| `default-ci-analyst` | 2個（`python.exec`、`python_user_visible.exec`） | 713 |
-| `default-analyst` | なし | 61 |
-
-ハーネス付きが答えた15個は次のとおりです。
-
-```text
-bash, view, web_fetch, skill, task, read_agent, list_agents, write_agent,
-task_complete, download_file_from_foundry_project_to_workspace,
-upload_file_from_workspace_to_foundry_project, apply_patch, rg, glob,
-multi_tool_use.parallel
-```
-
-「5つの道具」と言っていたのに15個あるのは、設定名1つの中に実際の道具がいくつも入っているからです。名前から見ると、だいたいこう対応していそうです。
-
-| 設定名 | 実際の道具（推測） |
-|------|------|
-| `shell` | `bash` |
-| `filesystem_read` | `view`、`rg`、`glob` |
-| `filesystem_write` | `apply_patch` |
-| `web` | `web_fetch` |
-| `subagents` | `task`、`read_agent`、`list_agents`、`write_agent` |
-| スキル | `skill` |
-| Foundry Files連携 | `download_file_from_...`、`upload_file_from_...` |
-| そのほか（用途は未確認） | `task_complete`、`multi_tool_use.parallel` |
-
-`apply_patch`、`rg`、`glob`あたりは、GitHub Copilotのコーディングエージェントでおなじみの道具ですね。本当にGitHub Copilotと同じハーネスなんだなと実感しました。
-
-ただ、気になったのは入力トークンです。同じ一言の質問なのに、ハーネス付きは11,907トークンでした。ツールの定義やハーネスの指示を毎回モデルに渡しているので、これがハーネスの「固定費」になります。
-
-## 検証1: 同じモデルで、ハーネスあり・なしを比べる
-
-いよいよ本題です。240行の売上データ（CSV）をプロンプトに貼り付けて、3体に同じ質問をしました。
-
-- 全体の売上合計
-- 地域別の売上合計と、いちばん大きい地域
-- 前月からの増加額がいちばん大きい月と、その金額
-- 上期から下期への伸び率がいちばん大きい商品と、その伸び率
-
-データは、関西（91,848,466円）と北海道（91,740,102円）の差が約11万円しかないように作ってあります。暗算だと間違えやすいデータです。正解は手元のPythonで計算しておき、回答の最後に出させたJSONと突き合わせて採点しました。各エージェント3回ずつ、新しい会話で試しています。
-
-結果はこうなりました。
-
-| エージェント | 全問正解 | 答えなかった | 間違えた | 所要時間 中央値（範囲） | 入力トークン 中央値 |
-|------|------|------|------|------|------|
-| `harness-analyst`（ハーネス） | 3回 | 0回 | 0回 | 34.9秒（34.8〜36.7） | 73,368 |
-| `default-ci-analyst`（Code Interpreter） | 3回 | 0回 | 0回 | 26.7秒（15.4〜29.2） | 11,600 |
-| `default-analyst`（ツールなし） | 1回 | 2回 | 0回 | 20.1秒（16.9〜94.1） | 5,162 |
-
-※ 2026年10月31日、Japan East、`gpt-6-luna`、各3回の結果です。回数が少ないので、傾向として見てください。
-
-結果を図にすると、こうなります。
-
-![3体のエージェントの比較結果](/images/microsoft-copilot-harness-foundry/experiment.png)
-
-正直に言うと、「計算を正しくやる」だけなら、Code Interpreter付きのエージェントで十分でした。全問正解で、ハーネス付きより速く、入力トークンは約6分の1です。
-
-ツールなしのエージェントは、回によって動きが変わりました。1回目は、推論だけで94秒かけて全問正解（出力トークンは16,795）。2回目と3回目は「この環境ではCSVを集計できないため、数値を推測して回答することは避けます」と言って、集計用のPythonコードだけを返しました。指示の「推測で書かない」には忠実なんですが、結果が安定しません。
-
-### じゃあハーネスは何が違ったのか
-
-ハーネス付きのエージェントの出力を見ると、3回とも次の順番で動いていました。
-
-```text
-function_call  skill {"skill": "sales-report-ja"}     ← まずスキルを読み込む
-function_call_output  Skill "sales-report-ja" loaded successfully.
-shell_call     python - <<'PY' ...                    ← シェルで Python を動かして集計
-shell_call_output  rows 240 / direct 346172503 / regions ...
-message        ## 結論 ...                             ← スキルの書式で回答
-```
-
-違いが分かりやすいのは、回答の書式です。Code Interpreter付きのほうは、正しい数字を箇条書きで返してくれました。
-
-```markdown
-1. **全体の売上合計：346,172,503円**
-2. **地域別の売上合計**
-   - 北海道：91,740,102円
-   ...
-```
-
-ハーネス付きのほうは、スキルに書いたとおり「結論、集計結果、検算、前提と注意」の4つの見出しで、検算まで入れて返してきました。
-
-```markdown
-## 結論
-全体の売上合計は **346,172,503円** です。地域別では **関西** が最大で、...
-
-## 集計結果
-| 地域 | 売上合計 |
-|---|---:|
-| 関西 | 91,848,466円 |
-...
-
-## 検算
-全行を直接合計した売上は346,172,503円、地域別売上合計の合計も346,172,503円で、一致しました（240行）。
-
-## 前提と注意
-各行の売上を `units × unit_price × (1 − discount_rate)` で計算し、...
-```
-
-指示（instructions）には「スキルに従って」としか書いていません。書式や検算のやり方はスキルの中にあって、ハーネスがそれを読みに行って守っています。チームの「レポートの書き方」をスキルにしておけば、誰がエージェントを作っても同じ品質で出てくる、というのがハーネスとスキルの組み合わせの良さだと思います。
-
-あと、3回目の実行では、スキルを読んだあとに`glob`で`**/AGENTS.md`を探していました。GitHub Copilotのコーディングエージェントが、リポジトリの`AGENTS.md`を探しに行くのと同じ動きです。こういうところにGitHub生まれっぽさが出ますね。
-
-入力トークンが多いのは、ハーネスが内部でループを回しているからです。スキルを読む、シェルを動かす、結果を見る、のたびにモデルを呼び直すので、1回の質問でもトークンは積み上がります。冒頭のCopilot Studioの評価でも「モデルの呼び出しは約2倍に増えた」とあったので、同じ傾向ですね。
-
-## 検証2: ファイルを渡して、グラフを返してもらう
-
-ハーネスの得意分野は、ファイルを扱う作業です。今度はCSVをプロンプトに貼らず、Foundry Filesにアップロードしてファイルとして渡しました。そのうえで「地域別の月次売上の折れ線グラフをPNGで作って」と頼んでいます。公式サンプルのCSV Chart Analystと同じ流れです。
-
-https://github.com/microsoft-foundry/foundry-samples/tree/main/samples/cli/prompt-agents/microsoft-copilot-harness/csv-chart-analyst
-
-その前に、1つ準備がいります。ハーネスが作ったファイルは、エージェント自身のIDでFoundry Filesにアップロードされます。なので、エージェントの`instance_identity.principal_id`に、プロジェクトのFoundry Userロールを付けます。
-
-```bash
-# principal_id は azd ai agent show の instance_identity.principal_id
-# Git Bash ではパスが書き換えられるので MSYS_NO_PATHCONV=1 を付ける
-MSYS_NO_PATHCONV=1 az role assignment create \
-  --assignee-object-id "<agent-principal-id>" \
-  --assignee-principal-type ServicePrincipal \
-  --role "53ca6127-db72-4b80-b1b0-d745d6d5456d" \
-  --scope "<Foundry プロジェクトのリソース ID>"
-```
-
-※ Foundryのロールは名前が変わったばかりなので、ロール名ではなくID（`53ca6127-...`がFoundry User）で指定するように、とドキュメントに書いてあります。反映には最大5分ほどかかります。
-
-ファイルを渡すコードはこんな感じです。
-
-```python:scripts/chart.py
-# project は Step 5 の create_baselines.py と同じ AIProjectClient。PROMPT はグラフ作成の依頼文
-csv_path = Path("data/sales_2026.csv")
-files_client = project.get_openai_client()                     # プロジェクトの Files API
-agent_client = project.get_openai_client(agent_name="harness-analyst")
-
-with csv_path.open("rb") as f:
-    uploaded = files_client.files.create(file=(csv_path.name, f, "text/csv"), purpose="assistants")
-conv = agent_client.conversations.create()
-res = agent_client.responses.create(
-    conversation=conv.id,
-    input=[{
-        "role": "user",
-        "content": [
-            {"type": "input_text", "text": PROMPT},
-            {"type": "input_file", "file_id": uploaded.id},   # ファイルを添付
-        ],
-    }],
-)
-```
-
-返ってきた回答の最後には、ファイル名とFoundry FilesのファイルIDが書かれていました。
-
-```text
-File: monthly_sales_by_region.png
-Download ID: assistant-Hn6EJLmdTUBW1fjLsXLJSD
-```
-
-このIDを使って、プロジェクトのFiles APIからダウンロードします。
-
-```python
-# 実際のスクリプトでは、回答の Download ID や file_citation の注釈から ID を拾っている
-data = files_client.files.content("assistant-Hn6EJLmdTUBW1fjLsXLJSD").read()
-Path("monthly_sales_by_region.png").write_bytes(data)
-```
-
-44.5秒で、こんなグラフが返ってきました。
-
-![ハーネス付きのエージェントが作った地域別の月次売上グラフ](/images/microsoft-copilot-harness-foundry/chart-by-harness.png)
-
-値も手元で確かめました。たとえば関東の12月（14,280,872円）や九州の10月（1,567,252円）が、グラフの点と合っていました。
-
-途中の動きも追ってみました。出力の記録を見ると、こんな流れです。
-
-1. スキル`sales-report-ja`を読み込む
-2. `view`で`/home/session/workspace/data/sales_2026.csv`を開く。添付ファイルはここに自動で置かれていた
-3. `matplotlib`をimportしようとして失敗する
-4. 自分で`pip install matplotlib`する
-5. グラフを描くが、日本語フォントがなく地域名が描けないと警告が出る
-6. 地域名を英語（Kanto、Kansaiなど）に変えて描き直す
-7. スキルのとおり、2通りの合計で検算する（`verified=True`）
-8. `upload_file_from_workspace_to_foundry_project`でPNGをFoundry Filesに上げる
-
-ライブラリがない、フォントがない、と2回つまずいていますが、どちらも自分で立て直して最後までやり切っています。冒頭の「ツールが失敗したあとも解決を試み続けた割合84〜91%」は、まさにこういう動きのことなんだろうなと思いました。
-
-しかも、グラフを頼んだだけなのに、スキルの「2通りで検算する」もちゃんと守っています。これ、地味にすごいと思います。
-
-この1回の入力トークンは161,501で、そのうち139,699がキャッシュでした。ループを何周も回るので量は増えますが、前の周の内容はほとんどキャッシュが効くようです。
-
-## 検証3: 同じSKILL.mdをGitHub Copilot CLIでも動かす
-
-最後に、Foundry用に書いた`SKILL.md`を、手元のGitHub Copilot CLIでも使えるか試しました。同じハーネスなら、スキルもそのまま使えるはずです。
-
-GitHub Copilot CLIは、`.github/skills/`、`.agents/skills/`、`.claude/skills/`などに置いた`SKILL.md`を読み込みます。なので、空のフォルダを作って、Foundry用のファイルをそのままコピーしました。
-
-```bash
-mkdir -p copilot-cli-local/.github/skills/sales-report-ja copilot-cli-local/data
-cp harness-analyst/skills/sales-report-ja/SKILL.md copilot-cli-local/.github/skills/sales-report-ja/
-cp harness-analyst/data/sales_2026.csv copilot-cli-local/data/
-cd copilot-cli-local
-copilot skill list
-```
-
-```text
-  sales-report-ja - 売上データ（CSV）を集計して、日本語の売上レポートを決まった書式で作る。...
-```
-
-認識されました。この状態で、Copilot CLIに頼んでみます。
-
-```bash
-copilot -p "data/sales_2026.csv の売上レポートを作ってください。全体合計、地域別合計と最も売上が大きい地域を知りたいです。" \
-  --allow-all-tools --trust-folder
-```
-
-```text
-● skill(sales-report-ja)
-
-● 集計して売上レポートの数値を検算 (shell)
-  │ import csv
-  │ from decimal import Decimal, ROUND_HALF_UP
-  └ 51 lines…
-
-## 結論
-全体の売上合計は **346,172,503円** です。
-地域別では **関西が91,848,466円で最も大きい** 売上となっています。
-
-## 集計結果
-| 地域 | 売上合計 |
-|---|---:|
-| 関西 | 91,848,466円 |
-...
-
-## 検算
-- 全行を直接合計: **346,172,503円**
-- 地域別合計を合算: **346,172,503円**
-- 検算結果: **一致**
-
-## 前提と注意
-...
-```
-
-Foundryのときと同じように、最初に`skill(sales-report-ja)`を呼び、シェルでPythonを動かし、同じ4つの見出しで、同じ数字を返してくれました（98秒）。
-
-:::message
-この検証で確かめたのは、スキルのファイルがそのまま使い回せることです。Copilot CLIが使ったモデルはCopilot側が選んだもので、Foundryの`gpt-6-luna`とは別です。なので、速さや精度の比較にはなっていません。また、`--allow-all-tools`を付けると、Copilot CLIは確認なしに手元のPCでシェルを実行します。試すときは使い捨てのフォルダでやってください。
-:::
-
-手元のCopilot CLIでスキルを試して、良くなったら同じファイルをFoundryにデプロイする、という流れが作れるわけです。開発者としては、これがいちばん嬉しいポイントかもしれません。
+同じ`SKILL.md`を手元のGitHub Copilot CLIに置いたら、そのまま同じように動いたのも面白かったです。
 
 ---
 
@@ -780,7 +253,7 @@ Foundryのときと同じように、最初に`skill(sales-report-ja)`を呼び�
 | モデルの推論 | これまでどおり、別に課金される |
 | Web検索などのツール | ツールごとに別に課金される |
 
-検証1で見たとおり、ハーネスは内部でループを回すので、モデルの入力トークンは増えます。サンドボックスの料金だけでなく、トークンの増え方も見ておいたほうがよさそうです。
+試してみた記事でも見たとおり、ハーネスは内部でループを回すので、モデルの入力トークンは増えます。サンドボックスの料金だけでなく、トークンの増え方も見ておいたほうがよさそうです。
 
 ## プレビューの制約
 
@@ -847,7 +320,7 @@ https://platform.claude.com/docs/en/about-claude/pricing
 
 ### 道具とスキルは、ほぼ横並び
 
-ファイル操作、シェル、SKILL.mdのスキル、MCPは、5つともほぼ同じでした。SKILL.mdはもともとAnthropicが作った形式ですが、いまはagentskills.ioでオープンな規格になっていて、どの会社も対応しています。検証3で同じスキルがCopilot CLIでも動いたように、スキルは会社をまたいでも使い回しやすいはずです。
+ファイル操作、シェル、SKILL.mdのスキル、MCPは、5つともほぼ同じでした。SKILL.mdはもともとAnthropicが作った形式ですが、いまはagentskills.ioでオープンな規格になっていて、どの会社も対応しています。試してみた記事で同じスキルがCopilot CLIでも動いたように、スキルは会社をまたいでも使い回しやすいはずです。
 
 道具の数そのもので選ぶ時代ではなくなったな、と感じました。
 
@@ -903,16 +376,16 @@ https://learn.microsoft.com/agent-framework/concepts/harness
 
 ## Foundryでエージェントを作る人
 
-- **エージェントループを自分で作らなくていい**。ツールの失敗からの立て直し、コンテキストの整理、コードを動かす場所の用意をMicrosoftが受け持ってくれます。検証2の「ライブラリがなければ入れる、フォントがなければ描き方を変える」が、何も書かなくても動きました
+- **エージェントループを自分で作らなくていい**。ツールの失敗からの立て直し、コンテキストの整理、コードを動かす場所の用意をMicrosoftが受け持ってくれます。試したときも「ライブラリがなければ入れる、フォントがなければ描き方を変える」が、何も書かなくても動きました
 - **定義は1項目足すだけ**。エージェントの種類も呼び出し方（Responses API）も変わらないので、アプリ側のコードはほぼそのままです
 - **スキルで作業の品質を揃えられる**。手順や書式をスキルにまとめ、バージョン付きで管理できます
 - **ハーネスの改善がFoundryにも入ってくる**。同じハーネスなので、GitHub CopilotやCopilot Studio向けの改善が、Foundryのエージェントにも効いてくるはずです
 
-ただし、検証1で見たように、計算だけならCode Interpreterのほうが速くて軽いこともあります。スキル、ファイル、シェル、サブエージェントを使う何ステップもの作業のときにハーネスを選ぶ、くらいの使い分けがよさそうです。
+ただし、試してみると、計算だけならCode Interpreterのほうが速くて軽いこともあります。スキル、ファイル、シェル、サブエージェントを使う何ステップもの作業のときにハーネスを選ぶ、くらいの使い分けがよさそうです。
 
 ## GitHub Copilotを使っている人
 
-- **手元で育てたスキルを、そのままクラウドに載せられる**。検証3のとおり、Foundry用に書いた`SKILL.md`が、Copilot CLIでもそのまま同じように動きました。逆向き（Copilot CLIで育てたスキルをFoundryに載せる）も、同じファイルなのでできるはずです
+- **手元で育てたスキルを、そのままクラウドに載せられる**。試してみたら、Foundry用に書いた`SKILL.md`が、Copilot CLIでもそのまま同じように動きました。逆向き（Copilot CLIで育てたスキルをFoundryに載せる）も、同じファイルなのでできるはずです
 - **いつもの動きがクラウドでも見られる**。`apply_patch`、`rg`、`glob`、`AGENTS.md`を探しに行く動きなど、Copilotで見慣れた振る舞いがFoundryのエージェントでも出てきます
 - GitHub Copilot appにはMicrosoft Foundryのプラグインがあり、CopilotからFoundryのエージェントを作ったり管理したりもできるそうです（今回は未検証）
 
@@ -938,24 +411,9 @@ https://learn.microsoft.com/agent-framework/concepts/harness
 
 ---
 
-# 後片付け
-
-今回のPoCは専用のリソースグループに作ったので、azdでまとめて消せます。SDKで作った比較用のエージェントも、同じプロジェクトに入っているので一緒に消えます。
-
-```bash
-cd harness-analyst
-azd down --purge --force --no-prompt
-```
-
-:::message alert
-`azd down`は、リソースグループの中身をプロジェクトごと消します。`--purge`を付けると、論理削除されたFoundryリソースも完全に消すので、元に戻せません。ほかの人と共有しているプロジェクトでは実行しないでください。
-:::
-
----
-
 # まとめ
 
-Microsoft Copilot Harnessについて、製品ごとの関係を整理し、Foundryで実際にハーネス付きのエージェントを作って、ハーネスなしと比べてみました。あわせて、AWSやOpenAI、Anthropicなどのハーネスとも比べています。
+Microsoft Copilot Harnessについて、製品ごとの関係とFoundryで変わることを整理し、AWSやOpenAI、Anthropicなどのハーネスとも比べてみました。
 
 最初は「ハーネスって、要はツールが増えるだけでしょ？」くらいに思っていました。実際に動かしてみると、エージェントはスキルを読みに行き、失敗したら自分で立て直し、検算までしてファイルで返してきました。GitHub Copilotのエージェントで見慣れた動きが、そのままFoundryで出てきたわけです。これを自分で作り込むのはかなり大変なので、`harness`の設定1つで手に入るのはありがたいと感じました。
 
