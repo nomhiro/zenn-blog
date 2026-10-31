@@ -1,5 +1,5 @@
 ---
-title: "Microsoft Copilot Harness が Foundry にきた！ハーネスって何が嬉しいの？を整理してみた"
+title: "Microsoft Copilot Harness が Foundry にきた！ハーネスって何？何がうれしいの？"
 emoji: "🐴"
 type: "tech"
 topics: ["azure", "microsoftfoundry", "githubcopilot", "aiagent", "copilot"]
