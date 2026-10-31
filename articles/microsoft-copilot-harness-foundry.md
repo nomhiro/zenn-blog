@@ -332,7 +332,7 @@ https://github.blog/changelog/2026-10-28-github-copilot-sdk-is-becoming-microsof
 https://learn.microsoft.com/azure/foundry/agents/concepts/hosted-agents
 
 :::message
-Microsoft Agent Frameworkにも`HarnessAgent`という名前の部品がありますが、これはAgent Frameworkの部品を組み合わせた別物です。Microsoft Copilot Harnessとつながっていると書かれた資料はありませんでした。名前が同じなので、混同しないように気をつけてください。
+Microsoft Agent Frameworkにも`HarnessAgent`という名前の部品がありますが、これはAgent Frameworkの部品を組み合わせた別物です。名前が同じなので、混同しないように気をつけてください。
 
 https://learn.microsoft.com/agent-framework/concepts/harness
 :::
