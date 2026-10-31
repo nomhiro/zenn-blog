@@ -134,19 +134,6 @@ https://mc.merill.net/message/MC1519871
 
 https://learn.microsoft.com/microsoft-copilot-studio/billing-licensing
 
-## 「20以上のモデル」と「BYOM非対応」は矛盾しない？
-
-調べていて混乱したのがここです。発表では「20以上のモデルとBYOKに対応」とあるのに、Foundryのドキュメントには「Copilot HarnessではBYOM（自分のモデルの持ち込み）は非対応」とあります。
-
-これは、話している場所が違うだけでした。
-
-- 「20以上のモデル + BYOK」は、ハーネス本体（GitHub CopilotやSDK）の話
-- 「BYOM非対応」は、Foundryのプレビュー版の話。Foundryでは、プロジェクトにデプロイした「推論とツール呼び出しに対応したモデル」から選ぶ
-
-ちなみにBYOKはキー（契約）の持ち込みで、BYOM（Bring Your Own Model）はFoundryの外にあるモデルそのものの持ち込みです。持ち込むものが違います。
-
-https://learn.microsoft.com/azure/foundry/agents/concepts/limits-quotas-regions#microsoft-copilot-harness-preview
-
 ---
 
 # Foundryで何が変わるのか
@@ -253,7 +240,7 @@ https://zenn.dev/nomhiro/articles/microsoft-copilot-harness-foundry-try
 |------|------|
 | ハーネスは作成時にしか選べない | 既存のエージェントにあとから付けることも、外すこともできない。変えたいときは別のエージェントを作る |
 | 対応リージョン | Australia East、Canada Central、Central US、Germany West Central、Japan East、Sweden Central、UK South、West Europe、West US |
-| モデル | 推論とツール呼び出しに対応したモデル。BYOMは非対応 |
+| モデル | 推論とツール呼び出しに対応したモデル。BYOM（Foundryの外にあるモデルの持ち込み）は非対応 |
 | サンドボックス | CPU、メモリ、アイドルの設定はFoundryが管理していて、変えられない |
 | Foundry Memory | 非対応（会話の履歴やワークスペースのファイルは使える） |
 | 会話が必須 | ハーネス付きのエージェントは、毎回conversationを指定して呼ぶ。`previous_response_id`は使えない |
