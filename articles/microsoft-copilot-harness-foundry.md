@@ -89,8 +89,6 @@ Copilot Studioのチームが、同じタスクを「標準のハーネス」と
 
 https://www.microsoft.com/en-us/copilot/blog/copilot-studio/the-github-copilot-harness-in-copilot-studio-is-now-the-microsoft-copilot-harness/
 
-モデルを変えても、ほとんど差はなかったそうです。馬を変えるより、馬具を良くしたほうが荷車は速く進む、ということですね。
-
 ---
 
 # Microsoft Copilot Harnessとは？
