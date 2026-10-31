@@ -134,10 +134,6 @@ https://mc.merill.net/message/MC1519871
 
 https://learn.microsoft.com/microsoft-copilot-studio/billing-licensing
 
-もう1つ、勘違いしやすい点があります。名前に「GitHub Copilot」と入っていても、Copilot Studioで動くエージェントのデータがGitHub Copilotのサービスに送られるわけではありません。共有しているのは技術とSDKの部品です。Copilot Studioのプライバシーやデータの保存場所のルールは、そのまま適用されます。
-
-https://learn.microsoft.com/microsoft-copilot-studio/agents-experience/overview
-
 ## 「20以上のモデル」と「BYOM非対応」は矛盾しない？
 
 調べていて混乱したのがここです。発表では「20以上のモデルとBYOKに対応」とあるのに、Foundryのドキュメントには「Copilot HarnessではBYOM（自分のモデルの持ち込み）は非対応」とあります。
