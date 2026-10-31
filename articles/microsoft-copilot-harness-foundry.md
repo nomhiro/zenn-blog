@@ -324,11 +324,11 @@ https://platform.claude.com/docs/en/about-claude/pricing
 
 料金は、課金の形がばらばらでした。Anthropicはセッション時間の定額、OpenAIはコンテナの大きさ別、MicrosoftとAWSはvCPUとメモリの時間です。Copilot Harnessはサンドボックスの大きさが公開されていないので、1時間あたりいくらかは、今のところ計算できません。12月1日までの無料期間に、実際の請求を見ておきたいところです。
 
-## Microsoftの中の入口
+## MicrosoftとGitHubでこのハーネスを使う方法
 
-MicrosoftとGitHubの中だけでも、同じハーネスに入る方法が複数あります。
+MicrosoftとGitHubの中だけでも、このハーネスを使う方法はいくつかあります。
 
-| 入口 | 誰がループを動かすか | 状況 |
+| 使う方法 | 誰がループを動かすか | 状況 |
 |------|------|------|
 | FoundryのCopilot Harness | Microsoft | プレビュー（2026-10-28） |
 | Copilot StudioのCopilot harness | Microsoft | GA。Copilot Creditsで課金 |
