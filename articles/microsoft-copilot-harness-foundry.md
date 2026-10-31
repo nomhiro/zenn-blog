@@ -203,6 +203,10 @@ https://learn.microsoft.com/azure/foundry/agents/how-to/use-tools-skills-copilot
 
 ただし、サンドボックスは成果物を長く保存する場所ではありません。大事なファイルはFoundry Filesなどに保存しておくように、とドキュメントにあります。新しい会話を始めると、机も別のものになります。
 
+ちなみに、サンドボックスの単価はFoundryのホステッドエージェントと同じです。ホステッドエージェントはAzure Container Apps Sandboxesの上で動いているので、ハーネスのサンドボックスも同じ基盤なのかもしれません（公式の記載は見つけられませんでした）。
+
+https://techcommunity.microsoft.com/blog/appsonazureblog/azure-container-apps-sandboxes-now-generally-available/4559125
+
 ---
 
 # 実際に動かしてみた
