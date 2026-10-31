@@ -20,14 +20,12 @@ https://zenn.dev/nomhiro/articles/microsoft-copilot-harness-foundry-try
 
 > Microsoft Copilot Harnessは、モデルのまわりにある「考える→道具を使う→結果を見る→また考える」の繰り返しを丸ごと引き受けてくれる、GitHubが作ったエージェントの実行基盤です。
 
-この記事でやることは次のとおりです。
+このブログで書くのは、次の4つです。
 
-| やること | 内容 |
-|------|------|
-| 整理 | ハーネスとは何か、Microsoftのどの製品で使われているか |
-| 整理 | Foundryで何が変わるのか（3通りの作り方、ハーネスの道具、ワークスペース） |
-| 比較 | AWS、OpenAI、Anthropic、LangChain、Googleのハーネスと比べて、何が違うのか |
-| 整理 | Foundry、GitHub Copilot、Copilot Studio・Microsoft 365の立場ごとに、何が嬉しいのか |
+- ハーネスとは何か、Microsoftのどの製品で使われているか
+- Foundryで何が変わるのか（3通りの作り方、ハーネスのツール、ワークスペース）
+- AWS、OpenAI、Anthropic、LangChain、Googleのハーネスと比べて、何が違うのか
+- Foundry、GitHub Copilot、Copilot Studio・Microsoft 365の立場ごとに、何が嬉しいのか
 
 AzureやFoundryを少し触ったことがある人なら読めるように書いています。エージェントを自作した経験はなくても大丈夫です。
 
