@@ -113,7 +113,7 @@ https://blogs.microsoft.com/blog/2026/10/28/introducing-the-microsoft-copilot-ha
 
 ## 製品ごとの関係
 
-いろんな製品名が出てくるので、図と表にまとめます。
+製品が多くて混乱しそうなので、図と表にしてみました。
 
 ![Microsoft Copilot Harness と各製品の関係図](/images/microsoft-copilot-harness-foundry/products.png)
 
@@ -366,7 +366,7 @@ https://learn.microsoft.com/agent-framework/concepts/harness
 
 # 結局なにが嬉しいのか
 
-最後に、立場ごとに嬉しいポイントを整理します。
+使う立場によって嬉しいところが違うので、分けて書いてみます。
 
 ## Foundryでエージェントを作る人
 
