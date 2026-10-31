@@ -18,7 +18,7 @@ https://devblogs.microsoft.com/foundry/microsoft-copilot-harness-in-foundry/
 
 https://zenn.dev/nomhiro/articles/microsoft-copilot-harness-foundry-try
 
-> Microsoft Copilot Harnessは、モデルのまわりにある「考える→道具を使う→結果を見る→また考える」の繰り返しを丸ごと引き受けてくれる、GitHub生まれのエージェント実行基盤です。
+> Microsoft Copilot Harnessは、モデルのまわりにある「考える→道具を使う→結果を見る→また考える」の繰り返しを丸ごと引き受けてくれる、GitHubが作ったエージェントの実行基盤です。
 
 この記事でやることは次のとおりです。
 
@@ -97,9 +97,9 @@ https://www.microsoft.com/en-us/copilot/blog/copilot-studio/the-github-copilot-h
 
 ---
 
-# Microsoft Copilot Harnessの正体
+# Microsoft Copilot Harnessとは？
 
-## GitHub生まれで、いまはMicrosoftのあちこちで動いている
+## どの製品で使われているの？
 
 Microsoft Copilot Harnessは、もともとGitHubのエンジニアリングチームがGitHub Copilotのために作ったものです。発表によると、いまは次の製品がこのハーネスで動いています。
 
@@ -117,7 +117,7 @@ Microsoft Copilot Harnessは、もともとGitHubのエンジニアリングチ�
 
 https://blogs.microsoft.com/blog/2026/10/28/introducing-the-microsoft-copilot-harness-unlocking-the-potential-of-truly-multi-model-agentic-work/
 
-## 製品ごとの関係を整理する
+## 製品ごとの関係
 
 いろんな製品名が出てくるので、図と表にまとめます。
 
@@ -125,7 +125,7 @@ https://blogs.microsoft.com/blog/2026/10/28/introducing-the-microsoft-copilot-ha
 
 | 製品 | ハーネスとの関係 | 誰が動かすか |
 |------|------|------|
-| GitHub Copilot（CLI / VS Code / app） | ハーネスの生まれ故郷。コーディングエージェントとして動く | 自分のPCやクラウド上でCopilotが動かす |
+| GitHub Copilot（CLI / VS Code / app） | ハーネスの元になった製品。コーディングエージェントとして動く | 自分のPCやクラウド上でCopilotが動かす |
 | Copilot SDK | 同じハーネスを自分のアプリに組み込むためのSDK | 自分で動かす |
 | Copilot Studio | 「GitHub Copilot harness」として提供されていたものが「Microsoft Copilot harness」に改名された | Microsoft（Copilot Creditsで課金） |
 | Microsoft Foundry | プロンプトエージェントの実行環境として選べるようになった（プレビュー） | Microsoft（サンドボックスの利用量で課金） |
@@ -140,7 +140,7 @@ https://mc.merill.net/message/MC1519871
 
 https://learn.microsoft.com/microsoft-copilot-studio/billing-licensing
 
-もう1つ、勘違いしやすい点があります。名前に「GitHub Copilot」と入っていても、Copilot Studioで動くエージェントのデータがGitHub Copilotのサービスに送られるわけではありません。共有しているのは技術とSDKの部品です。Copilot Studioのプライバシーやデータの保存場所のルールはそのまま適用される、とドキュメントにはっきり書いてあります。
+もう1つ、勘違いしやすい点があります。名前に「GitHub Copilot」と入っていても、Copilot Studioで動くエージェントのデータがGitHub Copilotのサービスに送られるわけではありません。共有しているのは技術とSDKの部品です。Copilot Studioのプライバシーやデータの保存場所のルールは、そのまま適用されます。
 
 https://learn.microsoft.com/microsoft-copilot-studio/agents-experience/overview
 
@@ -177,7 +177,7 @@ Foundryでエージェントを作る方法は、これまでの「プロンプ�
 
 ## ハーネスを選んでも変わらないもの
 
-ハーネスを選んでも、エージェントの種類は「プロンプトエージェント」のままです。ここは、うまい作りだなと思いました。
+ハーネスを選んでも、エージェントの種類は「プロンプトエージェント」のままです。
 
 | 変わらないもの | 内容 |
 |------|------|
@@ -189,14 +189,14 @@ Foundryでエージェントを作る方法は、これまでの「プロンプ�
 
 ※ Responses APIは、Foundryのエージェントやモデルを呼び出すためのOpenAI互換のAPIです。
 
-定義に足すのは、本当にこの1項目だけです。
+定義に足すのは、この1項目だけです。
 
 ```yaml
 harness:
   type: microsoft_copilot_preview
 ```
 
-## ハーネスについてくる5つの道具
+## 最初から使える5つのツール
 
 ハーネスを選ぶと、次の5つのツールが最初から使えます（既定ですべて有効）。
 
@@ -216,7 +216,7 @@ https://learn.microsoft.com/azure/foundry/agents/how-to/use-tools-skills-copilot
 シェルがいちばん強いツールです。ファイルの読み書きやWebを無効にしても、シェルが有効なら`cat`や`curl`で同じことができてしまいます。ドキュメントにも「シェルを残したまま他を無効にしても、厳密なセキュリティ境界にはならない」とあります。通信を絞りたいときは、サンドボックスから外への通信（エグレス）を許可リストで制限する機能（プレビュー）を使います。
 :::
 
-## 会話ごとに作業机がつく
+## 会話ごとのワークスペース
 
 ハーネスは、会話（conversation）ごとに専用の**ワークスペース**を用意します。ファイルや実行の途中経過はここに置かれます。実際にコマンドが動くのは、Foundryが管理する隔離された**サンドボックス**です。
 
@@ -240,7 +240,7 @@ https://zenn.dev/nomhiro/articles/microsoft-copilot-harness-foundry-try
 - **失敗しても自分で立て直した**。グラフを頼んだら、ライブラリがなければ`pip install`し、日本語フォントがなければ英語に切り替えて描き直しました
 - **計算だけならCode Interpreterのほうが速くて軽かった**。ハーネス付きは入力トークンが約6倍で、時間も少し長くかかりました
 
-同じ`SKILL.md`を手元のGitHub Copilot CLIに置いたら、そのまま同じように動いたのも面白かったです。
+同じ`SKILL.md`を手元のGitHub Copilot CLIに置くと、そのまま同じように動きました。
 
 ---
 
@@ -277,9 +277,9 @@ https://learn.microsoft.com/azure/foundry/agents/concepts/limits-quotas-regions#
 
 ここまでCopilot Harnessだけを見てきましたが、「ベンダーがエージェントループとサンドボックスをまとめて運用してくれる」サービスは、ほかの会社も出しています。気になったので、2026年10月31日時点の公式ドキュメントで調べてみました。
 
-## どの会社も「自分で動かす版」と「運用してもらう版」がある
+## 各社のハーネス
 
-調べてみて分かったのは、どの会社も同じハーネスを2つの形で出していることです。手元で動かすライブラリやCLIと、クラウドで運用してもらうマネージド版です。
+どの会社も、同じハーネスを2つの形で出しています。手元で動かすライブラリやCLIと、クラウドで運用してもらうマネージド版です。
 
 | 会社 | 自分で動かすハーネス | ベンダーが運用するハーネス | 自分のループを載せる実行環境 |
 |------|------|------|------|
@@ -290,7 +290,7 @@ https://learn.microsoft.com/azure/foundry/agents/concepts/limits-quotas-regions#
 | LangChain | deepagents | Managed Deep Agents | LangSmith Deployment |
 | Google | ADK、Gemini CLI / Antigravity CLI | 公式情報では見つからず | Agent Runtime（旧Vertex AI Agent Engine） |
 
-中身を見ると、どれも既存のコーディングエージェントのハーネスをそのまま載せたものでした。OpenAIのAgents APIは「CodexのハーネスをOpenAIが運用するもの」、AWSのAgentCore harnessはStrands Agents、Managed Deep Agentsはオープンソースのdeepagentsが中身です。コーディングエージェントで鍛えたハーネスを、業務エージェントの土台としてAPIで出す、というのが2026年の流れのようです。
+中身を見ると、どれも既存のコーディングエージェントのハーネスをそのまま載せたものでした。OpenAIのAgents APIは「CodexのハーネスをOpenAIが運用するもの」、AWSのAgentCore harnessはStrands Agents、Managed Deep Agentsはオープンソースのdeepagentsが中身です。
 
 https://docs.aws.amazon.com/bedrock-agentcore/latest/devguide/harness-vs-runtime.html
 https://developers.openai.com/api/docs/guides/agents-api/overview
@@ -301,7 +301,7 @@ https://docs.langchain.com/langsmith/managed-deep-agents
 
 ![各社のハーネスの2層構造](/images/microsoft-copilot-harness-foundry/landscape.png)
 
-## マネージドのハーネス同士を比べる
+## マネージドのハーネスの比較
 
 ベンダーが運用してくれるハーネスを並べると、こうなりました。
 
@@ -320,15 +320,13 @@ https://docs.aws.amazon.com/bedrock-agentcore/latest/devguide/harness.html
 https://developers.openai.com/api/docs/guides/agents-api/architecture
 https://platform.claude.com/docs/en/about-claude/pricing
 
-### 道具とスキルは、ほぼ横並び
+### ツールとスキル
 
 ファイル操作、シェル、SKILL.mdのスキル、MCPは、5つともほぼ同じでした。SKILL.mdはもともとAnthropicが作った形式ですが、いまはagentskills.ioでオープンな規格になっていて、どの会社も対応しています。試してみた記事で同じスキルがCopilot CLIでも動いたように、スキルは会社をまたいでも使い回しやすいはずです。
 
-道具の数そのもので選ぶ時代ではなくなったな、と感じました。
+### サンドボックス、モデル、データの置き場所
 
-### 差が出るのは、環境をどこまで自分で決められるか
-
-違いがはっきり出たのは、次の3つです。
+違いが出たのは、次の3つです。
 
 - **サンドボックス**: Copilot HarnessはCPUやメモリを変えられず、自前の環境にも差し替えられません。仕様を確認できた中では、いちばん手を入れられる範囲が狭いです。OpenAIとAnthropicは自前のサンドボックスに差し替えられ、AWSは独自コンテナを持ち込めます
 - **モデル**: いちばん自由なのはAWSで、Bedrock、OpenAI、Geminiなどを会話の途中でも切り替えられます。反対に、AnthropicはClaudeだけ、OpenAIも自社モデル中心です。Copilot Harnessはその中間で、Foundryのカタログには複数社のモデルがありますが、BYOMはできません
@@ -336,7 +334,7 @@ https://platform.claude.com/docs/en/about-claude/pricing
 
 料金は、課金の形がばらばらでした。Anthropicはセッション時間の定額、OpenAIはコンテナの大きさ別、MicrosoftとAWSはvCPUとメモリの時間です。Copilot Harnessはサンドボックスの大きさが公開されていないので、1時間あたりいくらかは、今のところ計算できません。12月1日までの無料期間に、実際の請求を見ておきたいところです。
 
-## Microsoftの中にも入口がいくつかある
+## Microsoftの中の入口
 
 MicrosoftとGitHubの中だけでも、同じハーネスに入る方法が複数あります。
 
@@ -347,7 +345,7 @@ MicrosoftとGitHubの中だけでも、同じハーネスに入る方法が複�
 | Copilot SDK | 自分 | GA（2026-06-02）。BYOKはキー方式のみ |
 | Copilot CLI / Copilot cloud agent | 自分のPC / GitHub | 開発者向け |
 
-おもしろいのは、同じハーネスでもCopilot Studio版はすでにGAで、Foundry版はプレビューという点です。また、Copilot SDKは「Microsoft Copilot SDK」への改名が発表されていて、Microsoft Copilot Harnessをプログラムから使うための窓口という扱いになりました。
+同じハーネスでも、Copilot Studio版はすでにGAで、Foundry版はプレビューです。また、Copilot SDKは「Microsoft Copilot SDK」への改名が発表されていて、Microsoft Copilot Harnessをプログラムから使うためのSDKになります。
 
 Copilot SDKをFoundryのホステッドエージェントに載せると、同じハーネスのまま、CPUやメモリ、モデルを自分で決められます。Copilot Harnessのサンドボックスやモデルの制約に当たったときは、ここが移り先になりそうです。
 
