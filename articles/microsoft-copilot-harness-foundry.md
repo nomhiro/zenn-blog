@@ -300,11 +300,11 @@ https://docs.langchain.com/langsmith/managed-deep-agents
 | 成熟度 | プレビュー（2026-10-28） | GA（2026-06-17） | ベータ（2026-09-10） | ベータ（2026-04-08） | ベータ |
 | 中身のハーネス | GitHub Copilot | Strands Agents | Codex | Anthropic製 | deepagents |
 | サンドボックス | Microsoftが運用。サイズは変えられない | セッションごとのmicroVM。独自コンテナも持ち込める | OpenAI運用 / 自前 / なしから選ぶ。サイズは3段階 | Anthropic運用か、自前のサンドボックス | LangSmithが運用 |
-| モデル | Foundryにデプロイしたモデル。BYOM不可 | Bedrock、OpenAI、Geminiなど。会話の途中で切り替え可 | OpenAIのモデル（※） | Claudeのみ | 複数社 |
+| モデル | Foundryにデプロイしたモデル。BYOM不可 | Bedrock、OpenAI、Geminiなど。会話の途中で切り替え可 | OpenAIのモデル | Claudeのみ | 複数社 |
 | 料金 | 12/1まで無料。以降はvCPU時間とメモリ時間 | ハーネス自体は無料。下回りのAgentCoreの従量 | Agents API自体は無料。コンテナ料金 | 1セッション時間あたり$0.08 | 未公表 |
 | 日本のリージョン | Japan East | 東京 | なし（データは米国のみ） | 確認できず | 確認できず |
 
-※ OpenAIのAgents APIが他社のモデルを使えないと明記した資料は見つかりませんでした。例がすべてOpenAIのモデルなので、そう判断しています。
+※ 調べ切れていないところがあるかもしれません。誤りがあればお知らせください。。。
 
 https://docs.aws.amazon.com/bedrock-agentcore/latest/devguide/harness.html
 https://developers.openai.com/api/docs/guides/agents-api/architecture
