@@ -3,7 +3,7 @@ title: "Microsoft Copilot Harness が Foundry にきた！ハーネスって何�
 emoji: "🐴"
 type: "tech"
 topics: ["azure", "microsoftfoundry", "githubcopilot", "aiagent", "copilot"]
-published: false
+published: true
 ---
 
 # はじめに

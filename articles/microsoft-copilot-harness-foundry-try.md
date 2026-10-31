@@ -3,7 +3,7 @@ title: "FoundryのCopilot Harnessを動かして、ハーネスなしと比べ�
 emoji: "🐴"
 type: "tech"
 topics: ["azure", "microsoftfoundry", "githubcopilot", "aiagent", "azd"]
-published: false
+published: true
 ---
 
 Microsoft FoundryのプロンプトエージェントでMicrosoft Copilot Harness（プレビュー）が使えるようになったので、さっそく動かしてみました。
