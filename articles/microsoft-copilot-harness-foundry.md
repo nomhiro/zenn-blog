@@ -107,7 +107,7 @@ Microsoft Copilot Harnessは、もともとGitHubのエンジニアリングチ�
 - GitHub Copilot CLI
 - VS Code（GitHub Copilotのエージェント）
 - Copilot Studio
-- Copilot Code（発表記事に名前だけ出てきます。Microsoft Learnにはまだ説明が見当たりませんでした）
+- Copilot Code（Microsoft 365 Copilotの新機能）
 
 そして今回、これがMicrosoft Foundryで使えるようになりました。発表では、ほかにもこんな特徴が挙がっていました。
 
@@ -129,14 +129,16 @@ https://blogs.microsoft.com/blog/2026/10/28/introducing-the-microsoft-copilot-ha
 | Copilot SDK | 同じハーネスを自分のアプリに組み込むためのSDK | 自分で動かす |
 | Copilot Studio | 「GitHub Copilot harness」として提供されていたものが「Microsoft Copilot harness」に改名された | Microsoft（Copilot Creditsで課金） |
 | Microsoft Foundry | プロンプトエージェントの実行環境として選べるようになった（プレビュー） | Microsoft（サンドボックスの利用量で課金） |
-| Microsoft 365 Copilot | 本体が使っているという記載はない。Copilot Studio経由で使える | - |
+| Microsoft 365 Copilot | 新機能のCopilot Codeがこのハーネスで動いている | Microsoft（従量課金） |
 
-Microsoft 365 Copilotについては、公式の発表記事を3つ読みましたが、本体がこのハーネスで動いているという記述はありませんでした。
+Microsoft 365 Copilotでは、Copilot Codeがこのハーネスで動いています。自然言語で、トラッカーやダッシュボード、小さなアプリを作れる機能です。Microsoft 365 Copilotのライセンスと従量課金が有効なユーザー向けで、2026年10月下旬からFrontierプログラムで順に使えるようになります。
 
-ただ、Copilot Studioのドキュメントによると、Microsoft 365 Copilotのライセンスがあれば、ハーネスで動くエージェントをCopilot Studioで作ってTeamsなどに公開できます。Microsoft 365を使っている人は、Copilot Studioのエージェントを通してハーネスに触れることになります。
+https://blogs.microsoft.com/blog/2026/09/25/introducing-the-new-copilot-with-home-code-and-autopilot/
+https://mc.merill.net/message/MC1519871
+
+また、Microsoft 365 Copilotのライセンスがあれば、ハーネスで動くエージェントをCopilot Studioで作って、Teamsなどに公開できます。
 
 https://learn.microsoft.com/microsoft-copilot-studio/billing-licensing
-https://learn.microsoft.com/microsoft-copilot-studio/agents-overview
 
 もう1つ、勘違いしやすい点があります。名前に「GitHub Copilot」と入っていても、Copilot Studioで動くエージェントのデータがGitHub Copilotのサービスに送られるわけではありません。共有しているのは技術とSDKの部品です。Copilot Studioのプライバシーやデータの保存場所のルールはそのまま適用される、とドキュメントにはっきり書いてあります。
 
@@ -392,6 +394,7 @@ https://learn.microsoft.com/agent-framework/concepts/harness
 ## Copilot Studio・Microsoft 365を使っている人
 
 - Copilot Studioの「GitHub Copilot harness」は、名前が「Microsoft Copilot harness」に変わりました。既存のエージェントは、機能も課金もそのままです
+- Microsoft 365 Copilotの新機能Copilot Codeは、このハーネスで動いています。GitHub Copilotと同じ仕組みで、アプリや自動化を自然言語で作れます
 - Microsoft 365 Copilotのライセンスがあれば、Copilot Studioでハーネスのエージェントを作ってTeamsなどに公開できます
 - ローコードのCopilot StudioとプロコードのFoundryが、同じハーネスに揃いました。Copilot Studioで試した作り方をFoundryに持っていくのも、その逆も、やりやすくなりそうです。スキルの仕組みも両方にあります
 
